@@ -9,7 +9,6 @@ class Smsgh_ApiHost {
 	private $port;
 	private $protocol;
 	private $timeout;
-	
 	private $messagesResource;
 	
 	// Primary constructor.
@@ -69,7 +68,7 @@ class Smsgh_ApiHost {
 			else throw new Smsgh_ApiException(
 				"Unsupported protocol type: '$value'");
 		} else throw new Smsgh_ApiException(
-			"Parameter value must be of type 'Smsgh_ApiProtocol'");
+			"Parameter value must be of type 'string'");
 		return $this;
 	}
 	
@@ -84,7 +83,7 @@ class Smsgh_ApiHost {
 		return $this;
 	}
 	
-	// Get or set timeout.
+	// Gets or sets timeout.
 	public function timeout($value = null) {
 		if (is_null($value))
 			return $this->timeout;
@@ -95,7 +94,7 @@ class Smsgh_ApiHost {
 		return $this;
 	}
 	
-	// Returns messages.
+	// Returns messagesResource.
 	public function messagesResource() {
 		return $this->messagesResource;
 	}
