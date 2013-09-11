@@ -199,34 +199,6 @@ class Smsgh_ApiMessage {
 		return $this;
 	}
 	
-	// Gets or sets premium.
-	public function premium($value = null) {
-		if (is_null($value)) {
-			return isset($this->object->Premium) ?
-				$this->object->Premium : null;
-		} else if ($value === false)
-			unset($this->object->Premium);
-		else if ($value === true)
-			$this->object->Premium = $value;
-		else throw new Smsgh_ApiException(
-			"Parameter value must be of type 'boolean'");
-		return $this;
-	}
-	
-	// Gets or sets premiumServiceId.
-	public function premiumServiceId($value = null) {
-		if (is_null($value)) {
-			return isset($this->object->PremiumServiceId) ?
-				$this->object->PremiumServiceId : null;
-		} else if ($value === false)
-			unset($this->object->PremiumServiceId);
-		else if (is_int($value))
-			$this->object->PremiumServiceId = $value;
-		else throw new Smsgh_ApiException(
-			"Parameter value must be of type 'int'");
-		return $this;
-	}
-	
 	// Returns a serialized object.
 	public function serialize() {
 		return json_encode($this->object);
