@@ -111,7 +111,7 @@ class Smsgh_ApiMessagesResource {
 				return new Smsgh_ApiMessageResponse($object);
 			else throw new Smsgh_ApiException(
 				'Could not construct ApiMessageResponse object from response');
-		} else throw new Smsgh_ApiExceptin('Request failed: '
+		} else throw new Smsgh_ApiException('Request failed: '
 			. $apiResponse->status() . ' ' . $apiResponse->reason());
 	}
 	
@@ -248,9 +248,9 @@ class Smsgh_ApiMessagesResource {
 			
 		if ($apiResponse->status() > 199 && $apiResponse->status() < 300) {
 			$object = json_decode($apiResponse->body());
-			if ($object && isset($object->messages) && is_array($object->messages)) {
+			if ($object && isset($object->Messages) && is_array($object->Messages)) {
 				$apiMessages = array();
-				foreach ($object->messages as $object)
+				foreach ($object->Messages as $object)
 					$apiMessages[] = new Smsgh_ApiMessage($object);
 				return $apiMessages;
 			} else throw new Smsgh_ApiException(
