@@ -24,7 +24,7 @@ class Smsgh_ApiMessagesResource {
 				new Smsgh_ApiRequest(
 					$this->apiHost->hostname(),
 					$this->apiHost->port(),
-					$this->apiHost->protocol(),
+					$this->apiHost->https() ? 'ssl' : 'tcp',
 					$this->apiHost->timeout(),
 					$this->apiHost->clientId(),
 					$this->apiHost->clientSecret()

@@ -7,7 +7,7 @@ class Smsgh_ApiHost {
 	private $clientSecret;
 	private $hostname;
 	private $port;
-	private $protocol;
+	private $https;
 	private $timeout;
 	private $messagesResource;
 	
@@ -16,7 +16,7 @@ class Smsgh_ApiHost {
 		$this
 			->hostname('api.smsgh.com')
 			->port(443)
-			->protocol('ssl')
+			->https(true)
 			->timeout(15);
 		$this->clientId = $clientId;
 		$this->clientSecret = $clientSecret;
@@ -57,18 +57,14 @@ class Smsgh_ApiHost {
 		return $this;
 	}
 	
-	// Gets or sets protocol.
-	public function protocol($value = null) {
+	// Gets or sets https.
+	public function https($value = null) {
 		if (is_null($value))
-			return $this->protocol;
-		else if (is_string($value)) {
-			$value = strtolower($value);
-			if (in_array($value, array('ssl', 'tcp', 'tls')))
-				$this->protocol = $value;
-			else throw new Smsgh_ApiException(
-				"Unsupported protocol type: '$value'");
+			return $this->https;
+		else if (is_bool($value)) {
+			$this->https = $value;
 		} else throw new Smsgh_ApiException(
-			"Parameter value must be of type 'string'");
+			"Parameter value must be of type 'bool'");
 		return $this;
 	}
 	
