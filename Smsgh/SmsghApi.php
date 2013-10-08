@@ -1,6 +1,6 @@
-<?php # $Id: ApiHost.php 224 2013-08-27 10:25:03Z mkwayisi $
+<?php # $Id: SmsghApi.php 0 1970-01-01 00:00:00Z mkwayisi $
 
-class Smsgh_ApiHost {
+class Smsgh_SmsghApi {
 	
 	// Data fields.
 	private $clientId;
