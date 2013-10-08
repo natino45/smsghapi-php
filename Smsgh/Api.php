@@ -1,9 +1,19 @@
-<?php # $Id: Api.php 224 2013-08-27 10:25:03Z mkwayisi $
+<?php # $Id: Api.php 0 1970-01-01 00:00:00Z mkwayisi $
 
-require 'ApiHost.php';
+require 'SmsghApi.php';
 require 'ApiRequest.php';
 require 'ApiResponse.php';
 require 'ApiException.php';
+require 'ApiHelper.php';
+require 'ApiList.php';
+
+require 'ApiAccountResource.php';
+require 'ApiAccountProfile.php';
+require 'ApiAccountContact.php';
+require 'ApiService.php';
+require 'ApiSettings.php';
+require 'ApiChildAccount.php';
+require 'ApiInvoice.php';
 
 require 'ApiMessagesResource.php';
 require 'ApiMessage.php';

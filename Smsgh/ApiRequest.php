@@ -35,47 +35,66 @@ class Smsgh_ApiRequest {
 	}
 	
 	/**
-	 * Gets or sets method.
+	 * Gets method.
 	 */
-	public function method($value = null) {
-		if (is_null($value))
-			return $this->method;
-		else if (is_string($value))
+	public function getMethod() {
+		return $this->method;
+	}
+	
+	/**
+	 * Sets method.
+	 */
+	public function setMethod($value) {
+		if (is_string($value)) {
 			$this->method = $value;
-		else throw new Smsgh_ApiException(
-			"Parameter value must be of type 'string'");
-		return $this;
+			return $this;
+		}
+		throw new Smsgh_ApiException
+			("Parameter value must be of type 'string'");
 	}
 	
 	/**
-	 * Gets or sets URI.
+	 * Gets uri.
 	 */
-	public function uri($value = null) {
-		if (is_null($value))
-			return $this->uri;
-		else if (is_string($value))
+	public function getUri() {
+		return $this->uri;
+	}
+	
+	/**
+	 * Sets uri.
+	 */
+	public function setUri($value) {
+		if (is_string($value)) {
 			$this->uri = $value;
-		else throw new Smsgh_ApiException(
-			"Parameter value must be of type 'string'");
-		return $this;
+			return $this;
+		}
+		throw new Smsgh_ApiException
+			("Parameter value must be of type 'string'");
 	}
 	
 	/**
-	 * Gets or sets header.
+	 * Gets header by name.
 	 */
-	public function header($name, $value = null) {
+	public function getHeader($name) {
 		if (is_string($name)) {
 			$name = strtolower($name);
-			if (is_null($value))
-				return isset($this->headers[$name]) ?
-					$this->headers[$name] : null;
-			else if (is_string($value)) {
-				$this->headers[$name] = $value;
-				return $this;
-			}
+			return isset($this->headers[$name]) ?
+				$this->headers[$name] : null;
 		}
-		throw new Smsgh_ApiException(
-			"Both parameters' values must be of type 'string'");
+		throw new Smsgh_ApiException
+			("Parameter value must be of type 'string'");
+	}
+	
+	/**
+	 * Adds header.
+	 */
+	public function addHeader($name, $value) {
+		if (is_string($name) && is_string($value)) {
+			$this->headers[strtolower($name)] = $value;
+			return $this;
+		}
+		throw new Smsgh_ApiException
+			("Both parameter values must be of type 'string'");
 	}
 	
 	#=================================================================]]
@@ -174,9 +193,9 @@ class Smsgh_ApiRequest {
 		if (!strncmp($data, 'HTTP/', 5)) {
 			$tokens = explode(' ', rtrim($data), 3);
 			if (isset($tokens[1]))
-				$response->status(intval($tokens[1]));
+				$response->setStatus(intval($tokens[1]));
 			if (isset($tokens[2]))
-				$response->reason($tokens[2]);
+				$response->setReason($tokens[2]);
 		} else $body = true;
 		
 		do {
@@ -199,11 +218,11 @@ class Smsgh_ApiRequest {
 				
 				$tokens = explode(':', $line, 2);
 				if (isset($tokens[1]))
-					$response->header($tokens[0], trim($tokens[1]));
+					$response->addHeader($tokens[0], trim($tokens[1]));
 			} while (!feof($this->fsock));
 			
 			// Check if the response data is of "regular" type.
-			if (($length = $response->header('content-length')) !== null) {
+			if (($length = $response->getHeader('content-length')) !== null) {
 				$length = intval($length);
 				
 				for (; $length > 0; $length -= strlen($chunk)) {
@@ -217,7 +236,7 @@ class Smsgh_ApiRequest {
 			}
 			
 			// Check if the response data is encoded.
-			else if ($encoding = $response->header('transfer-encoding')) {
+			else if ($encoding = $response->getHeader('transfer-encoding')) {
 				switch (strtolower($encoding)) {
 					
 					// Chunked transfer encoding.
@@ -273,12 +292,11 @@ class Smsgh_ApiRequest {
 		
 		// Fill response properties.
 		if ($body !== null)
-			$response->body($body);
-		$response->rawdata($data);
-		$response->lock();
+			$response->setBody($body);
+		$response->setRawData($data);
 		
 		// Close the connection if the remote host says so.
-		if (trim(strtolower($response->header('Connection'))) == 'close')
+		if (trim(strtolower($response->getHeader('Connection'))) == 'close')
 			$this->close();
 			
 		return $response;

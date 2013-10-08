@@ -2,82 +2,122 @@
 
 class Smsgh_ApiResponse {
 	
-	// Data fields.
-	private $rawdata;
+	/**
+	 * Data fields.
+	 */
+	private $rawData;
 	private $status;
 	private $reason;
 	private $headers;
 	private $body;
-	private $locked;
 	
-	// Primary constructor.
+	/**
+	 * Primary constructor.
+	 */
 	public function __construct() {
+		$this->status = 0;
 		$this->headers = array();
 	}
 	
-	// Returns status.
-	public function status($value = null) {
-		if (is_null($value))
-			return $this->status;
-		else if (!$this->locked)
+	/**
+	 * Gets status.
+	 */
+	public function getStatus() {
+		return $this->status;
+	}
+	
+	/**
+	 * Sets status.
+	 */
+	public function setStatus($value) {
+		if (is_int($value)) {
 			$this->status = $value;
-		else throw new Smsgh_ApiException(
-			"Object properties cannot be modified");
-		return $this;
+			return $this;
+		}
+		throw new Smsgh_ApiException
+			("Parameter value must be of type 'int'");
 	}
 	
-	// Returns reason.
-	public function reason($value = null) {
-		if (is_null($value))
-			return $this->reason;
-		else if (!$this->locked)
+	/**
+	 * Gets reason.
+	 */
+	public function getReason() {
+		return $this->reason;
+	}
+	
+	/**
+	 * Sets reason.
+	 */
+	public function setReason($value) {
+		if (is_string($value)) {
 			$this->reason = $value;
-		else throw new Smsgh_ApiException(
-			"Object properties cannot be modified");
-		return $this;
+			return $this;
+		}
+		throw new Smsgh_ApiException
+			("Parameter value must be of type 'string'");
 	}
 	
-	// Returns rawdata.
-	public function rawdata($value = null) {
-		if (is_null($value))
-			return $this->rawdata;
-		else if (!$this->locked)
-			$this->rawdata = $value;
-		else throw new Smsgh_ApiException(
-			"Object properties cannot be modified");
-		return $this;
+	/**
+	 * Gets rawData.
+	 */
+	public function getRawData() {
+		return $this->rawData;
 	}
 	
-	// Returns header.
-	public function header($name, $value = null) {
+	/**
+	 * Sets rawData.
+	 */
+	public function setRawData($value) {
+		if (is_string($value)) {
+			$this->rawData = $value;
+			return $this;
+		}
+		throw new Smsgh_ApiException
+			("Parameter value must be of type 'string'");
+	}
+	
+	/**
+	 * Gets header by name.
+	 */
+	public function getHeader($name) {
 		if (is_string($name)) {
 			$name = strtolower($name);
-			if (is_null($value)) {
-				return isset($this->headers[$name]) ?
-					$this->headers[$name] : null;
-			} else if (!$this->locked) {
-				$this->headers[$name] = $value;
-			} else throw new Smsgh_ApiException(
-				"Object properties cannot be modified");
-		} else throw new Smsgh_ApiException(
-			"Parameter value must be of type 'string'");
-		return $this;
+			return isset($this->headers[$name]) ?
+				$this->headers[$name] : null;
+		}
+		throw new Smsgh_ApiException
+			("Parameter value must be of type 'string'");
 	}
 	
-	// Returns body.
-	public function body($value = null) {
-		if (is_null($value))
-			return $this->body;
-		else if (!$this->locked)
+	/**
+	 * Adds header.
+	 */
+	public function addHeader($name, $value) {
+		if (is_string($name) && is_string($value)) {
+			$name = strtolower($name);
+			$this->headers[$name] = $value;
+			return $this;
+		}
+		throw new Smsgh_ApiException
+			("Both parameter values must be of type 'string'");
+	}
+	
+	/**
+	 * Gets body.
+	 */
+	public function getBody() {
+		return $this->body;
+	}
+	
+	/**
+	 * Sets body.
+	 */
+	public function setBody($value) {
+		if (is_string($value)) {
 			$this->body = $value;
-		else throw new Smsgh_ApiException(
-			"Object properties cannot be modified.");
-		return $this;
-	}
-	
-	// Locks the properties of this object.
-	public function lock() {
-		$this->locked = true;
-		return $this;
+			return $this;
+		}
+		throw new Smsgh_ApiException
+			("Parameter value must be of type 'string'");
 	}
 }

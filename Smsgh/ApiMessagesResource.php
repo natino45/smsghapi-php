@@ -11,7 +11,7 @@ class Smsgh_ApiMessagesResource {
 	/**
 	 * Primary constructor.
 	 */
-	public function __construct(Smsgh_ApiHost $apiHost) {
+	public function __construct(Smsgh_SmsghApi $apiHost) {
 		$this->apiHost = $apiHost;
 	}
 	

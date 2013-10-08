@@ -2,96 +2,159 @@
 
 class Smsgh_SmsghApi {
 	
-	// Data fields.
+	/**
+	 * Data fields.
+	 */
 	private $clientId;
 	private $clientSecret;
 	private $hostname;
 	private $port;
 	private $https;
 	private $timeout;
+	private $accountResource;
 	private $messagesResource;
 	
-	// Primary constructor.
+	/**
+	 * Primary constructor.
+	 */
 	public function __construct($clientId = null, $clientSecret = null) {
 		$this
-			->hostname('api.smsgh.com')
-			->port(443)
-			->https(true)
-			->timeout(15);
+			->setHostname('api.smsgh.com')
+			->setPort(443)
+			->setHttps(true)
+			->setTimeout(15);
 		$this->clientId = $clientId;
 		$this->clientSecret = $clientSecret;
-		$this->messagesResource =
-			new Smsgh_ApiMessagesResource($this);
+		
+		$this->accountResource = new Smsgh_ApiAccountResource($this);
+		$this->messagesResource = new Smsgh_ApiMessagesResource($this);
 	}
 	
-	// Gets or sets client ID.
-	public function clientId($value = null) {
-		if (is_null($value))
-			return $this->clientId;
-		else if (is_string($value))
-			$this->clientId = $value;
-		else throw new Smsgh_ApiException(
-			"Parameter value must be of type 'string'");
-		return $this;
+	/**
+	 * Gets accountResource.
+	 */
+	public function getAccount() {
+		return $this->accountResource;
 	}
 	
-	// Gets or sets client secret.
-	public function clientSecret($value = null) {
-		if (is_null($value))
-			return $this->clientSecret;
-		else if (is_string($value))
-			$this->clientSecret = $value;
-		else throw new Smsgh_ApiException(
-			"Parameter value must be of type 'string'");
-		return $this;
-	}
-	
-	// Gets or sets hostname.
-	public function hostname($value = null) {
-		if (is_null($value))
-			return $this->hostname;
-		else if (is_string($value))
-			$this->hostname = $value;
-		else throw new Smsgh_ApiException(
-			"Parameter value must be of type 'string'");
-		return $this;
-	}
-	
-	// Gets or sets https.
-	public function https($value = null) {
-		if (is_null($value))
-			return $this->https;
-		else if (is_bool($value)) {
-			$this->https = $value;
-		} else throw new Smsgh_ApiException(
-			"Parameter value must be of type 'bool'");
-		return $this;
-	}
-	
-	// Gets or sets port.
-	public function port($value = null) {
-		if (is_null($value))
-			return $this->port;
-		else if (is_int($value))
-			$this->port = $value;
-		else throw new Smsgh_ApiException(
-			"Parameter value must be of type 'int'");
-		return $this;
-	}
-	
-	// Gets or sets timeout.
-	public function timeout($value = null) {
-		if (is_null($value))
-			return $this->timeout;
-		else if (is_int($value))
-			$this->timeout = $value;
-		else throw new Smsgh_ApiException(
-			"Parameter value must be of type 'int'");
-		return $this;
-	}
-	
-	// Returns messagesResource.
-	public function messagesResource() {
+	/**
+	 * Gets messagesResource.
+	 */
+	public function getMessages() {
 		return $this->messagesResource;
+	}
+	
+	/**
+	 * Gets clientId.
+	 */
+	public function getClientId() {
+		return $this->clientId;
+	}
+	
+	/**
+	 * Gets clientSecret.
+	 */
+	public function getClientSecret() {
+		return $this->clientSecret;
+	}
+	
+	/**
+	 * Gets hostname.
+	 */
+	public function getHostname() {
+		return $this->hostname;
+	}
+	
+	/**
+	 * Gets port.
+	 */
+	public function getPort() {
+		return $this->port;
+	}
+	
+	/**
+	 * Gets https.
+	 */
+	public function isHttps() {
+		return $this->https;
+	}
+	
+	/**
+	 * Gets timeout.
+	 */
+	public function getTimeout() {
+		return $this->timeout;
+	}
+	
+	/**
+	 * Sets clientId.
+	 */
+	public function setClientId($value) {
+		if (is_string($value)) {
+			$this->clientId = $value;
+			return $this;
+		}
+		throw new Smsgh_ApiException
+			("Parameter value must be of type 'string'");
+	}
+	
+	/**
+	 * Sets clientSecret.
+	 */
+	public function setClientSecret($value) {
+		if (is_string($value)) {
+			$this->clientSecret = $value;
+			return $this;
+		}
+		throw new Smsgh_ApiException
+			("Parameter value must be of type 'string'");
+	}
+	
+	/**
+	 * Sets hostname.
+	 */
+	public function setHostname($value) {
+		if (is_string($value)) {
+			$this->hostname = $value;
+			return $this;
+		}
+		throw new Smsgh_ApiException
+			("Parameter value must be of type 'string'");
+	}
+	
+	/**
+	 * Sets port.
+	 */
+	public function setPort($value) {
+		if (is_int($value)) {
+			$this->port = $value;
+			return $this;
+		}
+		throw new Smsgh_ApiException
+			("Parameter value must be of type 'int'");
+	}
+	
+	/**
+	 * Sets https.
+	 */
+	public function setHttps($value) {
+		if (is_bool($value)) {
+			$this->https = $value;
+			return $this;
+		}
+		throw new Smsgh_ApiException
+			("Parameter value must be of type 'bool'");
+	}
+	
+	/**
+	 * Sets timeout.
+	 */
+	public function setTimeout($value) {
+		if (is_int($value)) {
+			$this->timeout = $value;
+			return $this;
+		}
+		throw new Smsgh_ApiException
+			("Parameter value must be of type 'int'");
 	}
 }
