@@ -19,6 +19,22 @@ require 'ApiMessagesResource.php';
 require 'ApiMessage.php';
 require 'ApiMessageResponse.php';
 
+require 'ApiContactsResource.php';
+require 'ApiContact.php';
+require 'ApiContactGroup.php';
+
+require 'ApiPremiumResource.php';
+require 'ApiNumberPlan.php';
+require 'ApiMoKeyWord.php';
+require 'ApiNumberPlanItem.php';
+require 'ApiServiceType.php';
+require 'ApiCampaign.php';
+require 'ApiAction.php';
+
+require 'ApiBulkMessagingResource.php';
+require 'ApiSender.php';
+require 'ApiTemplate.php';
+
 if (!function_exists('json_encode')) {
 	trigger_error('SmsghApi requires the PHP JSON extension', E_USER_ERROR);
 }

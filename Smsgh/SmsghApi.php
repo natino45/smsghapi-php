@@ -13,6 +13,9 @@ class Smsgh_SmsghApi {
 	private $timeout;
 	private $accountResource;
 	private $messagesResource;
+	private $contactsResource;
+	private $premiumResource;
+	private $bulkMessagingResource;
 	
 	/**
 	 * Primary constructor.
@@ -28,6 +31,9 @@ class Smsgh_SmsghApi {
 		
 		$this->accountResource = new Smsgh_ApiAccountResource($this);
 		$this->messagesResource = new Smsgh_ApiMessagesResource($this);
+		$this->contactsResource = new Smsgh_ApiContactsResource($this);
+		$this->premiumResource = new Smsgh_ApiPremiumResource($this);
+		$this->bulkMessagingResource = new Smsgh_ApiBulkMessagingResource($this);
 	}
 	
 	/**
@@ -42,6 +48,27 @@ class Smsgh_SmsghApi {
 	 */
 	public function getMessages() {
 		return $this->messagesResource;
+	}
+	
+	/**
+	 * Gets contactsResource.
+	 */
+	public function getContacts() {
+		return $this->contactsResource;
+	}
+	
+	/**
+	 * Gets premiumResource.
+	 */
+	public function getPremium() {
+		return $this->premiumResource;
+	}
+	
+	/**
+	 * Gets bulkMessagingResource.
+	 */
+	public function getBulkMessaging() {
+		return $this->bulkMessagingResource;
 	}
 	
 	/**

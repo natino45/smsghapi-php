@@ -21,8 +21,10 @@ class Smsgh_ApiHelper {
 			($api->getHostname(), $api->getPort(), $api->isHttps() ? 'ssl' : 'tcp',
 				$api->getTimeout(), $api->getClientId(), $api->getClientSecret());
 		$apiResponse = $apiRequest
-			->setMethod($method)->setUri($uri)
-			->addHeader('accept', 'application/json')
+			->setMethod($method)
+			->setUri(str_replace(' ', '', $uri))
+			->addHeader('Accept', 'application/json')
+			->addHeader('Content-Type', 'application/json')
 			->send($data);
 		if ($apiResponse->getStatus() > 199 && $apiResponse->getStatus() < 300)
 			return $apiResponse->getBody();
@@ -49,6 +51,15 @@ class Smsgh_ApiHelper {
 	 */
 	public static function getApiList
 		(Smsgh_SmsghApi $api, $uri, $page, $pageSize, $hasQ = false) {
+		if (!is_string($uri))
+			throw new Smsgh_ApiException
+				("Parameter 'uri' must be of type 'string'");
+		if (!is_int($page))
+			throw new Smsgh_ApiException
+				("Parameter 'page' must be of type 'int'");
+		if (!is_int($pageSize))
+			throw new Smsgh_ApiException
+				("Parameter 'pageSize' must be of type 'int'");
 		if ($page > 0) {
 			$uri .= ($hasQ ? '&' : '?') . 'Page=' . $page;
 			if (!$hasQ) $hasQ = true;

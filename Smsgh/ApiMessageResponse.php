@@ -1,46 +1,54 @@
-<?php # $Id: ApiMessageResponse.php 224 2013-08-27 10:25:03Z mkwayisi $
+<?php # $Id: ApiMessageResponse.php 0 1970-01-10 00:00:00Z mkwayisi $
 
 class Smsgh_ApiMessageResponse {
 	private $object;
 	
-	// Primary constructor.
-	public function __construct(stdClass $object) {
-		$this->object = $object;
+	/**
+	 * Primary constructor.
+	 */
+	public function __construct($json) {
+		$this->object = is_object($json) ? $json : new stdClass;
 	}
 	
-	// Returns status.
-	public function status() {
-		return isset($this->object->Status) ?
-			$this->object->Status : 0;
+	/**
+	 * Gets clientReference.
+	 */
+	public function getClientReference() {
+		return @$this->object->ClientReference;
 	}
 	
-	// Returns messageId.
-	public function messageId() {
-		return isset($this->object->MessageId) ?
-			$this->object->MessageId : null;
+	/**
+	 * Gets detail.
+	 */
+	public function getDetail() {
+		return @$this->object->Detail;
 	}
 	
-	// Returns rate.
-	public function rate() {
-		return isset($this->object->Rate) ?
-			$this->object->Rate : 0;
+	/**
+	 * Gets messageId.
+	 */
+	public function getMessageId() {
+		return @$this->object->MessageId;
 	}
 	
-	// Returns networkId
-	public function networkId() {
-		return isset($this->object->NetworkId) ?
-			$this->object->NetworkId : null;
+	/**
+	 * Gets networkId.
+	 */
+	public function getNetworkId() {
+		return @$this->object->NetworkId;
 	}
 	
-	// Returns clientReference.
-	public function clientReference() {
-		return isset($this->object->ClientReference) ?
-			$this->object->ClientReference : null;
+	/**
+	 * Gets rate.
+	 */
+	public function getRate() {
+		return @$this->object->Rate;
 	}
 	
-	// Returns detail.
-	public function detail() {
-		return isset($this->object->Detail) ?
-			$this->object->Detail : null;
+	/**
+	 * Gets status.
+	 */
+	public function getStatus() {
+		return @$this->object->Status;
 	}
 }

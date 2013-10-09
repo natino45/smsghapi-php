@@ -10,29 +10,75 @@ class Smsgh_ApiList {
 	 */
 	public function __construct($json) {
 		if ($json instanceof stdClass) {
-			@$this->count = $json->Count + 0;
+			$this->count = isset($json->count) ? $json->count :
+				(isset($json->Count) ? $json->Count : 0);
 			@$this->totalPages = $json->TotalPages + 0;
 			$this->items = array();
 			
 			foreach ($json as $name => $value)
 			switch (strtolower($name)) {
 				
+				case 'actionlist':
+					foreach ($value as $o)
+						$this->items[] = new Smsgh_ApiAction($o);
+					break;
+					
+				case 'campaignlist':
+					foreach ($value as $o)
+						$this->items[] = new Smsgh_ApiCampaign($o);
+					break;
+					
 				case 'childaccountlist':
 					foreach ($value as $o)
 						$this->items[] = new Smsgh_ApiChildAccount($o);
 					break;
 					
-				case "invoicestatementlist":
+				case 'contactlist':
+					foreach ($value as $o)
+						$this->items[] = new Smsgh_ApiContact($o);
+					break;
+					
+				case 'grouplist':
+					foreach ($value as $o)
+						$this->items[] = new Smsgh_ApiContactGroup($o);
+					break;
+					
+				case 'invoicestatementlist':
 					foreach ($value as $o)
 						$this->items[] = new Smsgh_ApiInvoice($o);
 					break;
 					
-				case "servicelist":
+				case 'messages':
+					foreach ($value as $o)
+						$this->items[] = new Smsgh_ApiMessage($o);
+					break;
+					
+				case 'messagetemplatelist':
+					foreach ($value as $o)
+						$this->items[] = new Smsgh_ApiTemplate($o);
+					break;
+					
+				case 'mokeywordlist':
+					foreach ($value as $o)
+						$this->items[] = new Smsgh_ApiMoKeyWord($o);
+					break;
+					
+				case 'numberplanlist':
+					foreach ($value as $o)
+						$this->items[] = new Smsgh_ApiNumberPlan($o);
+					break;
+					
+				case 'senderaddresseslist':
+					foreach ($value as $o)
+						$this->items[] = new Smsgh_ApiSender($o);
+					break;
+					
+				case 'servicelist':
 					foreach ($value as $o)
 						$this->items[] = new Smsgh_ApiService($o);
 					break;
 			}
-		} else throw new Smsgh_ApiException("Bad parameter");
+		} else throw new Smsgh_ApiException('Bad ApiList parameter');
 	}
 	
 	/**

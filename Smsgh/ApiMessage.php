@@ -1,206 +1,232 @@
-<?php # $Id: ApiMessage.php 224 2013-08-27 10:25:03Z mkwayisi $
+<?php # $Id: ApiMessage.php 0 1970-01-01 00:00:00Z mkwayisi $
 
 class Smsgh_ApiMessage {
-	
 	private $object;
+
+	/**
+	 * Primary constructor.
+	 */
+	public function __construct($json = null) {
+		$this->object = is_object($json) ? $json : new stdClass;
+	}
 	
-	private $id;
-	private $direction;
-	private $updateTime;
-	private $networkId;
-	private $units;
-	private $rate;
-	private $status;
+	/**
+	 * Gets apiMessageType.
+	 */
+	public function getApiMessageType() {
+		return @$this->object->ApiMessageType;
+	}
 	
-	// Primary constructor.
-	public function __construct(stdClass $object = null) {
-		$this->object = new stdClass;
-		if ($object !== null) {
-			$readonlies = array(
-				'MessageId'  => 'id',
-				'Direction'  => 'direction',
-				'UpdateTime' => 'updateTime',
-				'NetworkId'  => 'networkId',
-				'Units'      => 'units',
-				'Rate'       => 'rate',
-				'Status'     => 'status'
-				);
-			
-			foreach (get_object_vars($object) as $prop => $value) {
-				if (isset($readonlies[$prop])) {
-					$this->$readonlies[$prop] = $value;
-				} else $this->object->$prop = $value;
-			}
+	/**
+	 * Gets clientReference.
+	 */
+	public function getClientReference() {
+		return @$this->object->ClientReference;
+	}
+	
+	/**
+	 * Gets content.
+	 */
+	public function getContent() {
+		return @$this->object->Content;
+	}
+	
+	/**
+	 * Gets direction.
+	 */
+	public function getDirection() {
+		return @$this->object->Direction;
+	}
+	
+	/**
+	 * Gets flashMessage.
+	 */
+	public function getFlashMessage() {
+		return @$this->object->FlashMessage;
+	}
+	
+	/**
+	 * Gets from.
+	 */
+	public function getFrom() {
+		return @$this->object->From;
+	}
+	
+	/**
+	 * Gets messageId.
+	 */
+	public function getMessageId() {
+		return @$this->object->MessageId;
+	}
+	
+	/**
+	 * Gets networkId.
+	 */
+	public function getNetworkId() {
+		return @$this->object->NetworkId;
+	}
+	
+	/**
+	 * Gets rate.
+	 */
+	public function getRate() {
+		return @$this->object->Rate;
+	}
+	
+	/**
+	 * Gets registeredDelivery.
+	 */
+	public function getRegisteredDelivery() {
+		return @$this->object->RegisteredDelivery;
+	}
+	
+	/**
+	 * Gets status.
+	 */
+	public function getStatus() {
+		return @$this->object->Status;
+	}
+	
+	/**
+	 * Gets time.
+	 */
+	public function getTime() {
+		return @$this->object->Time;
+	}
+	
+	/**
+	 * Gets to.
+	 */
+	public function getTo() {
+		return @$this->object->To;
+	}
+	
+	/**
+	 * Gets udh.
+	 */
+	public function getUdh() {
+		return @$this->object->Udh;
+	}
+	
+	/**
+	 * Gets units.
+	 */
+	public function getUnits() {
+		return @$this->object->Units;
+	}
+	
+	/**
+	 * Gets updateTime.
+	 */
+	public function getUpdateTime() {
+		return @$this->object->UpdateTime;
+	}
+	
+	/**
+	 * Sets apiMessageType.
+	 */
+	public function setApiMessageType($value) {
+		if (is_int($value)) {
+			$this->object->ApiMessageType = $value;
+			return $this;
 		}
+		throw new Smsgh_ApiException
+			("Parameter value must be of type 'int'");
 	}
 	
-	// Returns ID.
-	public function id() {
-		return $this->id;
-	}
-	
-	// Returns ID.
-	public function messageId() {
-		return $this->id;
-	}
-	
-	// Returns direction.
-	public function direction() {
-		return $this->direction;
-	}
-	
-	// Returns updateTime.
-	public function updateTime() {
-		return $this->updateTime;
-	}
-	
-	// Returns networkId.
-	public function networkId() {
-		return $this->networkId;
-	}
-	
-	// Returns units.
-	public function units() {
-		return $this->units;
-	}
-	
-	// Returns rate.
-	public function rate() {
-		return $this->rate;
-	}
-	
-	// Returns status.
-	public function status() {
-		return $this->status;
-	}
-	
-	#=================================================================]]
-	
-	// Gets or sets apiMessageType.
-	public function apiMessageType($value = null) {
-		if (is_null($value)) {
-			return isset($this->object->ApiMessageType) ?
-				$this->object->ApiMessageType : null;
-		} else if ($value === false)
-			unset($this->object->ApiMessageType);
-		else if (is_int($value)) {
-			if ($value >= 0 && $value <= 2)
-				$this->object->ApiMessageType = $value;
-			else throw new Smsgh_ApiException(
-				"ApiMessageType must be either 0, 1 or 2");
-		} else throw new Smsgh_ApiException(
-			"Parameter value must be of type 'int'");
-		return $this;
-	}
-	
-	// Gets or sets from.
-	public function from($value = null) {
-		if (is_null($value)) {
-			return isset($this->object->From) ?
-				$this->object->From : null;
-		} else if (is_string($value))
-			$this->object->From = $value;
-		else throw new Smsgh_ApiException(
-			"Parameter value must be of type 'string'");
-		return $this;
-	}
-	
-	// Gets or sets to.
-	public function to($value = null) {
-		if (is_null($value)) {
-			return isset($this->object->To) ?
-				$this->object->To : null;
-		} else if (is_string($value))
-			$this->object->To = $value;
-		else throw new Smsgh_ApiException(
-			"Parameter value must be of type 'string'");
-		return $this;
-	}
-	
-	// Gets or sets content.
-	public function content($value = null) {
-		if (is_null($value)) {
-			return isset($this->object->Content) ?
-				$this->object->Content : null;
-		} else if (is_string($value))
-			$this->object->Content = $value;
-		else throw new Smsgh_ApiException(
-			"Parameter value must be of type 'string'");
-		return $this;
-	}
-	
-	// Gets or sets udh.
-	public function udh($value = null) {
-		if (is_null($value)) {
-			return isset($this->object->Udh) ?
-				$this->object->Udh : null;
-		} else if ($value === false)
-			unset($this->object->Udh);
-		else if (is_string($value))
-			$this->object->Udh = $value;
-		else throw new Smsgh_ApiException(
-			"Parameter value must be of type 'string'");
-		return $this;
-	}
-	
-	// Gets or sets time.
-	public function time($value = null) {
-		if (is_null($value)) {
-			return isset($this->object->Time) ?
-				$this->object->Time : null;
-		} else if ($value === false)
-			unset($this->object->Time);
-		else if (is_string($value))
-			$this->object->Time = $value;
-		else throw new Smsgh_ApiException(
-			"Parameter value must be of type 'string'");
-		return $this;
-	}
-	
-	// Gets or sets clientReference.
-	public function clientReference($value = null) {
-		if (is_null($value)) {
-			return isset($this->object->ClientReference) ?
-				$this->object->ClientReference : null;
-		} else if ($value === false)
-			unset($this->object->ClientReference);
-		else if (is_string($value))
+	/**
+	 * Sets clientReference.
+	 */
+	public function setClientReference($value) {
+		if ($value === null || is_string($value)) {
 			$this->object->ClientReference = $value;
-		else throw new Smsgh_ApiException(
-			"Parameter value must be of type 'string'");
-		return $this;
+			return $this;
+		}
+		throw new Smsgh_ApiException
+			("Parameter value must be of type 'string'");
 	}
 	
-	// Gets or sets registeredDelivery.
-	public function registeredDelivery($value = null) {
-		if (is_null($value)) {
-			return isset($this->object->RegisteredDelivery) ?
-				$this->object->RegisteredDelivery : null;
-		} else if ($value === false)
-			unset($this->object->RegisteredDelivery);
-		else if ($value === true)
-			$this->object->RegisteredDelivery = $value;
-		else throw new Smsgh_ApiException(
-			"Parameter value must be of type 'boolean'");
-		return $this;
+	/**
+	 * Sets content.
+	 */
+	public function setContent($value) {
+		if ($value === null || is_string($value)) {
+			$this->object->Content = $value;
+			return $this;
+		}
+		throw new Smsgh_ApiException
+			("Parameter value must be of type 'string'");
 	}
 	
-	// Gets or sets flashMessage.
-	public function flashMessage($value = null) {
-		if (is_null($value)) {
-			return isset($this->object->FlashMessage) ?
-				$this->object->FlashMessage : null;
-		} else if ($value === false)
-			unset($this->object->FlashMessage);
-		else if ($value === true)
+	/**
+	 * Sets flashMessage.
+	 */
+	public function setFlashMessage($value) {
+		if (is_bool($value)) {
 			$this->object->FlashMessage = $value;
-		else throw new Smsgh_ApiException(
-			"Parameter value must be of type 'boolean'");
-		return $this;
+			return $this;
+		}
+		throw new Smsgh_ApiException
+			("Parameter value must be of type 'bool'");
 	}
 	
-	// Returns a serialized object.
-	public function serialize() {
-		return json_encode($this->object);
+	/**
+	 * Sets from.
+	 */
+	public function setFrom($value) {
+		if ($value === null || is_string($value)) {
+			$this->object->From = $value;
+			return $this;
+		}
+		throw new Smsgh_ApiException
+			("Parameter value must be of type 'string'");
+	}
+	
+	/**
+	 * Sets registeredDelivery.
+	 */
+	public function setRegisteredDelivery($value) {
+		if (is_bool($value)) {
+			$this->object->RegisteredDelivery = $value;
+			return $this;
+		}
+		throw new Smsgh_ApiException
+			("Parameter value must be of type 'bool'");
+	}
+	
+	/**
+	 * Sets time.
+	 */
+	public function setTime($value) {
+		if ($value === null || is_string($value)) {
+			$this->object->Time = $value;
+			return $this;
+		}
+		throw new Smsgh_ApiException
+			("Parameter value must be of type 'string'");
+	}
+	
+	/**
+	 * Sets to.
+	 */
+	public function setTo($value) {
+		if ($value === null || is_string($value)) {
+			$this->object->To = $value;
+			return $this;
+		}
+		throw new Smsgh_ApiException
+			("Parameter value must be of type 'string'");
+	}
+	
+	/**
+	 * Sets udh.
+	 */
+	public function setUdh($value) {
+		if ($value === null || is_string($value)) {
+			$this->object->Udh = $value;
+			return $this;
+		}
+		throw new Smsgh_ApiException
+			("Parameter value must be of type 'string'");
 	}
 }

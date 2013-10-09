@@ -287,7 +287,7 @@ class Smsgh_ApiRequest {
 			}
 			
 			// What kind of response data is this?
-			else throw new Smsgh_ApiException('Bad response from server');
+			// else throw new Smsgh_ApiException('Bad response from server');
 		} while (false);
 		
 		// Fill response properties.
@@ -299,6 +299,7 @@ class Smsgh_ApiRequest {
 		if (trim(strtolower($response->getHeader('Connection'))) == 'close')
 			$this->close();
 			
+		$this->close();  // Sadly.
 		return $response;
 	}
 	
