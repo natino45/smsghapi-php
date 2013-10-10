@@ -10,14 +10,18 @@ class Smsgh_ApiList {
 	 */
 	public function __construct($json) {
 		if ($json instanceof stdClass) {
-			$this->count = isset($json->count) ? $json->count :
-				(isset($json->Count) ? $json->Count : 0);
-			@$this->totalPages = $json->TotalPages + 0;
 			$this->items = array();
 			
 			foreach ($json as $name => $value)
 			switch (strtolower($name)) {
-				
+				case 'count':
+					$this->count = $value;
+					break;
+					
+				case 'totalpages':
+					$this->totalPages = $value;
+					break;
+					
 				case 'actionlist':
 					foreach ($value as $o)
 						$this->items[] = new Smsgh_ApiAction($o);
