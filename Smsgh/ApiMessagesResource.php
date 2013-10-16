@@ -40,7 +40,7 @@ class Smsgh_ApiMessagesResource {
 	public function schedule($message, $time) {
 		if ($message instanceof Smsgh_ApiMessage) {
 			if (is_int($time)) {
-				$message->setTime(date('Y-m-d H:i:s', $time));
+				$message->setTime(gmdate('Y-m-d H:i:s', $time));
 				return $this->send($message);
 			}
 			throw new Smsgh_ApiException
@@ -64,7 +64,7 @@ class Smsgh_ApiMessagesResource {
 			throw new Smsgh_ApiException
 				("Parameter 'time' must be of type 'int'");
 		$obj = new stdClass;
-		$obj->Time = date('Y-m-d H:i:s', $time);
+		$obj->Time = gmdate('Y-m-d H:i:s', $time);
 		return new Smsgh_ApiMessageResponse(Smsgh_ApiHelper::getJson
 			($this->apiHost, 'PUT', "/v3/messages/$messageId", json_encode($obj)));
 	}
@@ -110,7 +110,7 @@ class Smsgh_ApiMessagesResource {
 		if (is_int($start)) {
 			if ($start > 0) {
 				$uri .= '?start='
-					. urlencode(date('Y-m-d H:i:s', $start));
+					. urlencode(gmdate('Y-m-d H:i:s', $start));
 				$hasQ = true;
 			}
 		} else throw new Smsgh_ApiException
@@ -119,7 +119,7 @@ class Smsgh_ApiMessagesResource {
 		if (is_int($end)) {
 			if ($end > 0) {
 				$uri .= ($hasQ ? '&' : '?') . 'end='
-					. urlencode(date('Y-m-d H:i:s', $end));
+					. urlencode(gmdate('Y-m-d H:i:s', $end));
 				if (!$hasQ) $hasQ = true;
 			}
 		} else throw new Smsgh_ApiException
