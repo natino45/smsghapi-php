@@ -30,7 +30,7 @@ class Smsgh_ApiHelper {
 			return $apiResponse->getBody();
 		throw new Smsgh_ApiException
 			(sprintf('Request failed: (%d) %s',
-				$apiResponse->status(), $apiResponse->reason()));
+				$apiResponse->getStatus(), $apiResponse->getReason()));
 	}
 	
 	/**
