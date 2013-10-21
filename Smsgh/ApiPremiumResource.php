@@ -1,5 +1,4 @@
-<?php # $Id: ApiPremiumResource.php 0 1970-01-01 00:00:00Z mkwayisi $
-
+<?php
 class Smsgh_ApiPremiumResource {
 	private $apiHost;
 	
@@ -266,5 +265,19 @@ class Smsgh_ApiPremiumResource {
 			($this->apiHost, 'POST',
 				"/v3/campaigns/$campaignId/actions/smpp",
 					json_encode($obj)));
+	}
+	
+	/**
+	 * Removes action from campaign.
+	 */
+	public function removeActionFromCampaign($campaignId, $actionId) {
+		if (!is_numeric($campaignId))
+			throw new Smsgh_ApiException
+				("Parameter 'campaignId' must be of tye 'number'");
+		if (!is_numeric($actionId))
+			throw new Smsgh_ApiException
+				("Parameter 'actionId' must be of type 'number'");
+		return new Smsgh_ApiCampaign(Smsgh_ApiHelper::getJson
+			($this->apiHost, 'DELETE', "/v3/campaigns/$campaignId/actions/$actionId"));
 	}
 }

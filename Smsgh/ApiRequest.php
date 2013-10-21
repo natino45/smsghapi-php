@@ -1,5 +1,4 @@
-<?php # $Id: ApiRequest.php 228 2013-08-29 11:38:45Z mkwayisi $
-
+<?php
 class Smsgh_ApiRequest {
 	
 	/**
@@ -165,7 +164,7 @@ class Smsgh_ApiRequest {
 				unset($this->headers['content-type']);
 		}
 		
-		$header = $this->method . ' ' . $this->uri . " HTTP/1.1\r\n";
+		$header = $this->method . ' ' . $this->uri . " HTTP/1.0\r\n";
 		foreach ($this->headers as $name => $value)
 			$header .= "$name: $value\r\n";
 		
