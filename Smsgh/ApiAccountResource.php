@@ -98,13 +98,6 @@ class Smsgh_ApiAccountResource {
 			($this->apiHost, 'GET', '/v3/account/settings'));
 	}
 	
-	/**
-	 * Gets child accounts.
-	 */
-	public function getChildAccounts($page = -1, $pageSize = -1) {
-		return Smsgh_ApiHelper::getApiList
-			($this->apiHost, '/v3/account/childaccounts', $page, $pageSize);
-	}
 	
 	/**
 	 * Gets account invoices.
