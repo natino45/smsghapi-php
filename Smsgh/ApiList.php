@@ -32,11 +32,11 @@ class Smsgh_ApiList {
 						$this->items[] = new Smsgh_ApiCampaign($o);
 					break;
 					
-				case 'childaccountlist':
+				/*case 'childaccountlist':
 					foreach ($value as $o)
 						$this->items[] = new Smsgh_ApiChildAccount($o);
 					break;
-					
+				*/	
 				case 'contactlist':
 					foreach ($value as $o)
 						$this->items[] = new Smsgh_ApiContact($o);
