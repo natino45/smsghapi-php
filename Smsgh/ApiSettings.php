@@ -1,6 +1,6 @@
 <?php # $Id: ApiSettings.php 0 1970-01-01 00:00:00Z mkwayisi $
 
-class Smsgh_ApiSettings {
+class ApiSettings {
 	private $object;
 	
 	/**

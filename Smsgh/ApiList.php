@@ -1,6 +1,6 @@
 <?php # $Id: ApiList.php 0 1970-01-01 00:00:00Z mkwayisi $
 
-class Smsgh_ApiList {
+class ApiList {
 	private $count;
 	private $totalPages;
 	private $items;
@@ -24,12 +24,12 @@ class Smsgh_ApiList {
 					
 				case 'actionlist':
 					foreach ($value as $o)
-						$this->items[] = new Smsgh_ApiAction($o);
+						$this->items[] = new ApiAction($o);
 					break;
 					
 				case 'campaignlist':
 					foreach ($value as $o)
-						$this->items[] = new Smsgh_ApiCampaign($o);
+						$this->items[] = new ApiCampaign($o);
 					break;
 					
 				/*case 'childaccountlist':
@@ -39,47 +39,51 @@ class Smsgh_ApiList {
 				*/	
 				case 'contactlist':
 					foreach ($value as $o)
-						$this->items[] = new Smsgh_ApiContact($o);
+						$this->items[] = new ApiContact($o);
 					break;
 					
 				case 'grouplist':
 					foreach ($value as $o)
-						$this->items[] = new Smsgh_ApiContactGroup($o);
+						$this->items[] = new ApiContactGroup($o);
 					break;
 					
 				case 'invoicestatementlist':
 					foreach ($value as $o)
-						$this->items[] = new Smsgh_ApiInvoice($o);
+						$this->items[] = new ApiInvoice($o);
 					break;
 					
 				case 'messages':
 					foreach ($value as $o)
-						$this->items[] = new Smsgh_ApiMessage($o);
+						$this->items[] = new ApiMessage($o);
 					break;
 					
 				case 'messagetemplatelist':
 					foreach ($value as $o)
-						$this->items[] = new Smsgh_ApiTemplate($o);
+						$this->items[] = new ApiTemplate($o);
 					break;
 					
 				case 'mokeywordlist':
 					foreach ($value as $o)
-						$this->items[] = new Smsgh_ApiMoKeyWord($o);
+						$this->items[] = new ApiMoKeyWord($o);
 					break;
 					
 				case 'numberplanlist':
 					foreach ($value as $o)
-						$this->items[] = new Smsgh_ApiNumberPlan($o);
+						$this->items[] = new ApiNumberPlan($o);
 					break;
 					
 				case 'senderaddresseslist':
 					foreach ($value as $o)
-						$this->items[] = new Smsgh_ApiSender($o);
+						$this->items[] = new ApiSender($o);
 					break;
 					
 				case 'servicelist':
 					foreach ($value as $o)
-						$this->items[] = new Smsgh_ApiService($o);
+						$this->items[] = new ApiService($o);
+					break;
+				case 'ticketlist':
+					foreach ($value as $o)
+						$this->items[] = new ApiTicket($o);
 					break;
 			}
 		} else throw new Smsgh_ApiException('Bad ApiList parameter');

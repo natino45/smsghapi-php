@@ -1,6 +1,6 @@
 <?php # $Id: ApiResponse.php 224 2013-08-27 10:25:03Z mkwayisi $
 
-class Smsgh_ApiResponse {
+class ApiResponse {
 	
 	/**
 	 * Data fields.

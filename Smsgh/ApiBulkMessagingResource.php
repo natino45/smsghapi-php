@@ -1,12 +1,12 @@
 <?php # $Id: ApiBulkMessagingResource.php 0 1970-01-01 00:00:00Z mkwayisi $
 
-class Smsgh_ApiBulkMessagingResource {
+class ApiBulkMessagingResource {
 	private $apiHost;
 	
 	/**
 	 * Primary constructor.
 	 */
-	public function __construct(Smsgh_SmsghApi $apiHost) {
+	public function __construct(SmsghApi $apiHost) {
 		$this->apiHost = $apiHost;
 	}
 	
@@ -14,17 +14,27 @@ class Smsgh_ApiBulkMessagingResource {
 	 * Gets senders by page and pageSize.
 	 */
 	public function getSenders($page = -1, $pageSize = -1) {
-		return Smsgh_ApiHelper::getApiList
-			($this->apiHost, '/v3/senders', $page, $pageSize);
+		$uri = "/" . $this->apiHost->getContextPath () . "/senders/";
+		if ($this->apiHost->getContextPath () == "") {
+			$uri = '/senders/';
+		}
+				
+		return ApiHelper::getApiList
+			($this->apiHost, $uri, $page, $pageSize);
 	}
 	
 	/**
 	 * Gets sender by ID.
 	 */
 	public function getSender($senderId) {
+		
+		$uri = "/" . $this->apiHost->getContextPath () . "/senders/";
+		if ($this->apiHost->getContextPath () == "") {
+			$uri = '/senders/';
+		}		
 		if (is_numeric($senderId))
-			return new Smsgh_ApiSender(Smsgh_ApiHelper::getJson
-				($this->apiHost, 'GET', "/v3/senders/$senderId"));
+			return new ApiSender(ApiHelper::getJson
+				($this->apiHost, 'GET', $uri.$senderId));
 		throw new Smsgh_ApiException
 			("Parameter 'senderId' must of type 'number'");
 	}
@@ -33,15 +43,25 @@ class Smsgh_ApiBulkMessagingResource {
 	 * Creates an object.
 	 */
 	public function create($object) {
-		if ($object instanceof Smsgh_ApiSender)
-			return new Smsgh_ApiSender(Smsgh_ApiHelper::getJson
-				($this->apiHost, 'POST', '/v3/senders',
-					Smsgh_ApiHelper::toJson($object)));
-			
-		if ($object instanceof Smsgh_ApiTemplate)
-			return new Smsgh_ApiTemplate(Smsgh_ApiHelper::getJson
-				($this->apiHost, 'POST', '/v3/templates',
-					Smsgh_ApiHelper::toJson($object)));
+		
+		if ($object instanceof ApiSender){
+			$uri = "/" . $this->apiHost->getContextPath () . "/senders/";
+			if ($this->apiHost->getContextPath () == "") {
+				$uri = '/senders/';
+			}			
+			return new ApiSender(ApiHelper::getJson
+				($this->apiHost, 'POST', $uri,
+					ApiHelper::toJson($object)));
+		}
+		if ($object instanceof ApiTemplate){
+			$uri = "/" . $this->apiHost->getContextPath () . "/templates/";
+			if ($this->apiHost->getContextPath () == "") {
+				$uri = '/templates/';
+			}			
+			return new ApiTemplate(ApiHelper::getJson
+				($this->apiHost, 'POST', $uri,
+					ApiHelper::toJson($object)));
+		}
 			
 		throw new Smsgh_ApiException('Bad parameterized object type');
 	}
@@ -50,16 +70,27 @@ class Smsgh_ApiBulkMessagingResource {
 	 * Updates object.
 	 */
 	public function update($object) {
-		if ($object instanceof Smsgh_ApiSender)
-			return new Smsgh_ApiSender(Smsgh_ApiHelper::getJson
-				($this->apiHost, 'PUT', '/v3/senders/' . $object->getId(),
-					Smsgh_ApiHelper::toJson($object)));
+		if ($object instanceof ApiSender){
+			$uri = "/" . $this->apiHost->getContextPath () . "/senders/";
+			if ($this->apiHost->getContextPath () == "") {
+				$uri = '/senders/';
+			}
+				
+			return new ApiSender(ApiHelper::getJson
+				($this->apiHost, 'PUT', $uri . $object->getId(),
+				ApiHelper::toJson($object)));
+		}
 			
-		if ($object instanceof Smsgh_ApiTemplate)
-			return new Smsgh_ApiTemplate(Smsgh_ApiHelper::getJson
-				($this->apiHost, 'PUT', '/v3/templates/' . $object->getId(),
-					Smsgh_ApiHelper::toJson($object)));
-			
+		if ($object instanceof ApiTemplate){
+			$uri = "/" . $this->apiHost->getContextPath () . "/templates/";
+			if ($this->apiHost->getContextPath () == "") {
+				$uri = '/templates/';
+			}
+				
+			return new ApiTemplate(ApiHelper::getJson
+				($this->apiHost, 'PUT', $uri . $object->getId(),
+					ApiHelper::toJson($object)));
+		}
 		throw new Smsgh_ApiException('Bad parameterized object type');
 	}
 	
@@ -67,9 +98,14 @@ class Smsgh_ApiBulkMessagingResource {
 	 * Deletes sender by ID.
 	 */
 	public function deleteSender($senderId) {
+		$uri = "/" . $this->apiHost->getContextPath () . "/senders/";
+		if ($this->apiHost->getContextPath () == "") {
+			$uri = '/senders/';
+		}
+		
 		if (is_numeric($senderId))
-			Smsgh_ApiHelper::getData
-				($this->apiHost, 'DELETE', "/v3/senders/$senderId");
+			ApiHelper::getData
+				($this->apiHost, 'DELETE', $uri.$senderId);
 		else throw new Smsgh_ApiException
 			("Parameter 'senderId' must be of type 'number'");
 	}
@@ -78,17 +114,27 @@ class Smsgh_ApiBulkMessagingResource {
 	 * Gets message templates by page and pageSize.
 	 */
 	public function getTemplates($page = -1, $pageSize = -1) {
-		return Smsgh_ApiHelper::getApiList
-			($this->apiHost, '/v3/templates', $page, $pageSize);
+		$uri = "/" . $this->apiHost->getContextPath () . "/templates/";
+		if ($this->apiHost->getContextPath () == "") {
+			$uri = '/templates/';
+		}
+		
+		return ApiHelper::getApiList
+			($this->apiHost, $uri, $page, $pageSize);
 	}
 	
 	/**
 	 * Gets message template by ID.
 	 */
 	public function getTemplate($templateId) {
+		$uri = "/" . $this->apiHost->getContextPath () . "/templates/";
+		if ($this->apiHost->getContextPath () == "") {
+			$uri = '/templates/';
+		}
+		
 		if (is_numeric($templateId))
-			return new Smsgh_ApiTemplate(Smsgh_ApiHelper::getJson
-				($this->apiHost, 'GET', "/v3/templates/$templateId"));
+			return new ApiTemplate(ApiHelper::getJson
+				($this->apiHost, 'GET', $uri.$templateId));
 		throw new Smsgh_ApiException
 			("Parameter 'templateId' must be of type 'number'");
 	}
@@ -97,9 +143,14 @@ class Smsgh_ApiBulkMessagingResource {
 	 * Deletes message template by ID.
 	 */
 	public function deleteTemplate($templateId) {
+		$uri = "/" . $this->apiHost->getContextPath () . "/templates/";
+		if ($this->apiHost->getContextPath () == "") {
+			$uri = '/templates/';
+		}
+		
 		if (is_numeric($templateId))
-			Smsgh_ApiHelper::getData
-				($this->apiHost, 'DELETE', "/v3/templates/$templateId");
+			ApiHelper::getData
+				($this->apiHost, 'DELETE', $uri.$templateId);
 		else throw new Smsgh_ApiException
 			("Parameter 'templateId' must be of type 'string'");
 	}

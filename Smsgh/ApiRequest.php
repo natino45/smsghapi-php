@@ -1,5 +1,5 @@
 <?php
-class Smsgh_ApiRequest {
+class ApiRequest {
 	
 	/**
 	 * Data fields.
@@ -158,10 +158,11 @@ class Smsgh_ApiRequest {
 		if ($body)
 			$this->headers['content-length'] = strlen($body);
 		else {
-			if (isset($this->headers['content-length']))
+			/* if (isset($this->headers['content-length']))
 				unset($this->headers['content-length']);
 			if (isset($this->headers['content-type']))
-				unset($this->headers['content-type']);
+				unset($this->headers['content-type']); */
+			$this->headers['content-length'] = 0;
 		}
 		
 		$header = $this->method . ' ' . $this->uri . " HTTP/1.0\r\n";
@@ -188,7 +189,7 @@ class Smsgh_ApiRequest {
 		}
 		
 		// Check for presence of HTTP response line.
-		$response = new Smsgh_ApiResponse;
+		$response = new ApiResponse;
 		if (!strncmp($data, 'HTTP/', 5)) {
 			$tokens = explode(' ', rtrim($data), 3);
 			if (isset($tokens[1]))

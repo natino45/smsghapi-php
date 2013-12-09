@@ -1,6 +1,6 @@
 <?php # $Id: ApiCampaign.php 0 1970-01-01 00:00:00Z mkwayisi $
 
-class Smsgh_ApiCampaign {
+class ApiCampaign {
 	private $object;
 
 	/**
@@ -12,13 +12,13 @@ class Smsgh_ApiCampaign {
 		$arr = array();
 		if (isset($this->object->Actions))
 			foreach ($this->object->Actions as $o)
-				$arr[] = new Smsgh_ApiAction($o);
+				$arr[] = new ApiAction($o);
 		$this->object->Actions = $arr;
 		
 		$arr = array();
 		if (isset($this->object->MoKeyWords))
 			foreach ($this->object->MoKeyWords as $o)
-				$arr[] = new Smsgh_ApiMoKeyWord($o);
+				$arr[] = new ApiMoKeyWord($o);
 		$this->object->MoKeyWords = $arr;
 	}
 	

@@ -1,6 +1,6 @@
 <?php # $Id: ApiAccountContact.php 0 1970-01-01 00:00:00Z mkwayisi $
 
-class Smsgh_ApiAccountContact {
+class ApiAccountContact {
 	private $object;
 	
 	/**

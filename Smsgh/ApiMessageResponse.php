@@ -1,6 +1,6 @@
 <?php # $Id: ApiMessageResponse.php 0 1970-01-10 00:00:00Z mkwayisi $
 
-class Smsgh_ApiMessageResponse {
+class ApiMessageResponse {
 	private $object;
 	
 	/**

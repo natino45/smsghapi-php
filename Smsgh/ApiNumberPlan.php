@@ -1,6 +1,6 @@
 <?php # $Id: ApiNumberPlan.php 0 1970-01-01 00:00:00Z mkwayisi $
 
-class Smsgh_ApiNumberPlan {
+class ApiNumberPlan {
 	private $object;
 	
 	//private String                  accountId;
@@ -32,18 +32,18 @@ class Smsgh_ApiNumberPlan {
 			$arr = array();
 			if (isset($json->MoKeyWords))
 				foreach ($json->MoKeyWords as $o)
-					$arr[] = new Smsgh_ApiMoKeyWord($o);
+					$arr[] = new ApiMoKeyWord($o);
 			$this->object->MoKeyWords = $arr;
 			
 			$arr = array();
 			if (isset($json->NumberPlanItems))
 				foreach ($json->NumberPlanItems as $o)
-					$arr[] = new Smsgh_ApiNumberPlanItem($o);
+					$arr[] = new ApiNumberPlanItem($o);
 			$this->object->NumberPlanItems = $arr;
 			
 			if (isset($json->ServiceType))
 				$this->object->ServiceType =
-					new Smsgh_ApiServiceType($json->ServiceType);
+					new ApiServiceType($json->ServiceType);
 		} else throw new Smsgh_ApiException('Bad parameter');
 	}
 	

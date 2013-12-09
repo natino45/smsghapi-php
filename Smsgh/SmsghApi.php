@@ -1,6 +1,6 @@
 <?php # $Id: SmsghApi.php 0 1970-01-01 00:00:00Z mkwayisi $
 
-class Smsgh_SmsghApi {
+class SmsghApi {
 	
 	/**
 	 * Data fields.
@@ -11,11 +11,13 @@ class Smsgh_SmsghApi {
 	private $port;
 	private $https;
 	private $timeout;
+	private $contextPath;
 	private $accountResource;
 	private $messagesResource;
 	private $contactsResource;
 	private $premiumResource;
 	private $bulkMessagingResource;
+	private $ticketResource;
 	
 	/**
 	 * Primary constructor.
@@ -25,15 +27,17 @@ class Smsgh_SmsghApi {
 			->setHostname('api.smsgh.com')
 			->setPort(443)
 			->setHttps(true)
-			->setTimeout(15);
+			->setTimeout(15)->setContextPath("");
+		
 		$this->clientId = $clientId;
 		$this->clientSecret = $clientSecret;
 		
-		$this->accountResource = new Smsgh_ApiAccountResource($this);
-		$this->messagesResource = new Smsgh_ApiMessagesResource($this);
-		$this->contactsResource = new Smsgh_ApiContactsResource($this);
-		$this->premiumResource = new Smsgh_ApiPremiumResource($this);
-		$this->bulkMessagingResource = new Smsgh_ApiBulkMessagingResource($this);
+		$this->accountResource = new ApiAccountResource($this);
+		$this->messagesResource = new ApiMessagesResource($this);
+		$this->contactsResource = new ApiContactsResource($this);
+		$this->premiumResource = new ApiPremiumResource($this);
+		$this->bulkMessagingResource = new ApiBulkMessagingResource($this);
+		$this->ticketResource = new ApiTicketResource($this);
 	}
 	
 	/**
@@ -69,6 +73,14 @@ class Smsgh_SmsghApi {
 	 */
 	public function getBulkMessaging() {
 		return $this->bulkMessagingResource;
+	}
+	
+	/**
+	 *  Get ticketResource
+	 * @return ApiTicketResource
+	 */
+	public function getTicketResource(){
+		return $this->ticketResource;
 	}
 	
 	/**
@@ -183,5 +195,24 @@ class Smsgh_SmsghApi {
 		}
 		throw new Smsgh_ApiException
 			("Parameter value must be of type 'int'");
+	}
+	
+	/**
+	 * Set the context path
+	 * @param string $value
+	 * @throws Smsgh_ApiException
+	 * @return SmsghApi
+	 */
+	public function setContextPath($value){
+		if(is_string($value)){
+			$this->contextPath = $value;
+			return $this;
+		}
+		throw new Smsgh_ApiException
+		("Parameter value must be of type 'string'");		
+	}
+	
+	public function getContextPath(){
+		return $this->contextPath;
 	}
 }

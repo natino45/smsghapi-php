@@ -1,6 +1,6 @@
 <?php # $Id: ApiHelper.php 0 1970-01-01 00:00:00Z mkwayisi $
 
-class Smsgh_ApiHelper {
+class ApiHelper {
 	/**
 	 * Data fields.
 	 */
@@ -16,8 +16,8 @@ class Smsgh_ApiHelper {
 	 * getData
 	 */
 	public static function getData
-		(Smsgh_SmsghApi $api, $method, $uri, $data = null) {
-		$apiRequest = new Smsgh_ApiRequest
+		(SmsghApi $api, $method, $uri, $data = null) {
+		$apiRequest = new ApiRequest
 			($api->getHostname(), $api->getPort(), $api->isHttps() ? 'ssl' : 'tcp',
 				$api->getTimeout(), $api->getClientId(), $api->getClientSecret());
 		$apiResponse = $apiRequest
@@ -37,7 +37,7 @@ class Smsgh_ApiHelper {
 	 * getJson
 	 */
 	public static function getJson
-		(Smsgh_SmsghApi $api, $method, $uri, $data = null) {
+		(SmsghApi $api, $method, $uri, $data = null) {
 		$result = json_decode(self::getData($api, $method, $uri, $data));
 		if (($errcode = json_last_error()) == JSON_ERROR_NONE)
 			return $result;
@@ -50,7 +50,7 @@ class Smsgh_ApiHelper {
 	 * getApiList
 	 */
 	public static function getApiList
-		(Smsgh_SmsghApi $api, $uri, $page, $pageSize, $hasQ = false) {
+		(SmsghApi $api, $uri, $page, $pageSize, $hasQ = false) {
 		if (!is_string($uri))
 			throw new Smsgh_ApiException
 				("Parameter 'uri' must be of type 'string'");
@@ -66,7 +66,7 @@ class Smsgh_ApiHelper {
 		}
 		if ($pageSize > 0)
 			$uri .= ($hasQ ? '&' : '?') . 'PageSize=' . $pageSize;
-		return new Smsgh_ApiList(self::getJson($api, 'GET', $uri));
+		return new ApiList(self::getJson($api, 'GET', $uri));
 	}
 	
 	/**

@@ -1,83 +1,181 @@
 <?php
-class Smsgh_ApiPremiumResource {
+class ApiPremiumResource {
 	private $apiHost;
 	
 	/**
 	 * Primary constructor.
 	 */
-	public function __construct(Smsgh_SmsghApi $apiHost) {
+	public function __construct(SmsghApi $apiHost) {
 		$this->apiHost = $apiHost;
 	}
 	
 	/**
 	 * Gets number plans by page and pageSize.
 	 */
-	public function getNumberPlans($page = -1, $pageSize = -1) {
-		return Smsgh_ApiHelper::getApiList
-			($this->apiHost, '/v3/numberplans', $page, $pageSize);
+	public function getNumberPlans($page = -1, $pageSize = -1, $type = -1) {
+		
+		$uri = "/".$this->apiHost->getContextPath()."/numberplans/";
+		if($this->apiHost->getContextPath() == ""){
+			$uri = '/numberplans/';
+		}
+		
+		if(is_int($type) && $type > 0){
+			$uri .= "?Type=$type";
+			return ApiHelper::getApiList($this->apiHost, $uri, $page, $pageSize, TRUE);
+		}
+		
+		return ApiHelper::getApiList
+			($this->apiHost, $uri, $page, $pageSize);
 	}
 	
 	/**
 	 * Gets shared number plans by page and pageSize.
 	 */
-	public function getSharedNumberPlans($page = -1, $pageSize = -1) {
-		return Smsgh_ApiHelper::getApiList
+/* 	public function getSharedNumberPlans($page = -1, $pageSize = -1) {
+		return ApiHelper::getApiList
 			($this->apiHost, '/v3/numberplans/shared', $page, $pageSize);
-	}
+	} */
 	
 	/**
 	 * Gets not-shared number plans by page and pageSize.
 	 */
-	public function getNotSharedNumberPlans($page = -1, $pageSize = -1) {
-		return Smsgh_ApiHelper::getApiList
+/* 	public function getNotSharedNumberPlans($page = -1, $pageSize = -1) {
+		return ApiHelper::getApiList
 			($this->apiHost, '/v3/numberplans/notshared', $page, $pageSize);
-	}
+	} */
 	
 	/**
 	 * Gets number plan keywords by number plan ID.
 	 */
 	public function getNumberPlanKeywords
 		($numberPlanId, $page = -1, $pageSize = -1) {
+		
+		$uri = "/".$this->apiHost->getContextPath()."/numberplans/";
+		if($this->apiHost->getContextPath() == ""){
+			$uri = '/numberplans/';
+		}
+		
+		
 		if (is_numeric($numberPlanId))
-			return Smsgh_ApiHelper::getApiList($this->apiHost,
-				"/v3/numberplans/$numberPlanId/keywords", $page, $pageSize);
+			return ApiHelper::getApiList($this->apiHost,
+				$uri."$numberPlanId/keywords", $page, $pageSize);
 		throw new Smsgh_ApiException
 			("Paramater 'numberPlanId' must be of type 'number'");
 	}
 	
+	
+	/**
+	 * Gets campaign keywords
+	 */
+	public function getCampaignKeywords
+	($campaignId, $page = -1, $pageSize = -1) {
+	
+		$uri = "/".$this->apiHost->getContextPath()."/campaigns/";
+		if($this->apiHost->getContextPath() == ""){
+			$uri = '/campaigns/';
+		}
+	
+	
+		if (is_numeric($campaignId))
+			return ApiHelper::getApiList($this->apiHost,
+					$uri."$campaignId/keywords", $page, $pageSize);
+		throw new Smsgh_ApiException
+		("Paramater 'campaignId' must be of type 'number'");
+	}
+		
 	/**
 	 * Gets campaigns by page and pageSize.
 	 */
 	public function getCampaigns($page = -1, $pageSize = -1) {
-		return Smsgh_ApiHelper::getApiList
-			($this->apiHost, '/v3/campaigns', $page, $pageSize);
+		$uri = "/".$this->apiHost->getContextPath()."/campaigns/";
+		if($this->apiHost->getContextPath() == ""){
+			$uri = '/campaigns/';
+		}
+		
+		return ApiHelper::getApiList
+			($this->apiHost, $uri, $page, $pageSize);
 	}
 	
 	/**
 	 * Gets campaign by ID.
 	 */
 	public function getCampaign($campaignId) {
+		$uri = "/".$this->apiHost->getContextPath()."/campaigns/";
+		if($this->apiHost->getContextPath() == ""){
+			$uri = '/campaigns/';
+		}
+		
+		
 		if (is_numeric($campaignId))
-			return new Smsgh_ApiCampaign(Smsgh_ApiHelper::getJson
-				($this->apiHost, 'GET', "/v3/campaigns/$campaignId"));
+			return new ApiCampaign(ApiHelper::getJson
+				($this->apiHost, 'GET', $uri.$campaignId));
 		throw new Smsgh_ApiException
 			("Parameter 'campaignId' must be of type 'number'");
+	}
+	
+	
+	/**
+	 * Gets numberplan by ID.
+	 */
+	public function getNumberPlan($numberPlanId) {
+		$uri = "/".$this->apiHost->getContextPath()."/numberplans/";
+		if($this->apiHost->getContextPath() == ""){
+			$uri = '/numberplans/';
+		}
+	
+	
+		if (is_numeric($numberPlanId))
+			return new ApiNumberPlan(ApiHelper::getJson
+					($this->apiHost, 'GET', $uri.$numberPlanId));
+		throw new Smsgh_ApiException
+		("Parameter 'numberPlanId' must be of type 'number'");
+	}	
+	
+	
+	/**
+	 * Gets keyword by ID.
+	 */
+	public function getKeyword($keywordId) {
+		$uri = "/".$this->apiHost->getContextPath()."/keywords/";
+		if($this->apiHost->getContextPath() == ""){
+			$uri = '/keywords/';
+		}
+	
+	
+		if (is_numeric($keywordId))
+			return new ApiMoKeyWord(ApiHelper::getJson
+					($this->apiHost, 'GET', $uri.$keywordId));
+		throw new Smsgh_ApiException
+		("Parameter 'keywordId' must be of type 'number'");
 	}
 	
 	/**
 	 * Creates new object.
 	 */
 	public function create($object) {
-		if ($object instanceof Smsgh_ApiCampaign) {
-			return new Smsgh_ApiCampaign(Smsgh_ApiHelper::getJson
-				($this->apiHost, 'POST', '/v3/campaigns',
-					Smsgh_ApiHelper::toJson($object)));
+		
+		if ($object instanceof ApiCampaign) {
+			$uri = "/".$this->apiHost->getContextPath()."/campaigns/";
+			if($this->apiHost->getContextPath() == ""){
+				$uri = '/campaigns/';
+			}
+			
+				
+			return new ApiCampaign(ApiHelper::getJson
+				($this->apiHost, 'POST', $uri,
+					ApiHelper::toJson($object)));
 		}
 		
-		else if ($object instanceof Smsgh_ApiMoKeyWord) {
-			return new Smsgh_ApiMoKeyWord(Smsgh_ApiHelper::getJson
-				($this->apiHost, 'POST', '/v3/keywords',
-					Smsgh_ApiHelper::toJson($object)));
+		else if ($object instanceof ApiMoKeyWord) {
+			$uri = "/".$this->apiHost->getContextPath()."/keywords/";
+			if($this->apiHost->getContextPath() == ""){
+				$uri = '/keywords/';
+			}
+			
+				
+			return new ApiMoKeyWord(ApiHelper::getJson
+				($this->apiHost, 'POST', $uri,
+					ApiHelper::toJson($object)));
 		}
 		
 		throw new Smsgh_ApiException('Bad parameterized object type');
@@ -87,17 +185,28 @@ class Smsgh_ApiPremiumResource {
 	 * Updates object.
 	 */
 	public function update($object) {
-		if ($object instanceof Smsgh_ApiCampaign) {
-			return new Smsgh_ApiCampaign(Smsgh_ApiHelper::getJson
+		if ($object instanceof ApiCampaign) {
+			
+			$uri = "/".$this->apiHost->getContextPath()."/campaigns/";
+			if($this->apiHost->getContextPath() == ""){
+				$uri = '/campaigns/';
+			}
+				
+			return new ApiCampaign(ApiHelper::getJson
 				($this->apiHost, 'PUT',
-					'/v3/campaigns/' . $object->getCampaignId(),
-						Smsgh_ApiHelper::toJson($object)));
+					$uri . $object->getCampaignId(),
+						ApiHelper::toJson($object)));
 		}
 		
-		else if ($object instanceof Smsgh_ApiMoKeyWord) {
-			return new Smsgh_ApiMoKeyWord(Smsgh_ApiHelper::getJson
-				($this->apiHost, 'PUT', '/v3/keywords/' . $object->getId(),
-					Smsgh_ApiHelper::toJson($object)));
+		else if ($object instanceof ApiMoKeyWord) {
+			$uri = "/".$this->apiHost->getContextPath()."/keywords/";
+			if($this->apiHost->getContextPath() == ""){
+				$uri = '/keywords/';
+			}
+				
+			return new ApiMoKeyWord(ApiHelper::getJson
+				($this->apiHost, 'PUT', $uri . $object->getId(),
+					ApiHelper::toJson($object)));
 		}
 		
 		throw new Smsgh_ApiException('Bad parameterized object type');
@@ -107,9 +216,14 @@ class Smsgh_ApiPremiumResource {
 	 * Deletes campaign by ID.
 	 */
 	public function deleteCampaign($campaignId) {
+		$uri = "/".$this->apiHost->getContextPath()."/campaigns/";
+		if($this->apiHost->getContextPath() == ""){
+			$uri = '/campaigns/';
+		}
+		
 		if (is_numeric($campaignId))
-			Smsgh_ApiHelper::getData
-				($this->apiHost, 'DELETE', "/v3/campaigns/$campaignId");
+			ApiHelper::getData
+				($this->apiHost, 'DELETE', $uri.$campaignId);
 		else throw new Smsgh_ApiException
 			("Parameter 'campaignId' must be of type 'number'");
 	}
@@ -118,17 +232,27 @@ class Smsgh_ApiPremiumResource {
 	 * Gets keywords by page and pageSize.
 	 */
 	public function getKeywords($page = -1, $pageSize = -1) {
-		return Smsgh_ApiHelper::getApiList
-			($this->apiHost, '/v3/keywords', $page, $pageSize);
+		$uri = "/".$this->apiHost->getContextPath()."/keywords/";
+		if($this->apiHost->getContextPath() == ""){
+			$uri = '/keywords/';
+		}
+		
+		return ApiHelper::getApiList
+			($this->apiHost, $uri, $page, $pageSize);
 	}
 	
 	/**
 	 * Deletes keyword by ID.
 	 */
 	public function deleteKeyword($keywordId) {
+		$uri = "/".$this->apiHost->getContextPath()."/keywords/";
+		if($this->apiHost->getContextPath() == ""){
+			$uri = '/keywords/';
+		}
+		
 		if (is_numeric($keywordId))
-			Smsgh_ApiHelper::getData
-				($this->apiHost, 'DELETE', "/v3/keywords/$keywordId");
+			ApiHelper::getData
+				($this->apiHost, 'DELETE', $uri.$keywordId);
 		else throw new Smsgh_ApiException
 			("Parameter 'keywordId' must be of type 'number'");
 	}
@@ -137,37 +261,52 @@ class Smsgh_ApiPremiumResource {
 	 * Adds keyword to campaign.
 	 */
 	public function addKeywordToCampaign($campaignId, $keywordId) {
+		$uri = "/".$this->apiHost->getContextPath()."/campaigns/";
+		if($this->apiHost->getContextPath() == ""){
+			$uri = '/campaigns/';
+		}
+		
 		if (!is_numeric($campaignId))
 			throw new Smsgh_ApiException
 				("Parameter 'campaignId' must be of type 'number'");
 		if (!is_numeric($keywordId))
 			throw new Smsgh_ApiException
 				("Parameter 'keywordId' must be of type 'number'");
-		return new Smsgh_ApiCampaign(Smsgh_ApiHelper::getJson
-			($this->apiHost, 'PUT', "/v3/campaigns/$campaignId/keywords/$keywordId"));
+		return new ApiCampaign(ApiHelper::getJson
+			($this->apiHost, 'PUT', $uri."$campaignId/keywords/$keywordId"));
 	}
 	
 	/**
 	 * Removes keyword from campaign.
 	 */
 	public function removeKeywordFromCampaign($campaignId, $keywordId) {
+		$uri = "/".$this->apiHost->getContextPath()."/campaigns/";
+		if($this->apiHost->getContextPath() == ""){
+			$uri = '/campaigns/';
+		}
+		
 		if (!is_numeric($campaignId))
 			throw new Smsgh_ApiException
 				("Parameter 'campaignId' must be of type 'number'");
 		if (!is_numeric($keywordId))
 			throw new Smsgh_ApiException
 				("Parameter 'keywordId' must be of type 'number'");
-		Smsgh_ApiHelper::getData($this->apiHost,
-			'DELETE', "/v3/campaigns/$campaignId/keywords/$keywordId");
+		ApiHelper::getData($this->apiHost,
+			'DELETE', $uri."$campaignId/keywords/$keywordId");
 	}
 	
 	/**
 	 * Gets campaign actions by ID.
 	 */
-	public function getActions($campaignId, $page = -1, $pageSize = -1) {
+	public function getCampaignActions($campaignId, $page = -1, $pageSize = -1) {
+		$uri = "/".$this->apiHost->getContextPath()."/campaigns/";
+		if($this->apiHost->getContextPath() == ""){
+			$uri = '/campaigns/';
+		}
+		
 		if (is_numeric($campaignId))
-			return Smsgh_ApiHelper::getApiList($this->apiHost,
-				"/v3/campaigns/$campaignId/actions", $page, $pageSize);
+			return ApiHelper::getApiList($this->apiHost,
+				$uri."$campaignId/actions", $page, $pageSize);
 		throw new Smsgh_ApiException
 			("Parameter 'campaignId' must be of type 'number'");
 	}
@@ -176,6 +315,11 @@ class Smsgh_ApiPremiumResource {
 	 * Adds default reply action to campaign.
 	 */
 	public function addDefaultReplyAction($campaignId, $message) {
+		$uri = "/".$this->apiHost->getContextPath()."/campaigns";
+		if($this->apiHost->getContextPath() == ""){
+			$uri = '/campaigns';
+		}
+		
 		if (!is_numeric($campaignId))
 			throw new Smsgh_ApiException
 				("Parameter 'campaignId' must be of type 'number'");
@@ -184,9 +328,9 @@ class Smsgh_ApiPremiumResource {
 				("Parameter 'message' must be of type 'string'");
 		$obj = new stdClass;
 		$obj->message = $message;
-		return new Smsgh_ApiCampaign(Smsgh_ApiHelper::getJson
+		return new ApiCampaign(ApiHelper::getJson
 			($this->apiHost, 'POST',
-				"/v3/campaigns/$campaignId/actions/default_reply",
+				$uri."/$campaignId/actions/default_reply",
 					json_encode($obj)));
 	}
 	
@@ -195,6 +339,11 @@ class Smsgh_ApiPremiumResource {
 	 */
 	public function addDynamicUrlAction
 		($campaignId, $url, $sendResponse = 'no') {
+		$uri = "/".$this->apiHost->getContextPath()."/campaigns";
+		if($this->apiHost->getContextPath() == ""){
+			$uri = '/campaigns';
+		}
+		
 		if (!is_numeric($campaignId))
 			throw new Smsgh_ApiException
 				("Parameter 'campaignId' must be of type 'number'");
@@ -207,9 +356,9 @@ class Smsgh_ApiPremiumResource {
 		$obj = new stdClass;
 		$obj->url = $url;
 		$obj->send_response = $sendResponse;
-		return new Smsgh_ApiCampaign(Smsgh_ApiHelper::getJson
+		return new ApiCampaign(ApiHelper::getJson
 			($this->apiHost, 'POST',
-				"/v3/campaigns/$campaignId/actions/dynamic_url",
+				$uri."/$campaignId/actions/dynamic_url",
 					json_encode($obj)));
 	}
 	
@@ -217,6 +366,11 @@ class Smsgh_ApiPremiumResource {
 	 * Adds email address action to campaign.
 	 */
 	public function addEmailAddressAction($campaignId, $address) {
+		$uri = "/".$this->apiHost->getContextPath()."/campaigns";
+		if($this->apiHost->getContextPath() == ""){
+			$uri = '/campaigns';
+		}
+		
 		if (!is_numeric($campaignId))
 			throw new Smsgh_ApiException
 				("Parameter 'campaignId' must be of type 'number'");
@@ -225,9 +379,9 @@ class Smsgh_ApiPremiumResource {
 				("Parameter 'address' must be of type 'string'");
 		$obj = new stdClass;
 		$obj->address = $address;
-		return new Smsgh_ApiCampaign(Smsgh_ApiHelper::getJson
+		return new ApiCampaign(ApiHelper::getJson
 			($this->apiHost, 'POST',
-				"/v3/campaigns/$campaignId/actions/email",
+				$uri."/$campaignId/actions/email",
 					json_encode($obj)));
 	}
 	
@@ -235,6 +389,11 @@ class Smsgh_ApiPremiumResource {
 	 * Adds forward to mobile action to campaign.
 	 */
 	public function addForwardToMobileAction($campaignId, $number) {
+		$uri = "/".$this->apiHost->getContextPath()."/campaigns";
+		if($this->apiHost->getContextPath() == ""){
+			$uri = '/campaigns';
+		}
+		
 		if (!is_numeric($campaignId))
 			throw new Smsgh_ApiException
 				("Parameter 'campaignId' must be of type 'number'");
@@ -243,9 +402,9 @@ class Smsgh_ApiPremiumResource {
 				("Parameter 'number' must be of type 'string'");
 		$obj = new stdClass;
 		$obj->number = $number;
-		return new Smsgh_ApiCampaign(Smsgh_ApiHelper::getJson
+		return new ApiCampaign(ApiHelper::getJson
 			($this->apiHost, 'POST',
-				"/v3/campaigns/$campaignId/actions/phone",
+				$uri."/$campaignId/actions/phone",
 					json_encode($obj)));
 	}
 	
@@ -253,6 +412,11 @@ class Smsgh_ApiPremiumResource {
 	 * Adds forward to SMPP action to campaign.
 	 */
 	public function addForwardToSmppAction($campaignId, $appId) {
+		$uri = "/".$this->apiHost->getContextPath()."/campaigns";
+		if($this->apiHost->getContextPath() == ""){
+			$uri = '/campaigns';
+		}
+		
 		if (!is_numeric($campaignId))
 			throw new Smsgh_ApiException
 				("Parameter 'campaignId' must be of type 'number'");
@@ -260,10 +424,10 @@ class Smsgh_ApiPremiumResource {
 			throw new Smsgh_ApiException
 				("Parameter 'appId' must be of type 'string'");
 		$obj = new stdClass;
-		$obj->app_id = $appId;
-		return new Smsgh_ApiCampaign(Smsgh_ApiHelper::getJson
+		$obj->api_id = $appId;
+		return new ApiCampaign(ApiHelper::getJson
 			($this->apiHost, 'POST',
-				"/v3/campaigns/$campaignId/actions/smpp",
+				$uri."/$campaignId/actions/smpp",
 					json_encode($obj)));
 	}
 	
@@ -271,13 +435,18 @@ class Smsgh_ApiPremiumResource {
 	 * Removes action from campaign.
 	 */
 	public function removeActionFromCampaign($campaignId, $actionId) {
+		$uri = "/".$this->apiHost->getContextPath()."/campaigns";
+		if($this->apiHost->getContextPath() == ""){
+			$uri = '/campaigns';
+		}
+		
 		if (!is_numeric($campaignId))
 			throw new Smsgh_ApiException
 				("Parameter 'campaignId' must be of tye 'number'");
 		if (!is_numeric($actionId))
 			throw new Smsgh_ApiException
 				("Parameter 'actionId' must be of type 'number'");
-		return new Smsgh_ApiCampaign(Smsgh_ApiHelper::getJson
-			($this->apiHost, 'DELETE', "/v3/campaigns/$campaignId/actions/$actionId"));
+		return new ApiCampaign(ApiHelper::getJson
+			($this->apiHost, 'DELETE', $uri."/$campaignId/actions/$actionId"));
 	}
 }

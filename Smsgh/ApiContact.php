@@ -1,6 +1,6 @@
 <?php # $Id: ApiContact.php 0 1970-01-01 00:00:00Z mkwayisi $
 
-class Smsgh_ApiContact {
+class ApiContact {
 	private $object;
 	
 	/**
@@ -95,7 +95,7 @@ class Smsgh_ApiContact {
 	 * Sets custom1.
 	 */
 	public function setCustom1($value) {
-		if ($vaue === null || is_string($value)) {
+		if ($value === null || is_string($value)) {
 			$this->object->Custom1 = $value;
 			return $this;
 		}
@@ -107,7 +107,7 @@ class Smsgh_ApiContact {
 	 * Sets custom2.
 	 */
 	public function setCustom2($value) {
-		if ($vaue === null || is_string($value)) {
+		if ($value === null || is_string($value)) {
 			$this->object->Custom2 = $value;
 			return $this;
 		}
@@ -119,7 +119,7 @@ class Smsgh_ApiContact {
 	 * Sets custom3.
 	 */
 	public function setCustom3($value) {
-		if ($vaue === null || is_string($value)) {
+		if ($value === null || is_string($value)) {
 			$this->object->Custom3 = $value;
 			return $this;
 		}
@@ -131,7 +131,7 @@ class Smsgh_ApiContact {
 	 * Sets firstName.
 	 */
 	public function setFirstName($value) {
-		if ($vaue === null || is_string($value)) {
+		if ($value === null || is_string($value)) {
 			$this->object->FirstName = $value;
 			return $this;
 		}
@@ -155,7 +155,7 @@ class Smsgh_ApiContact {
 	 * Sets mobileNumber.
 	 */
 	public function setMobileNumber($value) {
-		if ($vaue === null || is_string($value)) {
+		if ($value === null || is_string($value)) {
 			$this->object->MobileNumber = $value;
 			return $this;
 		}
@@ -167,7 +167,7 @@ class Smsgh_ApiContact {
 	 * Sets surname.
 	 */
 	public function setSurname($value) {
-		if ($vaue === null || is_string($value)) {
+		if ($value === null || is_string($value)) {
 			$this->object->Surname = $value;
 			return $this;
 		}
@@ -179,7 +179,7 @@ class Smsgh_ApiContact {
 	 * Sets title.
 	 */
 	public function setTitle($value) {
-		if ($vaue === null || is_string($value)) {
+		if ($value === null || is_string($value)) {
 			$this->object->Title = $value;
 			return $this;
 		}
