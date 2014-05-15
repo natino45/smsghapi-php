@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 # $Id: Api.php 0 1970-01-01 00:00:00Z mkwayisi $
 
 require 'SmsghApi.php';
@@ -39,6 +40,6 @@ require 'ApiTicketResource.php';
 require 'ApiTicket.php';
 require 'ApiTicketResponse.php';
 
-if (! function_exists ( 'json_encode' )) {
-	trigger_error ( 'SmsghApi requires the PHP JSON extension', E_USER_ERROR );
+if (!function_exists('json_encode')) {
+    trigger_error('SmsghApi requires the PHP JSON extension', E_USER_ERROR);
 }

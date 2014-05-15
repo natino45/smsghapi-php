@@ -13,8 +13,8 @@ class ApiMessage {
 	/**
 	 * Gets apiMessageType.
 	 */
-	public function getApiMessageType() {
-		return @$this->object->ApiMessageType;
+	public function getType() {
+		return @$this->object->Type;
 	}
 	
 	/**
@@ -125,9 +125,9 @@ class ApiMessage {
 	/**
 	 * Sets apiMessageType.
 	 */
-	public function setApiMessageType($value) {
+	public function setType($value) {
 		if (is_int($value)) {
-			$this->object->ApiMessageType = $value;
+			$this->object->Type = $value;
 			return $this;
 		}
 		throw new Smsgh_ApiException
