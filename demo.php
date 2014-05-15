@@ -3,8 +3,8 @@
 include 'Smsgh/Api.php';
 
 $apiHost = new SmsghApi();
-$apiHost->setClientId('pitnnmim');
-$apiHost->setClientSecret('btfdtdze');
+$apiHost->setClientId('user123');
+$apiHost->setClientSecret('btfder');
 $apiHost->setContextPath("v3");
 $apiHost->setHttps(false);
 $apiHost->setPort(80);
