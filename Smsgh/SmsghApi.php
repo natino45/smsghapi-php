@@ -27,8 +27,8 @@ class SmsghApi {
     public function __construct($clientId = null, $clientSecret = null) {
         $this
                 ->setHostname('api.smsgh.com')
-                ->setPort(443)
-                ->setHttps(true)
+                ->setPort(80)
+                ->setHttps(false)
                 ->setTimeout(15)->setContextPath("");
 
         $this->clientId = $clientId;
