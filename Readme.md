@@ -1,10 +1,10 @@
-SMSGH Unity API PHP SDK (Release 2)
+SMSGH HTTP API PHP SDK (Release 2)
 ===================================
 
 ## **Overview**
 
-The Unity API PHP SDK is a wrapper built to assist php-driven applications developers to interact in a more friendly way with the Unity API.
-Its goal is also to provide an easy way for those who do not have much knowledge about the whole HTTP Restful technology to interact with the Unity API.
+The SMSGH HTTP API PHP SDK is a wrapper built to assist php-driven applications developers to interact in a more friendly way with the HTTP API.
+Its goal is also to provide an easy way for those who do not have much knowledge about the whole HTTP Restful technology to interact with the HTTP API.
 In that direction there is no need to go and grab a knowledge about HTTP and REST technology. 
 All one needs is to have the basic knowledge about the PHP language and its Object Oriented pattern. *We mean the basics not advanced knowledge*.
 
@@ -152,4 +152,5 @@ To send a message just copy this code snippet and do the necessary modifications
 *Please do explore the AccountApi class for more functionalities.*
 
 ## **Notes**
+
 The ContactApi, SupportApi and ContentApi classes follow almost the same pattern of functionalities, please do explore them to grab their capabilities.
