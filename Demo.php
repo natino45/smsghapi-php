@@ -17,7 +17,10 @@ $accountApi = new AccountApi($apiHost);
 // Let us try to send some message
 $messagingApi = new MessagingApi($apiHost);
 try {
-    //$messageResponse = $messagingApi->quickSend("Husby", "+2332432191768", "I love you dearly Honey. See you in the evening...");
+    // Send a quick message
+    $messageResponse = $messagingApi->sendQuickMessage("Husby", "+2332432191768", "I love you dearly Honey. See you in the evening...");
+
+
     $mesg = new Message();
     $mesg->setContent("I will eat the beautiful Food you have");
     $mesg->setTo("+233244219234");
