@@ -5,11 +5,11 @@
 
 require './Smsgh/Api.php';
 
-$hostname = "api.smsgh.local";
-$contextPath = "";
+$hostname = "api.smsgh.com";
+$contextPath = "v3";
 $timeout = -1;
 $port = -1;
-$auth = new BasicAuth("hqikydyh", "kakdxpvd");
+$auth = new BasicAuth("user123", "password123");
 // instance of ApiHost
 // instance of AccountApi
 $accountApi = new AccountApi($apiHost);
