@@ -151,4 +151,5 @@ To send a message just copy this code snippet and do the necessary modifications
 ```
 *Please do explore the AccountApi class for more functionalities.*
 
+## **Notes**
 The ContactApi, SupportApi and ContentApi classes follow almost the same pattern of functionalities, please do explore them to grab their capabilities.
