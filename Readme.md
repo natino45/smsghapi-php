@@ -8,6 +8,9 @@ Its goal is also to provide an easy way for those who do not have much knowledge
 In that direction there is no need to go and grab a knowledge about HTTP and REST technology. 
 All one needs is to have the basic knowledge about the PHP language and its Object Oriented pattern. *We mean the basics not advanced knowledge*.
 
+## **Notice**
+* This is the source code for the current release.
+* The source code of the previous release can be found [here](https://github.com/smsgh/smsghapi-php/tree/release-1) .
 
 ## **Installation**
 
