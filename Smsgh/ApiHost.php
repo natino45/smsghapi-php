@@ -7,21 +7,21 @@
  *
  */
 class ApiHost {
-    
+
     private $auth;
     private $hostname;
     private $port;
     private $contextPath;
     private $timeout;
-    
-    public function __construct($auth = null, $hostname = "", $port = -1, $contextPath = "", $timeout = 5000) {
+
+    public function __construct($auth = null, $hostname = "api.smsgh.com", $port = -1, $contextPath = "v3", $timeout = 5000) {
         $this->auth = $auth;
         $this->hostname = $hostname;
         $this->port = $port;
         $this->contextPath = $contextPath;
         $this->timeout = $timeout;
     }
-    
+
     public function getAuth() {
         return $this->auth;
     }
@@ -66,5 +66,5 @@ class ApiHost {
         $this->timeout = $timeout;
         return $this;
     }
-    
+
 }

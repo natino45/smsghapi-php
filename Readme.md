@@ -44,15 +44,11 @@ To send a message just copy this code snippet and do the necessary modifications
 ```php
     require './Smsgh/Api.php';
 
-    $hostname = "api.smsgh.com";
-    $contextPath = "v3";
-    $timeout = -1;
-    $port = -1;
     // Here we assume the user is using the combination of his clientId and clientSecret as credentials
     $auth = new BasicAuth("user233", "password23");
 
     // instance of ApiHost
-    $apiHost = new ApiHost($auth, $hostname, $port, $contextPath, $timeout);
+    $apiHost = new ApiHost($auth);
     $messagingApi = new MessagingApi($apiHost);
     try {
         // Quick Send approach 
@@ -89,15 +85,11 @@ However please do refer to PHP datetime functions to know how to set the message
 ```php
     require './Smsgh/Api.php';
 
-    $hostname = "api.smsgh.com";
-    $contextPath = "v3";
-    $timeout = -1;
-    $port = -1;
     // Here we assume the user is using the combination of his clientId and clientSecret as credentials
     $auth = new BasicAuth("user233", "password23");
 
     // instance of ApiHost
-    $apiHost = new ApiHost($auth, $hostname, $port, $contextPath, $timeout);
+    $apiHost = new ApiHost($auth);
     $messagingApi = new MessagingApi($apiHost);
     try {
         // Default Approach
@@ -126,15 +118,11 @@ To send a message just copy this code snippet and do the necessary modifications
 ```php
     require './Smsgh/Api.php';
 
-    $hostname = "api.smsgh.com";
-    $contextPath = "v3";
-    $timeout = -1;
-    $port = -1;
     // Here we assume the user is using the combination of his clientId and clientSecret as credentials
     $auth = new BasicAuth("user233", "password23");
 
     // instance of ApiHost
-    $apiHost = new ApiHost($auth, $hostname, $port, $contextPath, $timeout);
+    $apiHost = new ApiHost($auth);
     // instance of AccountApi
     $accountApi = new AccountApi($apiHost);
     try {
