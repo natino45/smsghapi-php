@@ -114,7 +114,7 @@ class ContactApi extends AbstractApi {
             throw new ErrorException("Parameter 'contact' cannot be null");
         }
 
-        if (!($contact instanceof Contact) || !is_array($contact)) {
+        if (!($contact instanceof Contact) && !is_array($contact)) {
             throw new ErrorException("Parameter 'contact' must be of type Contact");
         }
         try {
@@ -154,7 +154,7 @@ class ContactApi extends AbstractApi {
 
         if (is_null($data)) {
             throw new ErrorException("Parameter 'data' cannot be null");
-        } elseif ($data instanceof Contact || !is_array($data)) {
+        } elseif (!($data instanceof Contact) && !is_array($data)) {
             throw new ErrorException("Parameter 'data' must be either an array or of type Contact");
         }
 
@@ -192,7 +192,7 @@ class ContactApi extends AbstractApi {
 
         if (is_null($data)) {
             throw new ErrorException("Parameter 'data' cannot be null");
-        } elseif (!($data instanceof ContactGroup) || !is_array($data) || !is_string($data)) {
+        } elseif (!($data instanceof ContactGroup) && !is_array($data) && !is_string($data)) {
             throw new ErrorException("Parameter 'data' must be either an array or of type ContactGroup");
         }
 
@@ -349,7 +349,7 @@ class ContactApi extends AbstractApi {
             throw new ErrorException("Parameter 'group' cannot be null");
         }
 
-        if (!is_string($group) || !($group instanceof ContactGroup) || !is_array($group)) {
+        if (!is_string($group) && !($group instanceof ContactGroup) && !is_array($group)) {
             throw new ErrorException("Parameter 'group' must be of type ContactGroup or an array or a string");
         }
         try {

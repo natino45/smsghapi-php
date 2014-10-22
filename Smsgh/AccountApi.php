@@ -238,7 +238,7 @@ class AccountApi extends AbstractApi {
         $resource = "/account/settings/";
         if (is_null($request)) {
             throw new ErrorException("Parameter 'preference' cannot be null");
-        } elseif (!is_array($request) || !($request instanceof Setting)) {
+        } elseif (!is_array($request) && !($request instanceof Setting)) {
             throw new ErrorException("Parameter 'request' must be an array");
         }
 
@@ -270,11 +270,11 @@ class AccountApi extends AbstractApi {
      */
     public function getTopupLocations($longitude, $latitude) {
         $resource = "/topup/voucher/vendors/";
-        if (!is_null($longitude) && is_double($longitude)) {
+        if (!is_null($longitude) && !is_double($longitude)) {
             throw new ErrorException("Parameter 'longitude' must be a double");
         }
 
-        if (!is_null($latitude) && is_double($latitude)) {
+        if (!is_null($latitude) && !is_double($latitude)) {
             throw new ErrorException("Parameter 'latitude' must be a double");
         }
         try {

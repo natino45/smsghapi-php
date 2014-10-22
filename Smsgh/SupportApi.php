@@ -84,7 +84,7 @@ class SupportApi extends AbstractApi {
         $resource = "/tickets/";
         if (is_null($request)) {
             throw new ErrorException("Parameter 'request' cannot be null");
-        } elseif (!($request instanceof Ticket) || !is_array($request)) {
+        } elseif (!($request instanceof Ticket) && !is_array($request)) {
             throw new ErrorException("Parameter 'request' must be of type Ticket or an array");
         }
         try {
@@ -124,7 +124,7 @@ class SupportApi extends AbstractApi {
 
         if (is_null($request)) {
             throw new ErrorException("Parameter 'request' cannot be null");
-        } elseif (!($request instanceof TicketResponse) || !is_array($request)) {
+        } elseif (!($request instanceof TicketResponse) && !is_array($request)) {
             throw new ErrorException("Parameter 'request' must be of type TicketResponse or an array");
         }
 
