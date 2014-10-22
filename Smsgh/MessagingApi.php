@@ -90,11 +90,8 @@ class MessagingApi extends AbstractApi {
 
         if (is_null($request)) {
             throw new ErrorException("Parameter 'request' cannot be null");
-        } elseif (!is_array($request)) {
+        } elseif (!is_array($request) && !($request instanceof Sender)) {
             throw new Exception("Parameter 'request' must be an array or an instance of Sender");
-        }
-        elseif (!($request instanceof Sender)){
-        	throw new Exception("Parameter 'request' must be an array or an instance of Sender");        	 
         }
         
         try {
@@ -126,13 +123,10 @@ class MessagingApi extends AbstractApi {
         $resource = "/templates/";
 
         // Let us check whether the request is an array and not null
-        if (!is_array($request)) {
+        if (!is_array($request) && !($request instanceof MessageTemplate)) {
             throw new Exception("Parameter 'request' must be an array or an instance of MessageTemplate");
         }
-        elseif(!($request instanceof MessageTemplate)){
-        	throw new Exception("Parameter 'request' must be an array or an instance of MessageTemplate");        	 
-        }
-
+        
         if (is_null($request)) {
             throw new Exception("Parameter 'request' cannot be null");
         }
@@ -612,11 +606,8 @@ class MessagingApi extends AbstractApi {
         $resource = "/campaigns/";
         if (is_null($request)) {
             throw new Exception("Parameter 'request' cannot be null");
-        } elseif (!is_array($request)) {
+        } elseif (!is_array($request) && !($request instanceof Campaign)) {
             throw new Exception("Parameter 'request' must be an array or an instance of Campaign");
-        }
-        elseif(!($request instanceof Campaign)){
-        	throw new Exception("Parameter 'request' must be an array or an instance of Campaign");        	 
         }
 
         try {
@@ -651,13 +642,10 @@ class MessagingApi extends AbstractApi {
 
         if (is_null($request)) {
             throw new ErrorException("Parameter 'request' cannot be null");
-        } elseif (!is_array($request)) {
+        } elseif (!is_array($request) && !($request instanceof MoKeyWord)) {
             throw new ErrorException("Parameter 'request' must be an array or an instance of MoKeyWord");
         }
-		elseif (!($request instanceof MoKeyWord)){
-			throw new ErrorException("Parameter 'request' must be an array or an instance of MoKeyWord");				
-		}
-        
+
         try {
             $params = array();
             $params = is_array($request) ? $request : json_decode(Helper::toJson($request), true);
@@ -1238,11 +1226,8 @@ class MessagingApi extends AbstractApi {
 
         if (is_null($message)) {
             throw new ErrorException("Parameter 'message' cannot be null");
-        } elseif (!($message instanceof Message)) {
+        } elseif (!($message instanceof Message) && !is_array($message)) {
             throw new ErrorException("Parameter 'message' must be an instance of Message or an array");
-        }
-        elseif(!is_array($message)){
-        	throw new ErrorException("Parameter 'message' must be an instance of Message or an array");        	 
         }
 
         try {
