@@ -1259,10 +1259,11 @@ class MessagingApi extends AbstractApi {
      * @param string $to
      * @param string $content
      * @param boolean $registeredDelivery
+     * @param string $billingInfo
      * @return MessageResponse|HttpResponse|null
      * @throws ErrorException
      */
-    public function sendQuickMessage($from, $to, $content, $registeredDelivery = true) {
+    public function sendQuickMessage($from, $to, $content, $registeredDelivery = true, $billingInfo = null) {
         $resource = "/messages/";
         if (is_null($from)) {
             throw new ErrorException("Parameter 'from' cannot be null");
@@ -1291,6 +1292,7 @@ class MessagingApi extends AbstractApi {
             $params["To"] = $to;
             $params["RegisteredDelivery"] = $registeredDelivery ? "true" : "false";
             $params["Content"] = $content;
+            $params["BillingInfo"] = is_null($billingInfo) ? "" : $billingInfo;
             $response = $this->httpClient->post($resource, $params);
             if ($response instanceof HttpResponse) {
                 if ($response->getStatus() === HttpStatusCode::HTTP_CREATED) {

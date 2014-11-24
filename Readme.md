@@ -51,8 +51,9 @@ To send a message just copy this code snippet and do the necessary modifications
     $apiHost = new ApiHost($auth);
     $messagingApi = new MessagingApi($apiHost);
     try {
-        // Quick Send approach 
-        $messageResponse = $messagingApi->sendQuickMessage("+233245657867", "+233245098456", "<message>");
+        // Quick Send approach options. Choose the one that meets your requirement
+       option 1.)  $messageResponse = $messagingApi->sendQuickMessage("+233245657867", "+233245098456", "<message>");
+       option 2.)  $messageResponse = $messagingApi->sendQuickMessage("+233245657867", "+233245098456", "<message>", true, <billing_info>);
 
         if ($messageResponse instanceof MessageResponse) {
             echo $messageResponse->getStatus();
