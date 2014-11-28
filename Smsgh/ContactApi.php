@@ -13,8 +13,8 @@
  */
 class ContactApi extends AbstractApi {
 
-    public function __construct($apiHost) {
-        parent::__construct($apiHost);
+    public function __construct($apiHost, $enableConsoleLog = TRUE) {
+        parent::__construct($apiHost, $enableConsoleLog);
     }
 
     /**
@@ -35,7 +35,7 @@ class ContactApi extends AbstractApi {
             $response = $this->httpClient->get($resource);
             if ($response instanceof HttpResponse) {
                 if ($response->getStatus() === HttpStatusCode::HTTP_OK) {
-                    $json = Helper::getJson($response->getBody());
+                    $json = JsonHelper::getJson($response->getBody());
                     if (isset($json))
                         return new Contact($json);
                 } else
@@ -90,7 +90,7 @@ class ContactApi extends AbstractApi {
             $response = $this->httpClient->get($resource, $params);
             if ($response instanceof HttpResponse) {
                 if ($response->getStatus() === HttpStatusCode::HTTP_OK) {
-                    $json = Helper::getJson($response->getBody());
+                    $json = JsonHelper::getJson($response->getBody());
                     if (isset($json))
                         return new ApiList($json);
                 } else
@@ -114,16 +114,16 @@ class ContactApi extends AbstractApi {
             throw new ErrorException("Parameter 'contact' cannot be null");
         }
 
-        if (!($contact instanceof Contact) && !is_array($contact)) {
+        if (!($contact instanceof Contact) || !is_array($contact)) {
             throw new ErrorException("Parameter 'contact' must be of type Contact");
         }
         try {
             $params = array();
-            $params = is_array($contact) ? $contact : json_decode(Helper::toJson($contact), true);
+            $params = is_array($contact) ? $contact : json_decode(JsonHelper::toJson($contact), true);
             $response = $this->httpClient->post($resource, $params);
             if ($response instanceof HttpResponse) {
                 if ($response->getStatus() === HttpStatusCode::HTTP_CREATED) {
-                    $json = Helper::getJson($response->getBody());
+                    $json = JsonHelper::getJson($response->getBody());
                     if (isset($json)) {
                         return new Contact($json);
                     }
@@ -154,14 +154,14 @@ class ContactApi extends AbstractApi {
 
         if (is_null($data)) {
             throw new ErrorException("Parameter 'data' cannot be null");
-        } elseif (!($data instanceof Contact) && !is_array($data)) {
+        } elseif ($data instanceof Contact || !is_array($data)) {
             throw new ErrorException("Parameter 'data' must be either an array or of type Contact");
         }
 
         try {
             $resource .= $contactId;
             $params = array();
-            $params = is_array($data) ? $data : json_decode(Helper::toJson($data), true);
+            $params = is_array($data) ? $data : json_decode(JsonHelper::toJson($data), true);
             if ($response instanceof HttpResponse) {
                 if ($response->getStatus() === HttpStatusCode::HTTP_OK) {
                     return TRUE;
@@ -192,7 +192,7 @@ class ContactApi extends AbstractApi {
 
         if (is_null($data)) {
             throw new ErrorException("Parameter 'data' cannot be null");
-        } elseif (!($data instanceof ContactGroup) && !is_array($data) && !is_string($data)) {
+        } elseif (!($data instanceof ContactGroup) || !is_array($data) || !is_string($data)) {
             throw new ErrorException("Parameter 'data' must be either an array or of type ContactGroup");
         }
 
@@ -202,7 +202,7 @@ class ContactApi extends AbstractApi {
             if (is_string($data)) {
                 $params["Name"] = $data;
             } else
-                $params = is_array($data) ? $data : json_decode(Helper::toJson($data), true);
+                $params = is_array($data) ? $data : json_decode(JsonHelper::toJson($data), true);
             if ($response instanceof HttpResponse) {
                 if ($response->getStatus() === HttpStatusCode::HTTP_OK) {
                     return TRUE;
@@ -267,7 +267,7 @@ class ContactApi extends AbstractApi {
             $response = $this->httpClient->get($resource, $params);
             if ($response instanceof HttpResponse) {
                 if ($response->getStatus() === HttpStatusCode::HTTP_OK) {
-                    $json = Helper::getJson($response->getBody());
+                    $json = JsonHelper::getJson($response->getBody());
                     if (isset($json))
                         return new ApiList($json);
                 } else
@@ -297,7 +297,7 @@ class ContactApi extends AbstractApi {
             $response = $this->httpClient->get($resource);
             if ($response instanceof HttpResponse) {
                 if ($response->getStatus() === HttpStatusCode::HTTP_OK) {
-                    $json = Helper::getJson($response->getBody());
+                    $json = JsonHelper::getJson($response->getBody());
                     if (isset($json))
                         return new ContactGroup($json);
                 } else
@@ -349,7 +349,7 @@ class ContactApi extends AbstractApi {
             throw new ErrorException("Parameter 'group' cannot be null");
         }
 
-        if (!is_string($group) && !($group instanceof ContactGroup) && !is_array($group)) {
+        if (!is_string($group) || !($group instanceof ContactGroup) || !is_array($group)) {
             throw new ErrorException("Parameter 'group' must be of type ContactGroup or an array or a string");
         }
         try {
@@ -357,12 +357,12 @@ class ContactApi extends AbstractApi {
             if (is_string($group)) {
                 $params["Name"] = $group;
             } else {
-                $params = is_array($group) ? $group : json_decode(Helper::toJson($group), true);
+                $params = is_array($group) ? $group : json_decode(JsonHelper::toJson($group), true);
             }
             $response = $this->httpClient->post($resource, $params);
             if ($response instanceof HttpResponse) {
                 if ($response->getStatus() === HttpStatusCode::HTTP_CREATED) {
-                    $json = Helper::getJson($response->getBody());
+                    $json = JsonHelper::getJson($response->getBody());
                     if (isset($json)) {
                         return new ContactGroup($json);
                     }

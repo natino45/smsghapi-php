@@ -122,9 +122,9 @@ class Message {
     public function getUpdateTime() {
         return @$this->object->UpdateTime;
     }
-    
-    public function getBillingInfo(){
-    	return @$this->object->BillingInfo;
+
+    public function getBillingInfo() {
+        return @$this->object->BillingInfo;
     }
 
     /**
@@ -155,18 +155,6 @@ class Message {
         ("Parameter value must be of type 'string'");
     }
 
-    /**
-     * Sets BillingInfo.
-     */
-    public function setBillingInfo($value) {
-    	if ($value === null || is_string($value)) {
-    		$this->object->BillingInfo = $value;
-    		return $this;
-    	}
-    	throw new Exception
-    	("Parameter value must be of type 'string'");
-    }    
-    
     /**
      * Sets content.
      */
@@ -248,6 +236,18 @@ class Message {
     public function setUdh($value) {
         if ($value === null || is_string($value)) {
             $this->object->Udh = $value;
+            return $this;
+        }
+        throw new Exception
+        ("Parameter value must be of type 'string'");
+    }
+
+    /**
+     * Sets BillingInfo.
+     */
+    public function setBillingInfo($value) {
+        if ($value === null || is_string($value)) {
+            $this->object->BillingInfo = $value;
             return $this;
         }
         throw new Exception

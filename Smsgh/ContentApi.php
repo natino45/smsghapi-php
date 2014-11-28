@@ -7,8 +7,8 @@
  */
 class ContentApi extends AbstractApi {
 
-    public function __construct($apiHost) {
-        parent::__construct($apiHost);
+    public function __construct($apiHost, $enableConsoleLog = TRUE) {
+        parent::__construct($apiHost, $enableConsoleLog);
     }
 
     /**
@@ -34,7 +34,7 @@ class ContentApi extends AbstractApi {
             $response = $this->httpClient->get($resource, $params);
             if ($response instanceof HttpResponse) {
                 if ($response->getStatus() === HttpStatusCode::HTTP_OK) {
-                    $json = Helper::getJson($response->getBody());
+                    $json = JsonHelper::getJson($response->getBody());
                     if (isset($json)) {
                         return new ApiList($json);
                     }
@@ -67,7 +67,7 @@ class ContentApi extends AbstractApi {
             $response = $this->httpClient->get($resource);
             if ($response instanceof HttpResponse) {
                 if ($response->getStatus() === HttpStatusCode::HTTP_OK) {
-                    $json = Helper::getJson($response->getBody());
+                    $json = JsonHelper::getJson($response->getBody());
                     if (isset($json)) {
                         return new ContentLibrary($json);
                     }
@@ -109,7 +109,7 @@ class ContentApi extends AbstractApi {
             $response = $this->httpClient->post($resource, $params);
             if ($response instanceof HttpResponse) {
                 if ($response->getStatus() === HttpStatusCode::HTTP_CREATED) {
-                    $json = Helper::getJson($response->getBody());
+                    $json = JsonHelper::getJson($response->getBody());
                     if (isset($json)) {
                         return new ContentLibrary($json);
                     }
@@ -157,7 +157,7 @@ class ContentApi extends AbstractApi {
             $response = $this->httpClient->put($resource, $request);
             if ($response instanceof HttpResponse) {
                 if ($response->getStatus() === HttpStatusCode::HTTP_OK) {
-                    $json = Helper::getJson($response->getBody());
+                    $json = JsonHelper::getJson($response->getBody());
                     if (isset($json)) {
                         return new ContentLibrary($json);
                     }
@@ -222,7 +222,7 @@ class ContentApi extends AbstractApi {
             $response = $this->httpClient->get($resource, $params);
             if ($response instanceof HttpResponse) {
                 if ($response->getStatus() === HttpStatusCode::HTTP_OK) {
-                    $json = Helper::getJson($response->getBody());
+                    $json = JsonHelper::getJson($response->getBody());
                     if (isset($json)) {
                         return new ApiList($json);
                     }
@@ -255,7 +255,7 @@ class ContentApi extends AbstractApi {
             $response = $this->httpClient->get($resource);
             if ($response instanceof HttpResponse) {
                 if ($response->getStatus() === HttpStatusCode::HTTP_OK) {
-                    $json = Helper::getJson($response->getBody());
+                    $json = JsonHelper::getJson($response->getBody());
                     if (isset($json))
                         return new ContentFolder($json);
                 } else
@@ -299,7 +299,7 @@ class ContentApi extends AbstractApi {
             $response = $this->httpClient->post($resource, $params);
             if ($response instanceof HttpResponse) {
                 if ($response->getStatus() === HttpStatusCode::HTTP_CREATED) {
-                    $json = Helper::getJson($response->getBody());
+                    $json = JsonHelper::getJson($response->getBody());
                     if (isset($json)) {
                         return new ContentFolder($json);
                     }
@@ -349,7 +349,7 @@ class ContentApi extends AbstractApi {
             $response = $this->httpClient->put($resource, $params);
             if ($response instanceof HttpResponse) {
                 if ($response->getStatus() === HttpStatusCode::HTTP_OK) {
-                    $json = Helper::getJson($response->getBody());
+                    $json = JsonHelper::getJson($response->getBody());
                     if (isset($json)) {
                         return new ContentFolder($json);
                     }
@@ -423,7 +423,7 @@ class ContentApi extends AbstractApi {
             $response = $this->httpClient->get($resource, $params);
             if ($response instanceof HttpResponse) {
                 if ($response->getStatus() === HttpStatusCode::HTTP_OK) {
-                    $json = Helper::getJson($response->getBody());
+                    $json = JsonHelper::getJson($response->getBody());
                     if (isset($json)) {
                         return new ApiList($json);
                     }
@@ -456,7 +456,7 @@ class ContentApi extends AbstractApi {
             $response = $this->httpClient->get($resource);
             if ($response instanceof HttpResponse) {
                 if ($response->getStatus() === HttpStatusCode::HTTP_OK) {
-                    $json = Helper::getJson($response->getBody());
+                    $json = JsonHelper::getJson($response->getBody());
                     if (isset($json)) {
                         return new ContentMedia($json);
                     }
@@ -543,7 +543,7 @@ class ContentApi extends AbstractApi {
 
                 // set the medainfo tags
                 if (!is_null($mediaInfo->tags) && is_array($mediaInfo->tags) && count($mediaInfo->tags) > 0) {
-                    $params["Tags"] = Helper::toJson($mediaInfo->tags);
+                    $params["Tags"] = JsonHelper::toJson($mediaInfo->tags);
                 }
 
                 $response = null;
@@ -558,7 +558,7 @@ class ContentApi extends AbstractApi {
 
                 if ($response != null && $response instanceof HttpResponse) {
                     if ($response->getStatus() === HttpStatusCode::HTTP_CREATED) {
-                        $json = Helper::getJson($response->getBody());
+                        $json = JsonHelper::getJson($response->getBody());
                         if (isset($json)) {
                             return new ContentMedia($json);
                         }
@@ -610,13 +610,13 @@ class ContentApi extends AbstractApi {
 
             // set the medainfo tags
             if (!is_null($mediaInfo->tags) && is_array($mediaInfo->tags) && count($mediaInfo->tags) > 0) {
-                $params["Tags"] = Helper::toJson($mediaInfo->tags);
+                $params["Tags"] = JsonHelper::toJson($mediaInfo->tags);
             }
 
             $response = $this->httpClient->put($resource, $params);
             if ($response instanceof HttpResponse) {
                 if ($response->getStatus() === HttpStatusCode::HTTP_OK) {
-                    $json = Helper::getJson($response->getBody());
+                    $json = JsonHelper::getJson($response->getBody());
                     if (isset($json)) {
                         return new ContentMedia($json);
                     }

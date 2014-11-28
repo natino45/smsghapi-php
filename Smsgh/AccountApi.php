@@ -8,8 +8,8 @@
  */
 class AccountApi extends AbstractApi {
 
-    public function __construct($apiHost) {
-        parent::__construct($apiHost);
+    public function __construct($apiHost, $enableConsoleLog = TRUE) {
+        parent::__construct($apiHost, $enableConsoleLog);
     }
 
     /**
@@ -22,7 +22,7 @@ class AccountApi extends AbstractApi {
             $response = $this->httpClient->get($resource);
             if ($response instanceof HttpResponse) {
                 if ($response->getStatus() === HttpStatusCode::HTTP_OK) {
-                    $json = Helper::getJson($response->getBody());
+                    $json = JsonHelper::getJson($response->getBody());
                     if (isset($json)) {
                         return new AccountProfile($json);
                     }
@@ -45,7 +45,7 @@ class AccountApi extends AbstractApi {
             $response = $this->httpClient->get($resource);
             if ($response instanceof HttpResponse) {
                 if ($response->getStatus() === HttpStatusCode::HTTP_OK) {
-                    $json = Helper::getJson($response->getBody());
+                    $json = JsonHelper::getJson($response->getBody());
                     if (isset($json)) {
                         return new AccountContact($json);
                     }
@@ -68,7 +68,7 @@ class AccountApi extends AbstractApi {
             $response = $this->httpClient->get($resource);
             if ($response instanceof HttpResponse) {
                 if ($response->getStatus() === HttpStatusCode::HTTP_OK) {
-                    $json = Helper::getJson($response->getBody());
+                    $json = JsonHelper::getJson($response->getBody());
                     if (isset($json)) {
                         return new AccountContact($json);
                     }
@@ -91,7 +91,7 @@ class AccountApi extends AbstractApi {
             $response = $this->httpClient->get($resource);
             if ($response instanceof HttpResponse) {
                 if ($response->getStatus() === HttpStatusCode::HTTP_OK) {
-                    $json = Helper::getJson($response->getBody());
+                    $json = JsonHelper::getJson($response->getBody());
                     if (isset($json)) {
                         return new AccountContact($json);
                     }
@@ -114,7 +114,7 @@ class AccountApi extends AbstractApi {
             $response = $this->httpClient->get($resource);
             if ($response instanceof HttpResponse) {
                 if ($response->getStatus() === HttpStatusCode::HTTP_OK) {
-                    $json = Helper::getJson($response->getBody());
+                    $json = JsonHelper::getJson($response->getBody());
                     $contacts = array();
                     if (isset($json) && is_array($json)) {
                         /* @var $contact type */
@@ -192,7 +192,7 @@ class AccountApi extends AbstractApi {
             $response = $this->httpClient->get($resource, $params);
             if ($response instanceof HttpResponse) {
                 if ($response->getStatus() === HttpStatusCode::HTTP_OK) {
-                    $json = Helper::getJson($response->getBody());
+                    $json = JsonHelper::getJson($response->getBody());
                     if (isset($json))
                         return new ApiList($json);
                 } else
@@ -214,7 +214,7 @@ class AccountApi extends AbstractApi {
             $response = $this->httpClient->get($resource);
             if ($response instanceof HttpResponse) {
                 if ($response->getStatus() === HttpStatusCode::HTTP_OK) {
-                    $json = Helper::getJson($response->getBody());
+                    $json = JsonHelper::getJson($response->getBody());
                     if (isset($json)) {
                         return new Setting($json);
                     }
@@ -238,17 +238,17 @@ class AccountApi extends AbstractApi {
         $resource = "/account/settings/";
         if (is_null($request)) {
             throw new ErrorException("Parameter 'preference' cannot be null");
-        } elseif (!is_array($request) && !($request instanceof Setting)) {
+        } elseif (!is_array($request) || !($request instanceof Setting)) {
             throw new ErrorException("Parameter 'request' must be an array");
         }
 
         try {
             $params = array();
-            $params = is_array($request) ? $request : json_decode(Helper::toJson($request), true);
+            $params = is_array($request) ? $request : json_decode(JsonHelper::toJson($request), true);
             $response = $this->httpClient->post($resource, $params);
             if ($response instanceof HttpResponse) {
                 if ($response->getStatus() === HttpStatusCode::HTTP_OK) {
-                    $json = Helper::getJson($response->getBody());
+                    $json = JsonHelper::getJson($response->getBody());
                     if (isset($json)) {
                         return new Setting($json);
                     }
@@ -270,11 +270,11 @@ class AccountApi extends AbstractApi {
      */
     public function getTopupLocations($longitude, $latitude) {
         $resource = "/topup/voucher/vendors/";
-        if (!is_null($longitude) && !is_double($longitude)) {
+        if (!is_null($longitude) && is_double($longitude)) {
             throw new ErrorException("Parameter 'longitude' must be a double");
         }
 
-        if (!is_null($latitude) && !is_double($latitude)) {
+        if (!is_null($latitude) && is_double($latitude)) {
             throw new ErrorException("Parameter 'latitude' must be a double");
         }
         try {
@@ -288,7 +288,7 @@ class AccountApi extends AbstractApi {
             $response = $this->httpClient->get($resource, $params);
             if ($response instanceof HttpResponse) {
                 if ($response->getStatus() === HttpStatusCode::HTTP_OK) {
-                    $json = Helper::getJson($response->getBody());
+                    $json = JsonHelper::getJson($response->getBody());
                     if ($json instanceof stdClass) {
                         $locations = array();
                         foreach ($json as $name => $value) {
@@ -329,7 +329,7 @@ class AccountApi extends AbstractApi {
             $response = $this->httpClient->get($resource);
             if ($response instanceof HttpResponse) {
                 if ($response->getStatus() === HttpStatusCode::HTTP_OK) {
-                    $json = Helper::getJson($response->getBody());
+                    $json = JsonHelper::getJson($response->getBody());
                     if (isset($json)) {
                         return new Topup($json);
                     }

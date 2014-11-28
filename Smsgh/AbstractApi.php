@@ -11,7 +11,7 @@ abstract class AbstractApi {
     protected $apiHost;
     protected $httpClient;
 
-    public function __construct($apiHost) {
+    public function __construct($apiHost, $enableConsoleLog = TRUE) {
 
         if ($apiHost instanceof ApiHost) {
             $this->apiHost = $apiHost;
@@ -30,7 +30,7 @@ abstract class AbstractApi {
             }
 
             // set the httpclient object to fire requests
-            $this->httpClient = BasicHttpClient::init($baseUrl);
+            $this->httpClient = BasicHttpClient::init($baseUrl, $enableConsoleLog);
 
             // Set the authorization headers
             if ($this->apiHost->getAuth() instanceof BasicAuth) {

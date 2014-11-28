@@ -7,8 +7,8 @@
  */
 class SupportApi extends AbstractApi {
 
-    public function __construct($apiHost) {
-        parent::__construct($apiHost);
+    public function __construct($apiHost, $enableConsoleLog = TRUE) {
+        parent::__construct($apiHost, $enableConsoleLog);
     }
 
     /**
@@ -32,7 +32,7 @@ class SupportApi extends AbstractApi {
             $response = $this->httpClient->get($resource, $params);
             if ($response instanceof HttpResponse) {
                 if ($response->getStatus() === HttpStatusCode::HTTP_OK) {
-                    $json = Helper::getJson($response->getBody());
+                    $json = JsonHelper::getJson($response->getBody());
                     if (isset($json))
                         return new ApiList($json);
                 } else
@@ -62,7 +62,7 @@ class SupportApi extends AbstractApi {
             $response = $this->httpClient->get($resource);
             if ($response instanceof HttpResponse) {
                 if ($response->getStatus() === HttpStatusCode::HTTP_OK) {
-                    $json = Helper::getJson($response->getBody());
+                    $json = JsonHelper::getJson($response->getBody());
                     if (isset($json))
                         return new Ticket($json);
                 } else
@@ -84,16 +84,16 @@ class SupportApi extends AbstractApi {
         $resource = "/tickets/";
         if (is_null($request)) {
             throw new ErrorException("Parameter 'request' cannot be null");
-        } elseif (!($request instanceof Ticket) && !is_array($request)) {
+        } elseif (!($request instanceof Ticket) || !is_array($request)) {
             throw new ErrorException("Parameter 'request' must be of type Ticket or an array");
         }
         try {
             $params = array();
-            $params = is_array($request) ? $request : json_decode(Helper::toJson($request), true);
+            $params = is_array($request) ? $request : json_decode(JsonHelper::toJson($request), true);
             $response = $this->httpClient->post($resource, $params);
             if ($response instanceof HttpResponse) {
                 if ($response->getStatus() === HttpStatusCode::HTTP_CREATED) {
-                    $json = Helper::getJson($response->getBody());
+                    $json = JsonHelper::getJson($response->getBody());
                     if (isset($json)) {
                         return new Ticket($json);
                     }
@@ -124,17 +124,17 @@ class SupportApi extends AbstractApi {
 
         if (is_null($request)) {
             throw new ErrorException("Parameter 'request' cannot be null");
-        } elseif (!($request instanceof TicketResponse) && !is_array($request)) {
+        } elseif (!($request instanceof TicketResponse) || !is_array($request)) {
             throw new ErrorException("Parameter 'request' must be of type TicketResponse or an array");
         }
 
         try {
             $params = array();
-            $params = is_array($request) ? $request : json_decode(Helper::toJson($request), true);
+            $params = is_array($request) ? $request : json_decode(JsonHelper::toJson($request), true);
             $response = $this->httpClient->put($resource, $params);
             if ($response instanceof HttpResponse) {
                 if ($response->getStatus() === HttpStatusCode::HTTP_OK) {
-                    $json = Helper::getJson($response->getBody());
+                    $json = JsonHelper::getJson($response->getBody());
                     if (isset($json)) {
                         return new Ticket($json);
                     }

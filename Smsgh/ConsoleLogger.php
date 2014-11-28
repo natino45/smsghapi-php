@@ -8,8 +8,14 @@
  */
 class ConsoleLogger implements RequestLogger {
 
+    private $enableLog;
+
+    public function __construct($enableLog = TRUE) {
+        $this->enableLog = $enableLog;
+    }
+
     public function isLoggingEnabled() {
-        return TRUE;
+        return $this->enableLog;
     }
 
     public function log($mesg) {

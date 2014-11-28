@@ -5,7 +5,7 @@ require 'HttpStatusCode.php';
 require 'BasicHttpClient.php';
 
 require 'Enum.php';
-require 'Helper.php';
+require 'JsonHelper.php';
 
 require 'ApiHost.php';
 require 'BasicAuth.php';

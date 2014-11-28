@@ -31,9 +31,9 @@ abstract class AbstractHttpClient {
     private $requestHeaders = array();
     private $boundary;
 
-    public function __construct($baseUrl, $requestHandler) {
+    public function __construct($baseUrl, $requestHandler, $enableConsoleLog = TRUE) {
         $this->baseUrl = $baseUrl;
-        $this->logger = new ConsoleLogger();
+        $this->logger = new ConsoleLogger($enableConsoleLog);
         $this->curlHandle = curl_init();
         if ($requestHandler instanceof RequestHandler) {
             $this->requestHandler = $requestHandler;

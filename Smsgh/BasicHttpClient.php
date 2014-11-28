@@ -12,12 +12,12 @@ require 'BasicRequestHandler.php';
  */
 class BasicHttpClient extends AbstractHttpClient {
 
-    public function __construct($baseUrl, $requestHandler) {
-        parent::__construct($baseUrl, $requestHandler);
+    public function __construct($baseUrl, $requestHandler, $enableConsoleLog = TRUE) {
+        parent::__construct($baseUrl, $requestHandler, $enableConsoleLog);
     }
 
-    public static function init($baseUrl) {
-        return new BasicHttpClient($baseUrl, new BasicRequestHandler());
+    public static function init($baseUrl, $enableConsoleLog = TRUE) {
+        return new BasicHttpClient($baseUrl, new BasicRequestHandler(), $enableConsoleLog);
     }
 
 }
