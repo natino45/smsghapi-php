@@ -49,7 +49,8 @@ To send a message just copy this code snippet and do the necessary modifications
 
     // instance of ApiHost
     $apiHost = new ApiHost($auth);
-    $messagingApi = new MessagingApi($apiHost);
+    $enableConsoleLog = TRUE;
+    $messagingApi = new MessagingApi($apiHost, $enableConsoleLog);
     try {
         // Quick Send approach options. Choose the one that meets your requirement
        option 1.)  $messageResponse = $messagingApi->sendQuickMessage("+233245657867", "+233245098456", "<message>");
@@ -91,7 +92,8 @@ However please do refer to PHP datetime functions to know how to set the message
 
     // instance of ApiHost
     $apiHost = new ApiHost($auth);
-    $messagingApi = new MessagingApi($apiHost);
+    $enableConsoleLog = TRUE;
+    $messagingApi = new MessagingApi($apiHost, $enableConsoleLog);
     try {
         // Default Approach
         $mesg = new Message();
@@ -125,7 +127,8 @@ To send a message just copy this code snippet and do the necessary modifications
     // instance of ApiHost
     $apiHost = new ApiHost($auth);
     // instance of AccountApi
-    $accountApi = new AccountApi($apiHost);
+    $enableConsoleLog = TRUE;
+    $accountApi = new AccountApi($apiHost, $enableConsoleLog);
     try {
         // Get the Account Profile
         $profile = $accountApi->getProfile();
