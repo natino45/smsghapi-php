@@ -29,9 +29,9 @@ class ContactApi extends AbstractApi {
 	public function getContact($contactId) {
 		$resource = "/contacts/";
 		if (is_null($contactId)) {
-			throw new ErrorException("Parameter 'contactId' cannot be null");
+			throw new \ErrorException("Parameter 'contactId' cannot be null");
 		} elseif (!is_int($contactId)) {
-			throw new ErrorException("Parameter 'contactId' must be an integer");
+			throw new \ErrorException("Parameter 'contactId' must be an integer");
 		}
 		try {
 			$resource .= $contactId;
@@ -48,7 +48,7 @@ class ContactApi extends AbstractApi {
 				}
 
 			}
-		} catch (Exception $ex) {
+		} catch (\Exception $ex) {
 			echo $ex->getTraceAsString();
 		}
 		return null;
@@ -107,7 +107,7 @@ class ContactApi extends AbstractApi {
 				}
 
 			}
-		} catch (Exception $exc) {
+		} catch (\Exception $exc) {
 			echo $exc->getTraceAsString();
 		}
 		return null;
@@ -142,7 +142,7 @@ class ContactApi extends AbstractApi {
 					return $response;
 				}
 			}
-		} catch (Exception $ex) {
+		} catch (\Exception $ex) {
 			echo $ex->getTraceAsString();
 		}
 		return null;
@@ -181,7 +181,7 @@ class ContactApi extends AbstractApi {
 				}
 
 			}
-		} catch (Exception $ex) {
+		} catch (\Exception $ex) {
 			echo $ex->getTraceAsString();
 		}
 
@@ -226,7 +226,7 @@ class ContactApi extends AbstractApi {
 				}
 
 			}
-		} catch (Exception $ex) {
+		} catch (\Exception $ex) {
 			echo $ex->getTraceAsString();
 		}
 
@@ -258,7 +258,7 @@ class ContactApi extends AbstractApi {
 				}
 
 			}
-		} catch (Exception $ex) {
+		} catch (\Exception $ex) {
 			echo $ex->getTraceAsString();
 		}
 	}
@@ -295,7 +295,7 @@ class ContactApi extends AbstractApi {
 				}
 
 			}
-		} catch (Exception $exc) {
+		} catch (\Exception $exc) {
 			echo $exc->getTraceAsString();
 		}
 		return null;
@@ -329,7 +329,7 @@ class ContactApi extends AbstractApi {
 				}
 
 			}
-		} catch (Exception $ex) {
+		} catch (\Exception $ex) {
 			echo $ex->getTraceAsString();
 		}
 		return null;
@@ -360,7 +360,7 @@ class ContactApi extends AbstractApi {
 				}
 
 			}
-		} catch (Exception $ex) {
+		} catch (\Exception $ex) {
 			echo $ex->getTraceAsString();
 		}
 	}
@@ -398,7 +398,7 @@ class ContactApi extends AbstractApi {
 					return $response;
 				}
 			}
-		} catch (Exception $ex) {
+		} catch (\Exception $ex) {
 			echo $ex->getTraceAsString();
 		}
 		return null;

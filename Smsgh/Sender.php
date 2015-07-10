@@ -62,7 +62,7 @@ class Sender {
 			$this->object->Address = $value;
 			return $this;
 		}
-		throw new Exception
+		throw new \Exception
 		("Parameter value must be of type 'string'");
 	}
 

@@ -90,7 +90,7 @@ class MoKeyWord {
 			$this->object->Alias1 = $value;
 			return $this;
 		}
-		throw new Exception("Parameter should be of type 'string'");
+		throw new \Exception("Parameter should be of type 'string'");
 	}
 
 	/**
@@ -101,7 +101,7 @@ class MoKeyWord {
 			$this->object->Alias2 = $value;
 			return $this;
 		}
-		throw new Exception("Parameter should be of type 'string'");
+		throw new \Exception("Parameter should be of type 'string'");
 	}
 
 	/**
@@ -112,7 +112,7 @@ class MoKeyWord {
 			$this->object->Alias3 = $value;
 			return $this;
 		}
-		throw new Exception("Parameter should be of type 'string'");
+		throw new \Exception("Parameter should be of type 'string'");
 	}
 
 	/**
@@ -123,7 +123,7 @@ class MoKeyWord {
 			$this->object->Alias4 = $value;
 			return $this;
 		}
-		throw new Exception("Parameter should be of type 'string'");
+		throw new \Exception("Parameter should be of type 'string'");
 	}
 
 	/**
@@ -134,7 +134,7 @@ class MoKeyWord {
 			$this->object->Alias5 = $value;
 			return $this;
 		}
-		throw new Exception("Parameter should be of type 'string'");
+		throw new \Exception("Parameter should be of type 'string'");
 	}
 
 	/**
@@ -145,7 +145,7 @@ class MoKeyWord {
 			$this->object->Keyword = $value;
 			return $this;
 		}
-		throw new Exception("Parameter should be of type 'string'");
+		throw new \Exception("Parameter should be of type 'string'");
 	}
 
 	/**
@@ -156,7 +156,7 @@ class MoKeyWord {
 			$this->object->NumberPlanId = $value + 0;
 			return $this;
 		}
-		throw new Exception("Parameter should be of type 'number'");
+		throw new \Exception("Parameter should be of type 'number'");
 	}
 
 }

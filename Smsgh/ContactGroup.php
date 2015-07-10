@@ -15,7 +15,7 @@ class ContactGroup {
 		} else if (is_object($json)) {
 			$this->object = $json;
 		} else {
-			throw new Exception('Bad parameter');
+			throw new \Exception('Bad parameter');
 		}
 
 	}

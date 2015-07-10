@@ -17,7 +17,7 @@ class TopupLocation {
 		} else if (is_object($json)) {
 			$this->object = $json;
 		} else {
-			throw new Exception('Bad parameter');
+			throw new \Exception('Bad parameter');
 		}
 	}
 
@@ -34,7 +34,7 @@ class TopupLocation {
 			$this->object->City = $city;
 			return $this;
 		}
-		throw new Exception
+		throw new \Exception
 		("Parameter value must be of type 'string'");
 	}
 
@@ -47,7 +47,7 @@ class TopupLocation {
 			$this->object->Area = $area;
 			return $this;
 		}
-		throw new Exception
+		throw new \Exception
 		("Parameter value must be of type 'string'");
 	}
 
@@ -60,7 +60,7 @@ class TopupLocation {
 			$this->object->Region = $region;
 			return $this;
 		}
-		throw new Exception
+		throw new \Exception
 		("Parameter value must be of type 'string'");
 	}
 
@@ -73,7 +73,7 @@ class TopupLocation {
 			$this->object->Details = $details;
 			return $this;
 		}
-		throw new Exception
+		throw new \Exception
 		("Parameter value must be of type 'string'");
 	}
 
@@ -86,7 +86,7 @@ class TopupLocation {
 			$this->object->Description = $description;
 			return $this;
 		}
-		throw new Exception
+		throw new \Exception
 		("Parameter value must be of type 'string'");
 	}
 
@@ -95,7 +95,7 @@ class TopupLocation {
 			$this->object->Latitude = $latitude;
 			return $this;
 		}
-		throw new Exception
+		throw new \Exception
 		("Parameter value must be of type 'double'");
 	}
 
@@ -108,7 +108,7 @@ class TopupLocation {
 			$this->object->Longitude = $longitude;
 			return $this;
 		}
-		throw new Exception
+		throw new \Exception
 		("Parameter value must be of type 'double'");
 	}
 

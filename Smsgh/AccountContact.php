@@ -125,7 +125,7 @@ class AccountContact {
 			$this->object->Address1 = $value;
 			return $this;
 		}
-		throw new Exception
+		throw new \Exception
 		("Parameter value must be of type 'string'");
 	}
 
@@ -137,7 +137,7 @@ class AccountContact {
 			$this->object->Address2 = $value;
 			return $this;
 		}
-		throw new Exception
+		throw new \Exception
 		("Parameter value must be of type 'string'");
 	}
 
@@ -149,7 +149,7 @@ class AccountContact {
 			$this->object->City = $value;
 			return $this;
 		}
-		throw new Exception
+		throw new \Exception
 		("Parameter value must be of type 'string'");
 	}
 
@@ -161,7 +161,7 @@ class AccountContact {
 			$this->object->Country = $value;
 			return $this;
 		}
-		throw new Exception
+		throw new \Exception
 		("Parameter value must be of type 'string'");
 	}
 
@@ -173,7 +173,7 @@ class AccountContact {
 			$this->object->FirstName = $value;
 			return $this;
 		}
-		throw new Exception
+		throw new \Exception
 		("Parameter value must be of type 'string'");
 	}
 
@@ -185,7 +185,7 @@ class AccountContact {
 			$this->object->LastName = $value;
 			return $this;
 		}
-		throw new Exception
+		throw new \Exception
 		("Parameter value must be of type 'string'");
 	}
 
@@ -197,7 +197,7 @@ class AccountContact {
 			$this->object->Province = $value;
 			return $this;
 		}
-		throw new Exception
+		throw new \Exception
 		("Parameter value must be of type 'string'");
 	}
 
@@ -209,7 +209,7 @@ class AccountContact {
 			$this->object->PostalCode = $value;
 			return $this;
 		}
-		throw new Exception
+		throw new \Exception
 		("Parameter value must be of type 'string'");
 	}
 
@@ -221,7 +221,7 @@ class AccountContact {
 			$this->object->PrimaryEmail = $value;
 			return $this;
 		}
-		throw new Exception
+		throw new \Exception
 		("Parameter value must be of type 'string'");
 	}
 
@@ -233,7 +233,7 @@ class AccountContact {
 			$this->object->PrimaryPhone = $value;
 			return $this;
 		}
-		throw new Exception
+		throw new \Exception
 		("Parameter value must be of type 'string'");
 	}
 
@@ -245,7 +245,7 @@ class AccountContact {
 			$this->object->PrivateNote = $value;
 			return $this;
 		}
-		throw new Exception
+		throw new \Exception
 		("Parameter value must be of type 'string'");
 	}
 
@@ -257,7 +257,7 @@ class AccountContact {
 			$this->object->PublicNote = $value;
 			return $this;
 		}
-		throw new Exception
+		throw new \Exception
 		("Parameter value must be of type 'string'");
 	}
 
@@ -269,7 +269,7 @@ class AccountContact {
 			$this->object->SecondaryEmail = $value;
 			return $this;
 		}
-		throw new Exception
+		throw new \Exception
 		("Parameter value must be of type 'string'");
 	}
 
@@ -281,7 +281,7 @@ class AccountContact {
 			$this->object->SecondaryPhone = $value;
 			return $this;
 		}
-		throw new Exception
+		throw new \Exception
 		("Parameter value must be of type 'string'");
 	}
 

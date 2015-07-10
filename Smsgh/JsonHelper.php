@@ -24,7 +24,7 @@ class JsonHelper {
 			if (($errcode = json_last_error()) == JSON_ERROR_NONE) {
 				return $json;
 			}
-			throw new Exception('json_decode(): '
+			throw new \Exception('json_decode(): '
 				. (isset(self::$jsonErrors[$errcode]) ?
 					self::$jsonErrors[$errcode] : 'Unknown error'));
 		}

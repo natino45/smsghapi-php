@@ -45,7 +45,7 @@ class ContentApi extends AbstractApi {
 					return $response;
 				}
 			}
-		} catch (Exception $ex) {
+		} catch (\Exception $ex) {
 			$ex->getTraceAsString();
 		}
 		return null;
@@ -60,9 +60,9 @@ class ContentApi extends AbstractApi {
 	public function getContentLibrary($libraryId) {
 		$resource = "/libraries/";
 		if (is_null($libraryId)) {
-			throw new ErrorException("Parameter 'libraryId' cannot be null");
+			throw new \ErrorException("Parameter 'libraryId' cannot be null");
 		} elseif (!CommonUtil::is_uuid($libraryId)) {
-			throw new ErrorException("Parameter 'libraryId' must be a valid UUID");
+			throw new \ErrorException("Parameter 'libraryId' must be a valid UUID");
 		}
 
 		try {
@@ -78,7 +78,7 @@ class ContentApi extends AbstractApi {
 					return $response;
 				}
 			}
-		} catch (Exception $ex) {
+		} catch (\Exception $ex) {
 			$ex->getTraceAsString();
 		}
 		return null;
@@ -94,9 +94,9 @@ class ContentApi extends AbstractApi {
 	public function addContentLibrary($name, $shortName) {
 		$resource = "/libraries/";
 		if (is_null($name)) {
-			throw new ErrorException("Parameter 'name' cannot be null");
+			throw new \ErrorException("Parameter 'name' cannot be null");
 		} else if (!is_string($name)) {
-			throw new ErrorException("Parameter 'name' must be a string");
+			throw new \ErrorException("Parameter 'name' must be a string");
 		}
 
 		if (is_null($shortName)) {
@@ -120,7 +120,7 @@ class ContentApi extends AbstractApi {
 					return $response;
 				}
 			}
-		} catch (Exception $ex) {
+		} catch (\Exception $ex) {
 			$ex->getTraceAsString();
 		}
 		return null;
@@ -168,7 +168,7 @@ class ContentApi extends AbstractApi {
 					return $response;
 				}
 			}
-		} catch (Exception $ex) {
+		} catch (\Exception $ex) {
 			$ex->getTraceAsString();
 		}
 		return null;
@@ -198,7 +198,7 @@ class ContentApi extends AbstractApi {
 					return $response;
 				}
 			}
-		} catch (Exception $ex) {
+		} catch (\Exception $ex) {
 			$ex->getTraceAsString();
 		}
 		return FALSE;
@@ -233,7 +233,7 @@ class ContentApi extends AbstractApi {
 					return $response;
 				}
 			}
-		} catch (Exception $ex) {
+		} catch (\Exception $ex) {
 			$ex->getTraceAsString();
 		}
 		return null;
@@ -268,7 +268,7 @@ class ContentApi extends AbstractApi {
 				}
 
 			}
-		} catch (Exception $exc) {
+		} catch (\Exception $exc) {
 			echo $exc->getTraceAsString();
 		}
 		return null;
@@ -314,7 +314,7 @@ class ContentApi extends AbstractApi {
 					return $response;
 				}
 			}
-		} catch (Exception $ex) {
+		} catch (\Exception $ex) {
 			$ex->getTraceAsString();
 		}
 		return null;
@@ -364,7 +364,7 @@ class ContentApi extends AbstractApi {
 					return $response;
 				}
 			}
-		} catch (Exception $ex) {
+		} catch (\Exception $ex) {
 			$ex->getTraceAsString();
 		}
 		return null;
@@ -395,7 +395,7 @@ class ContentApi extends AbstractApi {
 					return $response;
 				}
 			}
-		} catch (Exception $ex) {
+		} catch (\Exception $ex) {
 			$ex->getTraceAsString();
 		}
 		return FALSE;
@@ -438,7 +438,7 @@ class ContentApi extends AbstractApi {
 					return $response;
 				}
 			}
-		} catch (Exception $ex) {
+		} catch (\Exception $ex) {
 			$ex->getTraceAsString();
 		}
 		return null;
@@ -471,7 +471,7 @@ class ContentApi extends AbstractApi {
 					return $response;
 				}
 			}
-		} catch (Exception $ex) {
+		} catch (\Exception $ex) {
 			$ex->getTraceAsString();
 		}
 		return null;
@@ -501,7 +501,7 @@ class ContentApi extends AbstractApi {
 					return $response;
 				}
 			}
-		} catch (Exception $ex) {
+		} catch (\Exception $ex) {
 			$ex->getTraceAsString();
 		}
 		return FALSE;
@@ -574,7 +574,7 @@ class ContentApi extends AbstractApi {
 					}
 				}
 			}
-		} catch (Exception $ex) {
+		} catch (\Exception $ex) {
 			$ex->getTraceAsString();
 		}
 		return null;
@@ -631,7 +631,7 @@ class ContentApi extends AbstractApi {
 					return $response;
 				}
 			}
-		} catch (Exception $ex) {
+		} catch (\Exception $ex) {
 			$ex->getTraceAsString();
 		}
 		return null;

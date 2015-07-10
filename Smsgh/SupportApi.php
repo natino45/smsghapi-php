@@ -44,7 +44,7 @@ class SupportApi extends AbstractApi {
 				}
 
 			}
-		} catch (Exception $exc) {
+		} catch (\Exception $exc) {
 			echo $exc->getTraceAsString();
 		}
 		return null;
@@ -54,14 +54,14 @@ class SupportApi extends AbstractApi {
 	 * Gets a given Support Ticket
 	 * @param integer $ticketId
 	 * @return HttpResponse|null|Ticket
-	 * @throws ErrorException
+	 * @throws \ErrorException
 	 */
 	public function getSupporTicket($ticketId) {
 		$resource = "/tickets/";
 		if (is_null($ticketId)) {
-			throw new ErrorException("Parameter 'ticketId' cannot be null");
+			throw new \ErrorException("Parameter 'ticketId' cannot be null");
 		} elseif (!is_int($ticketId)) {
-			throw new ErrorException("Parameter 'ticketId' must be an integer");
+			throw new \ErrorException("Parameter 'ticketId' must be an integer");
 		}
 		try {
 			$resource .= $ticketId;
@@ -78,7 +78,7 @@ class SupportApi extends AbstractApi {
 				}
 
 			}
-		} catch (Exception $ex) {
+		} catch (\Exception $ex) {
 			echo $ex->getTraceAsString();
 		}
 		return null;
@@ -88,14 +88,14 @@ class SupportApi extends AbstractApi {
 	 * Creates a Support Ticket
 	 * @param mixed $request
 	 * @return HttpResponse|null|Ticket
-	 * @throws ErrorException
+	 * @throws \ErrorException
 	 */
 	public function addSupportTicket($request) {
 		$resource = "/tickets/";
 		if (is_null($request)) {
-			throw new ErrorException("Parameter 'request' cannot be null");
+			throw new \ErrorException("Parameter 'request' cannot be null");
 		} elseif (!($request instanceof Ticket) || !is_array($request)) {
-			throw new ErrorException("Parameter 'request' must be of type Ticket or an array");
+			throw new \ErrorException("Parameter 'request' must be of type Ticket or an array");
 		}
 		try {
 			$params = array();
@@ -111,7 +111,7 @@ class SupportApi extends AbstractApi {
 					return $response;
 				}
 			}
-		} catch (Exception $ex) {
+		} catch (\Exception $ex) {
 			echo $ex->getTraceAsString();
 		}
 		return null;
@@ -122,20 +122,20 @@ class SupportApi extends AbstractApi {
 	 * @param integer $ticketId
 	 * @param mixed $request
 	 * @return HttpResponse|null|Ticket
-	 * @throws ErrorException
+	 * @throws \ErrorException
 	 */
 	public function updateSupportTicket($ticketId, $request) {
 		$resource = "/tickets/";
 		if (is_null($ticketId)) {
-			throw new ErrorException("Parameter 'ticketId' cannot be null");
+			throw new \ErrorException("Parameter 'ticketId' cannot be null");
 		} elseif (!is_int($ticketId)) {
-			throw new ErrorException("Parameter 'ticketId' must be an integer");
+			throw new \ErrorException("Parameter 'ticketId' must be an integer");
 		}
 
 		if (is_null($request)) {
-			throw new ErrorException("Parameter 'request' cannot be null");
+			throw new \ErrorException("Parameter 'request' cannot be null");
 		} elseif (!($request instanceof TicketResponse) || !is_array($request)) {
-			throw new ErrorException("Parameter 'request' must be of type TicketResponse or an array");
+			throw new \ErrorException("Parameter 'request' must be of type TicketResponse or an array");
 		}
 
 		try {
@@ -152,7 +152,7 @@ class SupportApi extends AbstractApi {
 					return $response;
 				}
 			}
-		} catch (Exception $ex) {
+		} catch (\Exception $ex) {
 			echo $ex->getTraceAsString();
 		}
 		return null;

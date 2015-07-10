@@ -33,7 +33,7 @@ class AccountApi extends AbstractApi {
 				}
 
 			}
-		} catch (Exception $ex) {
+		} catch (\Exception $ex) {
 			echo $ex->getTraceAsString();
 		}
 		return null;
@@ -58,7 +58,7 @@ class AccountApi extends AbstractApi {
 				}
 
 			}
-		} catch (Exception $ex) {
+		} catch (\Exception $ex) {
 			echo $ex->getTraceAsString();
 		}
 		return null;
@@ -83,7 +83,7 @@ class AccountApi extends AbstractApi {
 				}
 
 			}
-		} catch (Exception $ex) {
+		} catch (\Exception $ex) {
 			echo $ex->getTraceAsString();
 		}
 		return null;
@@ -108,7 +108,7 @@ class AccountApi extends AbstractApi {
 				}
 
 			}
-		} catch (Exception $ex) {
+		} catch (\Exception $ex) {
 			echo $ex->getTraceAsString();
 		}
 		return null;
@@ -139,7 +139,7 @@ class AccountApi extends AbstractApi {
 				}
 
 			}
-		} catch (Exception $ex) {
+		} catch (\Exception $ex) {
 			echo $ex->getTraceAsString();
 		}
 		return null;
@@ -176,7 +176,7 @@ class AccountApi extends AbstractApi {
 				}
 
 			}
-		} catch (Exception $exc) {
+		} catch (\Exception $exc) {
 			echo $exc->getTraceAsString();
 		}
 		return FALSE;
@@ -216,7 +216,7 @@ class AccountApi extends AbstractApi {
 				}
 
 			}
-		} catch (Exception $ex) {
+		} catch (\Exception $ex) {
 			echo $ex->getTraceAsString();
 		}
 		return null;
@@ -241,7 +241,7 @@ class AccountApi extends AbstractApi {
 				}
 
 			}
-		} catch (Exception $ex) {
+		} catch (\Exception $ex) {
 			echo $ex->getTraceAsString();
 		}
 		return null;
@@ -277,7 +277,7 @@ class AccountApi extends AbstractApi {
 				}
 
 			}
-		} catch (Exception $ex) {
+		} catch (\Exception $ex) {
 			echo $ex->getTraceAsString();
 		}
 		return null;
@@ -326,7 +326,7 @@ class AccountApi extends AbstractApi {
 					return $response;
 				}
 			}
-		} catch (Exception $ex) {
+		} catch (\Exception $ex) {
 			echo $ex->getTraceAsString();
 		}
 		return null;
@@ -360,7 +360,7 @@ class AccountApi extends AbstractApi {
 				}
 
 			}
-		} catch (Exception $ex) {
+		} catch (\Exception $ex) {
 			echo $ex->getTraceAsString();
 		}
 		return null;

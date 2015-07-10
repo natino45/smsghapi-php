@@ -38,7 +38,7 @@ class NumberPlan {
 			}
 
 		} else {
-			throw new Exception('Bad parameter');
+			throw new \Exception('Bad parameter');
 		}
 
 	}

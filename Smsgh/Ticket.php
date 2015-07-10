@@ -29,7 +29,7 @@ class Ticket {
 
 			$this->object->Responses = $arr;
 		} else {
-			throw new Exception('Bad parameter');
+			throw new \Exception('Bad parameter');
 		}
 
 	}
@@ -111,7 +111,7 @@ class Ticket {
 			$this->object->SupportDepartmentId = $value + 0;
 			return $this;
 		}
-		throwException(new Exception("Parameter value must be of type 'numeric'"));
+		throwException(new \Exception("Parameter value must be of type 'numeric'"));
 	}
 
 	public function setSupportCategoryId($value) {
@@ -119,7 +119,7 @@ class Ticket {
 			$this->object->SupportCategoryId = $value + 0;
 			return $this;
 		}
-		throwException(new Exception("Parameter value must be of type 'numeric'"));
+		throwException(new \Exception("Parameter value must be of type 'numeric'"));
 	}
 
 	public function setPriority($value) {
@@ -127,7 +127,7 @@ class Ticket {
 			$this->object->Priority = $value + 0;
 			return $this;
 		}
-		throwException(new Exception("Parameter value must be of type 'numeric'"));
+		throwException(new \Exception("Parameter value must be of type 'numeric'"));
 	}
 
 	public function setSource($value) {
@@ -135,7 +135,7 @@ class Ticket {
 			$this->object->Source = $value;
 			return $this;
 		}
-		throwException(new Exception("Parameter value must be of type 'string'"));
+		throwException(new \Exception("Parameter value must be of type 'string'"));
 	}
 
 	public function setSubject($value) {
@@ -143,7 +143,7 @@ class Ticket {
 			$this->object->Subject = $value;
 			return $this;
 		}
-		throwException(new Exception("Parameter value must be of type 'string'"));
+		throwException(new \Exception("Parameter value must be of type 'string'"));
 	}
 
 	public function setContent($value) {
@@ -151,7 +151,7 @@ class Ticket {
 			$this->object->Content = $value;
 			return $this;
 		}
-		throwException(new Exception("Parameter value must be of type 'string'"));
+		throwException(new \Exception("Parameter value must be of type 'string'"));
 	}
 
 }

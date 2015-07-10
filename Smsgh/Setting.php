@@ -111,7 +111,7 @@ class Setting {
 			$this->object->CountryCode = $value;
 			return $this;
 		}
-		throw new Exception
+		throw new \Exception
 		("Parameter value must be of type 'string'");
 	}
 
@@ -123,7 +123,7 @@ class Setting {
 			$this->object->DeliveryReportNotificationUrl = $value;
 			return $this;
 		}
-		throw new Exception
+		throw new \Exception
 		("Parameter value must be of type 'string'");
 	}
 
@@ -135,7 +135,7 @@ class Setting {
 			$this->object->EmailDailySummary = $value;
 			return $this;
 		}
-		throw new Exception
+		throw new \Exception
 		("Parameter value must be of type 'bool'");
 	}
 
@@ -147,7 +147,7 @@ class Setting {
 			$this->object->EmailInvoiceReminders = $value;
 			return $this;
 		}
-		throw new Exception
+		throw new \Exception
 		("Parameter value must be of type 'bool'");
 	}
 
@@ -159,7 +159,7 @@ class Setting {
 			$this->object->EmailMaintenance = $value;
 			return $this;
 		}
-		throw new Exception
+		throw new \Exception
 		("Parameter value must be of type 'bool'");
 	}
 
@@ -171,7 +171,7 @@ class Setting {
 			$this->object->EmailNewInvoice = $value;
 			return $this;
 		}
-		throw new Exception
+		throw new \Exception
 		("Parameter value must be of type 'bool'");
 	}
 
@@ -183,7 +183,7 @@ class Setting {
 			$this->object->SmsFortnightBalance = $value;
 			return $this;
 		}
-		throw new Exception
+		throw new \Exception
 		("Parameter value must be of type 'bool'");
 	}
 
@@ -195,7 +195,7 @@ class Setting {
 			$this->object->SmsLowBalanceNotification = $value;
 			return $this;
 		}
-		throw new Exception
+		throw new \Exception
 		("Parameter value must be of type 'bool'");
 	}
 
@@ -207,7 +207,7 @@ class Setting {
 			$this->object->SmsMaintenance = $value;
 			return $this;
 		}
-		throw new Exception
+		throw new \Exception
 		("Parameter value must be of type 'bool'");
 	}
 
@@ -219,7 +219,7 @@ class Setting {
 			$this->object->SmsPromotionalMessages = $value;
 			return $this;
 		}
-		throw new Exception
+		throw new \Exception
 		("Parameter value must be of type 'bool'");
 	}
 
@@ -231,7 +231,7 @@ class Setting {
 			$this->object->SmsTopUpNotification = $value;
 			return $this;
 		}
-		throw new Exception
+		throw new \Exception
 		("Parameter value must be of type 'bool'");
 	}
 
@@ -243,7 +243,7 @@ class Setting {
 			$this->object->TimeZone = $value;
 			return $this;
 		}
-		throw new Exception
+		throw new \Exception
 		("Parameter value must be of type 'string'");
 	}
 

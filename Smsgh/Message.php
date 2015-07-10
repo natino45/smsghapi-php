@@ -140,7 +140,7 @@ class Message {
 			}
 			return $this;
 		}
-		throw new Exception
+		throw new \Exception
 		("Parameter value must be of type 'int'");
 	}
 
@@ -152,7 +152,7 @@ class Message {
 			$this->object->ClientReference = $value;
 			return $this;
 		}
-		throw new Exception
+		throw new \Exception
 		("Parameter value must be of type 'string'");
 	}
 
@@ -164,7 +164,7 @@ class Message {
 			$this->object->Content = $value;
 			return $this;
 		}
-		throw new Exception
+		throw new \Exception
 		("Parameter value must be of type 'string'");
 	}
 
@@ -176,7 +176,7 @@ class Message {
 			$this->object->FlashMessage = $value;
 			return $this;
 		}
-		throw new Exception
+		throw new \Exception
 		("Parameter value must be of type 'bool'");
 	}
 
@@ -188,7 +188,7 @@ class Message {
 			$this->object->From = $value;
 			return $this;
 		}
-		throw new Exception
+		throw new \Exception
 		("Parameter value must be of type 'string'");
 	}
 
@@ -200,7 +200,7 @@ class Message {
 			$this->object->RegisteredDelivery = $value ? "true" : "false";
 			return $this;
 		}
-		throw new Exception
+		throw new \Exception
 		("Parameter value must be of type 'bool'");
 	}
 
@@ -215,7 +215,7 @@ class Message {
 			$this->object->Time = gmdate('Y-m-d H:i:s', $time);
 			return $this;
 		}
-		throw new Exception
+		throw new \Exception
 		("Parameter value must be of type 'string'");
 	}
 
@@ -227,7 +227,7 @@ class Message {
 			$this->object->To = $value;
 			return $this;
 		}
-		throw new Exception
+		throw new \Exception
 		("Parameter value must be of type 'string'");
 	}
 
@@ -239,7 +239,7 @@ class Message {
 			$this->object->Udh = $value;
 			return $this;
 		}
-		throw new Exception
+		throw new \Exception
 		("Parameter value must be of type 'string'");
 	}
 
@@ -251,7 +251,7 @@ class Message {
 			$this->object->BillingInfo = $value;
 			return $this;
 		}
-		throw new Exception
+		throw new \Exception
 		("Parameter value must be of type 'string'");
 	}
 

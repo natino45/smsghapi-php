@@ -64,7 +64,7 @@ abstract class AbstractHttpClient {
 			// let us fire the http request
 			$response = $this->writeToStream($this->curlHandle);
 			return new HttpResponse($this->curlHandle, $response);
-		} catch (Exception $ex) {
+		} catch (\Exception $ex) {
 			print 'ERROR ' . $ex->getMessage();
 		}
 		return NULL;
@@ -110,7 +110,7 @@ abstract class AbstractHttpClient {
 					$httpResponse = new HttpResponse($this->curlHandle, $response);
 				}
 			}
-		} catch (Exception $ex) {
+		} catch (\Exception $ex) {
 			print "Error " . $ex->getTrace();
 		}
 
@@ -179,7 +179,7 @@ abstract class AbstractHttpClient {
 			} else {
 				$httpResponse = new HttpResponse($this->curlHandle, $response);
 			}
-		} catch (Exception $ex) {
+		} catch (\Exception $ex) {
 			print "Error " . $ex->getTrace();
 		}
 
@@ -214,7 +214,7 @@ abstract class AbstractHttpClient {
 			// Initialize the curl init
 			$this->requestHandler->openConnection($this->curlHandle, $requestUrl);
 		} else {
-			throw new Exception($requestUrl . "  is not a valid URL ");
+			throw new \Exception($requestUrl . "  is not a valid URL ");
 		}
 	}
 
@@ -451,7 +451,7 @@ abstract class AbstractHttpClient {
 		if ($logger instanceof RequestLogger) {
 			$this->logger = $logger;
 		} else {
-			throw new Exception("logger must implement RequestLogger");
+			throw new \Exception("logger must implement RequestLogger");
 		}
 	}
 
@@ -536,13 +536,13 @@ abstract class AbstractHttpClient {
 	protected function onError($host = NULL, $others = NULL) {
 		// let us check the various possible exception
 		if ($this->isConnectionException($host)) {
-			throw new Exception("Unable to connect to {$host}", E_ERROR);
+			throw new \Exception("Unable to connect to {$host}", E_ERROR);
 		} elseif ($this->isHostResolutionException($host)) {
-			throw new Exception("Unable to resolve {$host}", E_ERROR);
+			throw new \Exception("Unable to resolve {$host}", E_ERROR);
 		} elseif ($this->isInitException()) {
 			trigger_error("Internal Error", E_ERROR);
 		} elseif ($this->isTimeoutException()) {
-			throw new Exception("Operation timed out", E_ERROR);
+			throw new \Exception("Operation timed out", E_ERROR);
 		} else {
 			trigger_error("Unexpected Error:  {$others}", E_ERROR);
 		}

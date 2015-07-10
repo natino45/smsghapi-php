@@ -14,7 +14,7 @@ class Contact {
 		} else if (is_object($json)) {
 			$this->object = $json;
 		} else {
-			throw new Exception('Bad parameter');
+			throw new \Exception('Bad parameter');
 		}
 	}
 
@@ -103,7 +103,7 @@ class Contact {
 			$this->object->Custom1 = $value;
 			return $this;
 		}
-		throw new Exception
+		throw new \Exception
 		("Parameter value must be of type 'string'");
 	}
 
@@ -115,7 +115,7 @@ class Contact {
 			$this->object->Custom2 = $value;
 			return $this;
 		}
-		throw new Exception
+		throw new \Exception
 		("Parameter value must be of type 'string'");
 	}
 
@@ -127,7 +127,7 @@ class Contact {
 			$this->object->Custom3 = $value;
 			return $this;
 		}
-		throw new Exception
+		throw new \Exception
 		("Parameter value must be of type 'string'");
 	}
 
@@ -139,7 +139,7 @@ class Contact {
 			$this->object->FirstName = $value;
 			return $this;
 		}
-		throw new Exception
+		throw new \Exception
 		("Parameter value must be of type 'string'");
 	}
 
@@ -151,7 +151,7 @@ class Contact {
 			$this->object->GroupId = $value + 0;
 			return $this;
 		}
-		throw new Exception
+		throw new \Exception
 		("Parameter value must be of type 'number'");
 	}
 
@@ -163,7 +163,7 @@ class Contact {
 			$this->object->MobileNumber = $value;
 			return $this;
 		}
-		throw new Exception
+		throw new \Exception
 		("Parameter value must be of type 'string'");
 	}
 
@@ -175,7 +175,7 @@ class Contact {
 			$this->object->Surname = $value;
 			return $this;
 		}
-		throw new Exception
+		throw new \Exception
 		("Parameter value must be of type 'string'");
 	}
 
@@ -187,7 +187,7 @@ class Contact {
 			$this->object->Title = $value;
 			return $this;
 		}
-		throw new Exception
+		throw new \Exception
 		("Parameter value must be of type 'string'");
 	}
 

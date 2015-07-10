@@ -45,7 +45,7 @@ class MessagingApi extends AbstractApi {
 				}
 
 			}
-		} catch (Exception $exc) {
+		} catch (\Exception $exc) {
 			echo $exc->getTraceAsString();
 		}
 		return null;
@@ -60,9 +60,9 @@ class MessagingApi extends AbstractApi {
 	public function getSenderId($senderId) {
 		$resource = "/senders/";
 		if (is_null($senderId)) {
-			throw new ErrorException("Parameter 'senderId' cannot be null");
+			throw new \ErrorException("Parameter 'senderId' cannot be null");
 		} elseif (!is_int($senderId)) {
-			throw new ErrorException("Parameter 'senderId' must be an integer");
+			throw new \ErrorException("Parameter 'senderId' must be an integer");
 		}
 
 		try {
@@ -82,7 +82,7 @@ class MessagingApi extends AbstractApi {
 
 				}
 			}
-		} catch (Exception $exc) {
+		} catch (\Exception $exc) {
 			echo $exc->getTraceAsString();
 		}
 		return null;
@@ -99,9 +99,9 @@ class MessagingApi extends AbstractApi {
 		$resource = "/senders/";
 
 		if (is_null($request)) {
-			throw new ErrorException("Parameter 'request' cannot be null");
+			throw new \ErrorException("Parameter 'request' cannot be null");
 		} elseif (!is_array($request) || !($request instanceof Sender)) {
-			throw new ErrorException("Parameter 'request' must be an array or an instance of Sender");
+			throw new \ErrorException("Parameter 'request' must be an array or an instance of Sender");
 		}
 		try {
 			$params = array();
@@ -120,7 +120,7 @@ class MessagingApi extends AbstractApi {
 				}
 
 			}
-		} catch (Exception $ex) {
+		} catch (\Exception $ex) {
 			echo $ex->getTraceAsString();
 		}
 		return null;
@@ -137,11 +137,11 @@ class MessagingApi extends AbstractApi {
 
 		// Let us check whether the request is an array and not null
 		if (!is_array($request) || !($request instanceof MessageTemplate)) {
-			throw new ErrorException("Parameter 'request' must be an array or an instance of MessageTemplate");
+			throw new \ErrorException("Parameter 'request' must be an array or an instance of MessageTemplate");
 		}
 
 		if (is_null($request)) {
-			throw new ErrorException("Parameter 'request' cannot be null");
+			throw new \ErrorException("Parameter 'request' cannot be null");
 		}
 
 		try {
@@ -160,7 +160,7 @@ class MessagingApi extends AbstractApi {
 				}
 
 			}
-		} catch (Exception $ex) {
+		} catch (\Exception $ex) {
 			echo $ex->getTraceAsString();
 		}
 		return null;
@@ -198,7 +198,7 @@ class MessagingApi extends AbstractApi {
 				}
 
 			}
-		} catch (Exception $exc) {
+		} catch (\Exception $exc) {
 			echo $exc->getTraceAsString();
 		}
 		return null;
@@ -213,9 +213,9 @@ class MessagingApi extends AbstractApi {
 	public function getMessageTemplate($templateId) {
 		$resource = "/templates/";
 		if (is_null($templateId)) {
-			throw new ErrorException("Parameter 'templateId' cannot be null");
+			throw new \ErrorException("Parameter 'templateId' cannot be null");
 		} elseif (!is_int($templateId)) {
-			throw new ErrorException("Parameter 'templateId' must be an integer");
+			throw new \ErrorException("Parameter 'templateId' must be an integer");
 		}
 
 		try {
@@ -233,7 +233,7 @@ class MessagingApi extends AbstractApi {
 				}
 
 			}
-		} catch (Exception $exc) {
+		} catch (\Exception $exc) {
 			echo $exc->getTraceAsString();
 		}
 		return null;
@@ -249,15 +249,15 @@ class MessagingApi extends AbstractApi {
 	public function updateMessageTemplate($messageTemplateId, $request) {
 		$resource = "/templates/";
 		if (is_null($request)) {
-			throw new ErrorException("Parameter 'request' cannot be null");
+			throw new \ErrorException("Parameter 'request' cannot be null");
 		} else if (!is_array($request)) {
-			throw new ErrorException("Parameter 'request' must be an array");
+			throw new \ErrorException("Parameter 'request' must be an array");
 		}
 
 		if (is_null($messageTemplateId)) {
-			throw new ErrorException("Parameter 'messageTemplateId' cannot be null");
+			throw new \ErrorException("Parameter 'messageTemplateId' cannot be null");
 		} elseif (!is_int($messageTemplateId)) {
-			throw new ErrorException("Parameter 'messageTemplateId' must be an integer");
+			throw new \ErrorException("Parameter 'messageTemplateId' must be an integer");
 		}
 		try {
 			$resource .= $messageTemplateId;
@@ -274,7 +274,7 @@ class MessagingApi extends AbstractApi {
 				}
 
 			}
-		} catch (Exception $exc) {
+		} catch (\Exception $exc) {
 			echo $exc->getTraceAsString();
 		}
 		return null;
@@ -290,15 +290,15 @@ class MessagingApi extends AbstractApi {
 	public function updateSenderId($senderId, $request) {
 		$resource = "/senders/";
 		if (is_null($request)) {
-			throw new ErrorException("Parameter 'senderId' cannot be null");
+			throw new \ErrorException("Parameter 'senderId' cannot be null");
 		} elseif (!is_array($request)) {
-			throw new ErrorException("Parameter 'request' must be an array");
+			throw new \ErrorException("Parameter 'request' must be an array");
 		}
 
 		if (is_null($senderId)) {
-			throw new ErrorException("Parameter 'senderId' cannot be null");
+			throw new \ErrorException("Parameter 'senderId' cannot be null");
 		} elseif (!is_int($senderId)) {
-			throw new ErrorException("Parameter 'senderId' must be an integer");
+			throw new \ErrorException("Parameter 'senderId' must be an integer");
 		}
 		try {
 			$resource .= $senderId;
@@ -315,7 +315,7 @@ class MessagingApi extends AbstractApi {
 				}
 
 			}
-		} catch (Exception $exc) {
+		} catch (\Exception $exc) {
 			echo $exc->getTraceAsString();
 		}
 		return null;
@@ -330,9 +330,9 @@ class MessagingApi extends AbstractApi {
 	public function deleteSenderId($senderId) {
 		$resource = "/senders/";
 		if (is_null($senderId)) {
-			throw new ErrorException("Parameter 'senderId' cannot be null");
+			throw new \ErrorException("Parameter 'senderId' cannot be null");
 		} elseif (!is_int($senderId)) {
-			throw new ErrorException("Parameter 'senderId' must be an integer");
+			throw new \ErrorException("Parameter 'senderId' must be an integer");
 		}
 		try {
 			$resource .= $senderId;
@@ -345,7 +345,7 @@ class MessagingApi extends AbstractApi {
 				}
 
 			}
-		} catch (Exception $ex) {
+		} catch (\Exception $ex) {
 			echo $ex->getTraceAsString();
 		}
 		return FALSE;
@@ -360,9 +360,9 @@ class MessagingApi extends AbstractApi {
 	public function deleteMessageTemplate($templateId) {
 		$resource = "/templates/";
 		if (is_null($templateId)) {
-			throw new ErrorException("Parameter 'templateId' cannot be null");
+			throw new \ErrorException("Parameter 'templateId' cannot be null");
 		} elseif (!is_int($templateId)) {
-			throw new ErrorException("Parameter 'templateId' must be an integer");
+			throw new \ErrorException("Parameter 'templateId' must be an integer");
 		}
 		try {
 			$resource .= $templateId;
@@ -375,7 +375,7 @@ class MessagingApi extends AbstractApi {
 				}
 
 			}
-		} catch (Exception $ex) {
+		} catch (\Exception $ex) {
 			echo $ex->getTraceAsString();
 		}
 		return FALSE;
@@ -418,7 +418,7 @@ class MessagingApi extends AbstractApi {
 				}
 
 			}
-		} catch (Exception $exc) {
+		} catch (\Exception $exc) {
 			echo $exc->getTraceAsString();
 		}
 		return null;
@@ -436,9 +436,9 @@ class MessagingApi extends AbstractApi {
 	public function getNumberPlanMoKeywords($numberPlanId, $page = -1, $pageSize = -1) {
 		$resource = "/numberplans/";
 		if (is_null($numberPlanId)) {
-			throw new ErrorException("Parameter 'numberPlanId' cannot be null ");
+			throw new \ErrorException("Parameter 'numberPlanId' cannot be null ");
 		} elseif (!is_int($numberPlanId)) {
-			throw new ErrorException("Parameter 'numberPlanId' must be an integer");
+			throw new \ErrorException("Parameter 'numberPlanId' must be an integer");
 		}
 		try {
 			$params = array();
@@ -464,7 +464,7 @@ class MessagingApi extends AbstractApi {
 				}
 
 			}
-		} catch (Exception $exc) {
+		} catch (\Exception $exc) {
 			echo $exc->getTraceAsString();
 		}
 		return null;
@@ -482,9 +482,9 @@ class MessagingApi extends AbstractApi {
 	public function getCampaignMoKeywords($campaignId, $page = -1, $pageSize = -1) {
 		$resource = "/campaigns/";
 		if (is_null($campaignId)) {
-			throw new ErrorException("Parameter 'campaignId' cannot be null");
+			throw new \ErrorException("Parameter 'campaignId' cannot be null");
 		} elseif (!is_int($campaignId)) {
-			throw new ErrorException("Parameter 'campaignId' must be an integer");
+			throw new \ErrorException("Parameter 'campaignId' must be an integer");
 		}
 		try {
 			$params = array();
@@ -510,7 +510,7 @@ class MessagingApi extends AbstractApi {
 				}
 
 			}
-		} catch (Exception $exc) {
+		} catch (\Exception $exc) {
 			echo $exc->getTraceAsString();
 		}
 		return null;
@@ -548,7 +548,7 @@ class MessagingApi extends AbstractApi {
 				}
 
 			}
-		} catch (Exception $exc) {
+		} catch (\Exception $exc) {
 			echo $exc->getTraceAsString();
 		}
 		return null;
@@ -563,9 +563,9 @@ class MessagingApi extends AbstractApi {
 	public function getCampaign($campaignId) {
 		$resource = "/campaigns/";
 		if (is_null($campaignId)) {
-			throw new ErrorException("Parameter 'campaignId' cannot be null");
+			throw new \ErrorException("Parameter 'campaignId' cannot be null");
 		} elseif (!is_int($campaignId)) {
-			throw new ErrorException("Parameter 'campaignId' must be an integer");
+			throw new \ErrorException("Parameter 'campaignId' must be an integer");
 		}
 
 		try {
@@ -581,7 +581,7 @@ class MessagingApi extends AbstractApi {
 					return $response;
 				}
 			}
-		} catch (Exception $exc) {
+		} catch (\Exception $exc) {
 			echo $exc->getTraceAsString();
 		}
 		return null;
@@ -596,9 +596,9 @@ class MessagingApi extends AbstractApi {
 	public function getNumberPlan($numberPlanId) {
 		$resource = "/numberplans/";
 		if (is_null($numberPlanId)) {
-			throw new ErrorException("Parameter 'numberPlanId' cannot be null");
+			throw new \ErrorException("Parameter 'numberPlanId' cannot be null");
 		} elseif (!is_int($numberPlanId)) {
-			throw new ErrorException("Parameter 'numberPlanId' must be an integer");
+			throw new \ErrorException("Parameter 'numberPlanId' must be an integer");
 		}
 
 		try {
@@ -616,7 +616,7 @@ class MessagingApi extends AbstractApi {
 				}
 
 			}
-		} catch (Exception $exc) {
+		} catch (\Exception $exc) {
 			echo $exc->getTraceAsString();
 		}
 		return null;
@@ -631,9 +631,9 @@ class MessagingApi extends AbstractApi {
 	public function getMoKeyword($keywordId) {
 		$resource = "/keywords/";
 		if (is_null($keywordId)) {
-			throw new ErrorException("Parameter 'keywordId' cannot be null");
+			throw new \ErrorException("Parameter 'keywordId' cannot be null");
 		} elseif (!is_int($keywordId)) {
-			throw new ErrorException("Parameter 'keywordId' must be an integer");
+			throw new \ErrorException("Parameter 'keywordId' must be an integer");
 		}
 
 		try {
@@ -651,7 +651,7 @@ class MessagingApi extends AbstractApi {
 				}
 
 			}
-		} catch (Exception $exc) {
+		} catch (\Exception $exc) {
 			echo $exc->getTraceAsString();
 		}
 		return null;
@@ -666,9 +666,9 @@ class MessagingApi extends AbstractApi {
 	public function addCampaign($request) {
 		$resource = "/campaigns/";
 		if (is_null($request)) {
-			throw new ErrorException("Parameter 'request' cannot be null");
+			throw new \ErrorException("Parameter 'request' cannot be null");
 		} elseif (!is_array($request) || !($request instanceof Campaign)) {
-			throw new ErrorException("Parameter 'request' must be an array or an instance of Campaign");
+			throw new \ErrorException("Parameter 'request' must be an array or an instance of Campaign");
 		}
 
 		try {
@@ -686,7 +686,7 @@ class MessagingApi extends AbstractApi {
 				}
 
 			}
-		} catch (Exception $ex) {
+		} catch (\Exception $ex) {
 			echo $ex->getTraceAsString();
 		}
 		return null;
@@ -704,9 +704,9 @@ class MessagingApi extends AbstractApi {
 		$resource = "/keywords/";
 
 		if (is_null($request)) {
-			throw new ErrorException("Parameter 'request' cannot be null");
+			throw new \ErrorException("Parameter 'request' cannot be null");
 		} elseif (!is_array($request) || !($request instanceof MoKeyWord)) {
-			throw new ErrorException("Parameter 'request' must be an array or an instance of MoKeyWord");
+			throw new \ErrorException("Parameter 'request' must be an array or an instance of MoKeyWord");
 		}
 
 		try {
@@ -723,7 +723,7 @@ class MessagingApi extends AbstractApi {
 					return $response;
 				}
 			}
-		} catch (Exception $ex) {
+		} catch (\Exception $ex) {
 			echo $ex->getTraceAsString();
 		}
 		return null;
@@ -739,15 +739,15 @@ class MessagingApi extends AbstractApi {
 	public function updateCampaign($campaignId, $request) {
 		$resource = "/campaigns/";
 		if (is_null($request)) {
-			throw new ErrorException("Parameter 'request' cannot be null");
+			throw new \ErrorException("Parameter 'request' cannot be null");
 		} elseif (!is_array($request)) {
-			throw new ErrorException("Parameter 'request' must be an array");
+			throw new \ErrorException("Parameter 'request' must be an array");
 		}
 
 		if (is_null($campaignId)) {
-			throw new ErrorException("Parameter 'campaignId' cannot be null");
+			throw new \ErrorException("Parameter 'campaignId' cannot be null");
 		} elseif (!is_int($campaignId)) {
-			throw new ErrorException("Parameter 'campaignId' must be an integer");
+			throw new \ErrorException("Parameter 'campaignId' must be an integer");
 		}
 		try {
 			$resource .= $campaignId;
@@ -763,7 +763,7 @@ class MessagingApi extends AbstractApi {
 				}
 
 			}
-		} catch (Exception $exc) {
+		} catch (\Exception $exc) {
 			echo $exc->getTraceAsString();
 		}
 		return null;
@@ -779,15 +779,15 @@ class MessagingApi extends AbstractApi {
 	public function updateMoKeyword($keywordId, $request) {
 		$resource = "/keywords/";
 		if (is_null($request)) {
-			throw new ErrorException("Parameter 'request' cannot be null");
+			throw new \ErrorException("Parameter 'request' cannot be null");
 		} elseif (!is_array($request)) {
-			throw new ErrorException("Parameter 'request' must be an array");
+			throw new \ErrorException("Parameter 'request' must be an array");
 		}
 
 		if (is_null($keywordId)) {
-			throw new ErrorException("Parameter 'keywordId' cannot be null");
+			throw new \ErrorException("Parameter 'keywordId' cannot be null");
 		} elseif (!is_int($keywordId)) {
-			throw new ErrorException("Parameter 'keywordId' must be an integer");
+			throw new \ErrorException("Parameter 'keywordId' must be an integer");
 		}
 		try {
 			$resource .= $keywordId;
@@ -803,7 +803,7 @@ class MessagingApi extends AbstractApi {
 				}
 
 			}
-		} catch (Exception $exc) {
+		} catch (\Exception $exc) {
 			echo $exc->getTraceAsString();
 		}
 		return null;
@@ -818,9 +818,9 @@ class MessagingApi extends AbstractApi {
 	public function deleteCampaign($campaignId) {
 		$resource = "/campaigns/";
 		if (is_null($campaignId)) {
-			throw new ErrorException("Parameter 'campaignId' cannot be null");
+			throw new \ErrorException("Parameter 'campaignId' cannot be null");
 		} elseif (!is_int($campaignId)) {
-			throw new ErrorException("Parameter 'campaignId' must be an integer");
+			throw new \ErrorException("Parameter 'campaignId' must be an integer");
 		}
 		try {
 			$resource .= $campaignId;
@@ -833,7 +833,7 @@ class MessagingApi extends AbstractApi {
 				}
 
 			}
-		} catch (Exception $ex) {
+		} catch (\Exception $ex) {
 			echo $ex->getTraceAsString();
 		}
 		return FALSE;
@@ -871,7 +871,7 @@ class MessagingApi extends AbstractApi {
 				}
 
 			}
-		} catch (Exception $exc) {
+		} catch (\Exception $exc) {
 			echo $exc->getTraceAsString();
 		}
 		return null;
@@ -886,9 +886,9 @@ class MessagingApi extends AbstractApi {
 	public function deleteMoKeyword($keywordId) {
 		$resource = "/keywords/";
 		if (is_null($keywordId)) {
-			throw new ErrorException("Parameter 'keywordId' cannot be null.");
+			throw new \ErrorException("Parameter 'keywordId' cannot be null.");
 		} elseif (!is_int($keywordId)) {
-			throw new ErrorException("Parameter 'keywordId' must be an integer");
+			throw new \ErrorException("Parameter 'keywordId' must be an integer");
 		}
 		try {
 			$resource .= $keywordId;
@@ -901,7 +901,7 @@ class MessagingApi extends AbstractApi {
 				}
 
 			}
-		} catch (Exception $ex) {
+		} catch (\Exception $ex) {
 			echo $ex->getTraceAsString();
 		}
 		return FALSE;
@@ -918,15 +918,15 @@ class MessagingApi extends AbstractApi {
 		$resource = "/campaigns/";
 
 		if (is_null($keywordId)) {
-			throw new ErrorException("Parameter 'keywordId' cannot be null.");
+			throw new \ErrorException("Parameter 'keywordId' cannot be null.");
 		} elseif (!is_int($keywordId)) {
-			throw new ErrorException("Parameter 'keywordId' must be an integer");
+			throw new \ErrorException("Parameter 'keywordId' must be an integer");
 		}
 
 		if (is_null($campaignId)) {
-			throw new ErrorException("Parameter 'campaignId' cannot be null");
+			throw new \ErrorException("Parameter 'campaignId' cannot be null");
 		} elseif (!is_int($campaignId)) {
-			throw new ErrorException("Parameter 'campaignId' must be an integer");
+			throw new \ErrorException("Parameter 'campaignId' must be an integer");
 		}
 
 		try {
@@ -943,7 +943,7 @@ class MessagingApi extends AbstractApi {
 				}
 
 			}
-		} catch (Exception $exc) {
+		} catch (\Exception $exc) {
 			echo $exc->getTraceAsString();
 		}
 		return null;
@@ -960,15 +960,15 @@ class MessagingApi extends AbstractApi {
 		$resource = "/campaigns/";
 
 		if (is_null($keywordId)) {
-			throw new ErrorException("Parameter 'keywordId' cannot be null.");
+			throw new \ErrorException("Parameter 'keywordId' cannot be null.");
 		} elseif (!is_int($keywordId)) {
-			throw new ErrorException("Parameter 'keywordId' must be an integer");
+			throw new \ErrorException("Parameter 'keywordId' must be an integer");
 		}
 
 		if (is_null($campaignId)) {
-			throw new ErrorException("Parameter 'campaignId' cannot be null");
+			throw new \ErrorException("Parameter 'campaignId' cannot be null");
 		} elseif (!is_int($campaignId)) {
-			throw new ErrorException("Parameter 'campaignId' must be an integer");
+			throw new \ErrorException("Parameter 'campaignId' must be an integer");
 		}
 
 		try {
@@ -985,7 +985,7 @@ class MessagingApi extends AbstractApi {
 				}
 
 			}
-		} catch (Exception $exc) {
+		} catch (\Exception $exc) {
 			echo $exc->getTraceAsString();
 		}
 		return null;
@@ -1003,9 +1003,9 @@ class MessagingApi extends AbstractApi {
 	public function getCampaignActions($campaignId, $page = -1, $pageSize = -1) {
 		$resource = "/campaigns/";
 		if (is_null($campaignId)) {
-			throw new ErrorException("Parameter 'campaignId' cannot be null");
+			throw new \ErrorException("Parameter 'campaignId' cannot be null");
 		} elseif (!is_int($campaignId)) {
-			throw new ErrorException("Parameter 'campaignId' must be an integer");
+			throw new \ErrorException("Parameter 'campaignId' must be an integer");
 		}
 		try {
 			$params = array();
@@ -1031,7 +1031,7 @@ class MessagingApi extends AbstractApi {
 				}
 
 			}
-		} catch (Exception $exc) {
+		} catch (\Exception $exc) {
 			echo $exc->getTraceAsString();
 		}
 		return null;
@@ -1048,15 +1048,15 @@ class MessagingApi extends AbstractApi {
 		$resource = "/campaigns/";
 
 		if (is_null($campaignId)) {
-			throw new ErrorException("Parameter 'campaignId' cannot be null");
+			throw new \ErrorException("Parameter 'campaignId' cannot be null");
 		} elseif (!is_int($campaignId)) {
-			throw new ErrorException("Parameter 'campaignId' must be an integer");
+			throw new \ErrorException("Parameter 'campaignId' must be an integer");
 		}
 
 		if (is_null($message)) {
-			throw new ErrorException("Parameter 'message' cannot be null ");
+			throw new \ErrorException("Parameter 'message' cannot be null ");
 		} elseif (!is_string($message)) {
-			throw new ErrorException("Parameter 'message' must be a string");
+			throw new \ErrorException("Parameter 'message' must be a string");
 		}
 
 		try {
@@ -1076,7 +1076,7 @@ class MessagingApi extends AbstractApi {
 				}
 
 			}
-		} catch (Exception $ex) {
+		} catch (\Exception $ex) {
 			echo $ex->getTraceAsString();
 		}
 		return null;
@@ -1093,23 +1093,23 @@ class MessagingApi extends AbstractApi {
 	public function setCampaignDynamicUrlAction($campaignId, $url, $sendResponse = 'No') {
 		$resource = "/campaigns/";
 		if (is_null($campaignId)) {
-			throw new ErrorException("Parameter 'campaignId' cannot be null");
+			throw new \ErrorException("Parameter 'campaignId' cannot be null");
 		} elseif (!is_int($campaignId)) {
-			throw new ErrorException("Parameter 'campaignId' must be an integer");
+			throw new \ErrorException("Parameter 'campaignId' must be an integer");
 		}
 
 		if (is_null($url)) {
-			throw new ErrorException("Paramter 'url' cannot be null");
+			throw new \ErrorException("Paramter 'url' cannot be null");
 		} elseif (!is_string($url)) {
-			throw new ErrorException("Parameter 'url' must be a string");
+			throw new \ErrorException("Parameter 'url' must be a string");
 		} elseif (!filter_var($url, FILTER_VALIDATE_URL)) {
-			throw new ErrorException("Parameter 'email' must be a valid url");
+			throw new \ErrorException("Parameter 'email' must be a valid url");
 		}
 
 		if (is_null($sendResponse)) {
-			throw new ErrorException("Parameter 'sendResponse' cannot be null.");
+			throw new \ErrorException("Parameter 'sendResponse' cannot be null.");
 		} elseif (!is_string($sendResponse)) {
-			throw new ErrorException("Parameter 'sendResponse' must be a string");
+			throw new \ErrorException("Parameter 'sendResponse' must be a string");
 		}
 		try {
 			$params = array();
@@ -1129,7 +1129,7 @@ class MessagingApi extends AbstractApi {
 				}
 
 			}
-		} catch (Exception $ex) {
+		} catch (\Exception $ex) {
 			echo $ex->getTraceAsString();
 		}
 		return null;
@@ -1145,17 +1145,17 @@ class MessagingApi extends AbstractApi {
 	public function setCampaignEmailAddressAction($campaignId, $email) {
 		$resource = "/campaigns/";
 		if (is_null($campaignId)) {
-			throw new ErrorException("Parameter 'campaignId' cannot be null");
+			throw new \ErrorException("Parameter 'campaignId' cannot be null");
 		} elseif (!is_int($campaignId)) {
-			throw new ErrorException("Parameter 'campaignId' must be an integer");
+			throw new \ErrorException("Parameter 'campaignId' must be an integer");
 		}
 
 		if (is_null($email)) {
-			throw new ErrorException("Parameter 'email' cannot be null");
+			throw new \ErrorException("Parameter 'email' cannot be null");
 		} elseif (!is_string($email)) {
-			throw new ErrorException("Parameter 'email' must be a string");
+			throw new \ErrorException("Parameter 'email' must be a string");
 		} elseif (!CommonUtil::is_email($email, true)) {
-			throw new ErrorException("Parameter 'email' must be a valid email address");
+			throw new \ErrorException("Parameter 'email' must be a valid email address");
 		}
 
 		try {
@@ -1175,7 +1175,7 @@ class MessagingApi extends AbstractApi {
 				}
 
 			}
-		} catch (Exception $ex) {
+		} catch (\Exception $ex) {
 			echo $ex->getTraceAsString();
 		}
 		return null;
@@ -1191,15 +1191,15 @@ class MessagingApi extends AbstractApi {
 	public function setCampaignForwardToMobileAction($campaignId, $number) {
 		$resource = "/campaigns/";
 		if (is_null($campaignId)) {
-			throw new ErrorException("Parameter 'campaignId' cannot be null");
+			throw new \ErrorException("Parameter 'campaignId' cannot be null");
 		} elseif (!is_int($campaignId)) {
-			throw new ErrorException("Parameter 'campaignId' must be an integer");
+			throw new \ErrorException("Parameter 'campaignId' must be an integer");
 		}
 
 		if (is_null($number)) {
-			throw new ErrorException("Parameter 'number' cannot be null");
+			throw new \ErrorException("Parameter 'number' cannot be null");
 		} elseif (!is_numeric($number)) {
-			throw new ErrorException("Parameter 'number' must be a number");
+			throw new \ErrorException("Parameter 'number' must be a number");
 		}
 
 		try {
@@ -1219,7 +1219,7 @@ class MessagingApi extends AbstractApi {
 				}
 
 			}
-		} catch (Exception $ex) {
+		} catch (\Exception $ex) {
 			echo $ex->getTraceAsString();
 		}
 		return null;
@@ -1235,15 +1235,15 @@ class MessagingApi extends AbstractApi {
 	public function setCampaignForwardToSmppAction($campaignId, $apiId) {
 		$resource = "/campaigns/";
 		if (is_null($campaignId)) {
-			throw new ErrorException("Parameter 'campaignId' cannot be null");
+			throw new \ErrorException("Parameter 'campaignId' cannot be null");
 		} elseif (!is_int($campaignId)) {
-			throw new ErrorException("Parameter 'campaignId' must be an integer");
+			throw new \ErrorException("Parameter 'campaignId' must be an integer");
 		}
 
 		if (is_null($apiId)) {
-			throw new ErrorException("Parameter 'apiId' cannot be null");
+			throw new \ErrorException("Parameter 'apiId' cannot be null");
 		} elseif (!is_string($apiId)) {
-			throw new ErrorException("Parameter 'apiId' must be a string");
+			throw new \ErrorException("Parameter 'apiId' must be a string");
 		}
 		try {
 			$params = array();
@@ -1262,7 +1262,7 @@ class MessagingApi extends AbstractApi {
 				}
 
 			}
-		} catch (Exception $ex) {
+		} catch (\Exception $ex) {
 			echo $ex->getTraceAsString();
 		}
 		return null;
@@ -1279,14 +1279,14 @@ class MessagingApi extends AbstractApi {
 		$resource = "/campaigns/";
 
 		if (is_null($campaignId)) {
-			throw new ErrorException("Parameter 'campaignId' cannot be null");
+			throw new \ErrorException("Parameter 'campaignId' cannot be null");
 		} elseif (!is_int($campaignId)) {
-			throw new ErrorException("Parameter 'campaignId' must be an integer");
+			throw new \ErrorException("Parameter 'campaignId' must be an integer");
 		}
 		if (is_null($actionId)) {
-			throw new ErrorException("Parameter 'actionId' cannot be null");
+			throw new \ErrorException("Parameter 'actionId' cannot be null");
 		} elseif (!is_int($actionId)) {
-			throw new ErrorException("Parameter 'actionId' must be an integer");
+			throw new \ErrorException("Parameter 'actionId' must be an integer");
 		}
 
 		try {
@@ -1302,7 +1302,7 @@ class MessagingApi extends AbstractApi {
 					return $response;
 				}
 			}
-		} catch (Exception $exc) {
+		} catch (\Exception $exc) {
 			echo $exc->getTraceAsString();
 		}
 		return null;
@@ -1318,9 +1318,9 @@ class MessagingApi extends AbstractApi {
 		$resource = "/messages/";
 
 		if (is_null($message)) {
-			throw new ErrorException("Parameter 'message' cannot be null");
+			throw new \ErrorException("Parameter 'message' cannot be null");
 		} elseif (!($message instanceof Message) && !is_array($message)) {
-			throw new ErrorException("Parameter 'message' must be an instance of Message or an array");
+			throw new \ErrorException("Parameter 'message' must be an instance of Message or an array");
 		}
 
 		try {
@@ -1339,7 +1339,7 @@ class MessagingApi extends AbstractApi {
 					return $response;
 				}
 			}
-		} catch (Exception $ex) {
+		} catch (\Exception $ex) {
 			echo $ex->getTraceAsString();
 		}
 
@@ -1359,20 +1359,20 @@ class MessagingApi extends AbstractApi {
 	public function sendQuickMessage($from, $to, $content, $registeredDelivery = true, $billingInfo = null) {
 		$resource = "/messages/";
 		if (is_null($from)) {
-			throw new ErrorException("Parameter 'from' cannot be null");
+			throw new \ErrorException("Parameter 'from' cannot be null");
 		} elseif (!is_string($from)) {
-			throw new ErrorException("Parameter 'from' must be a string");
+			throw new \ErrorException("Parameter 'from' must be a string");
 		}
 		if (is_null($to)) {
-			throw new ErrorException("Parameter 'to' cannot be null");
+			throw new \ErrorException("Parameter 'to' cannot be null");
 		} elseif (!is_string($to) || !is_numeric($to)) {
-			throw new ErrorException("Parameter 'to' must be a string or a numeric string");
+			throw new \ErrorException("Parameter 'to' must be a string or a numeric string");
 		}
 
 		if (is_null($content)) {
-			throw new ErrorException("Parameter 'content' cannot be null");
+			throw new \ErrorException("Parameter 'content' cannot be null");
 		} elseif (!is_string($content)) {
-			throw new ErrorException("Parameter 'content' must be a string");
+			throw new \ErrorException("Parameter 'content' must be a string");
 		}
 
 		try {
@@ -1395,7 +1395,7 @@ class MessagingApi extends AbstractApi {
 					return $response;
 				}
 			}
-		} catch (Exception $ex) {
+		} catch (\Exception $ex) {
 			echo $ex->getTraceAsString();
 		}
 	}
@@ -1411,22 +1411,22 @@ class MessagingApi extends AbstractApi {
 		$resource = "/messages/";
 
 		if (is_null($messageId)) {
-			throw new ErrorException("Parameter 'messageId' cannot be null");
+			throw new \ErrorException("Parameter 'messageId' cannot be null");
 		} elseif (!CommonUtil::is_uuid($messageId)) {
-			throw new ErrorException("Parameter 'campaignId' must be a valid UUID");
+			throw new \ErrorException("Parameter 'campaignId' must be a valid UUID");
 		}
 		if (is_null($time)) {
-			throw new ErrorException("Parameter 'time' cannot be null");
+			throw new \ErrorException("Parameter 'time' cannot be null");
 		} elseif (!is_int($time) || !is_string($var)) {
-			throw new ErrorException("Parameter 'time' must be an integer Unix timestamp or a string time in this format (YYYY-MM-DD HH:MM:SS)");
+			throw new \ErrorException("Parameter 'time' must be an integer Unix timestamp or a string time in this format (YYYY-MM-DD HH:MM:SS)");
 		}
 
 		if (is_string($time)) {
 			if (!CommonUtil::is_datetime($time)) {
-				throw new ErrorException("Parameter 'time' must be a string time in this format (YYYY-MM-DD HH:MM:SS)");
+				throw new \ErrorException("Parameter 'time' must be a string time in this format (YYYY-MM-DD HH:MM:SS)");
 			}
 		} else if (is_int($time) && $time < 0) {
-			throw new ErrorException("Parameter 'time' must be positive integer");
+			throw new \ErrorException("Parameter 'time' must be positive integer");
 		}
 
 		try {
@@ -1445,7 +1445,7 @@ class MessagingApi extends AbstractApi {
 					return $response;
 				}
 			}
-		} catch (Exception $ex) {
+		} catch (\Exception $ex) {
 			echo $ex->getTraceAsString();
 		}
 		return null;
@@ -1461,9 +1461,9 @@ class MessagingApi extends AbstractApi {
 		$resource = "/messages/";
 
 		if (is_null($messageId)) {
-			throw new ErrorException("Parameter 'messageId' cannot be null");
+			throw new \ErrorException("Parameter 'messageId' cannot be null");
 		} elseif (!CommonUtil::is_uuid($messageId)) {
-			throw new ErrorException("Parameter 'campaignId' must be a valid UUID");
+			throw new \ErrorException("Parameter 'campaignId' must be a valid UUID");
 		}
 
 		try {
@@ -1480,7 +1480,7 @@ class MessagingApi extends AbstractApi {
 					return $response;
 				}
 			}
-		} catch (Exception $ex) {
+		} catch (\Exception $ex) {
 			echo $ex->getTraceAsString();
 		}
 		return null;
@@ -1496,9 +1496,9 @@ class MessagingApi extends AbstractApi {
 		$resource = "/messages/";
 
 		if (is_null($messageId)) {
-			throw new ErrorException("Parameter 'messageId' cannot be null");
+			throw new \ErrorException("Parameter 'messageId' cannot be null");
 		} elseif (!CommonUtil::is_uuid($messageId)) {
-			throw new ErrorException("Parameter 'messageId' must be a valid UUID");
+			throw new \ErrorException("Parameter 'messageId' must be a valid UUID");
 		}
 
 		try {
@@ -1516,7 +1516,7 @@ class MessagingApi extends AbstractApi {
 				}
 
 			}
-		} catch (Exception $exc) {
+		} catch (\Exception $exc) {
 			echo $exc->getTraceAsString();
 		}
 		return null;
@@ -1537,48 +1537,48 @@ class MessagingApi extends AbstractApi {
 		$resource = "/messages/";
 		if (!is_null($start)) {
 			if (!is_int($start) || !is_string($start)) {
-				throw new ErrorException("Parameter 'start' must be an integer Unix timestamp or a string time in this format (YYYY-MM-DD HH:MM:SS)");
+				throw new \ErrorException("Parameter 'start' must be an integer Unix timestamp or a string time in this format (YYYY-MM-DD HH:MM:SS)");
 			}
 
 			if (is_string($start)) {
 				if (!CommonUtil::is_datetime($time)) {
-					throw new ErrorException("Parameter 'start' must be a string time in this format (YYYY-MM-DD HH:MM:SS)");
+					throw new \ErrorException("Parameter 'start' must be a string time in this format (YYYY-MM-DD HH:MM:SS)");
 				}
 			}
 
 			if (is_int($start) && $start < 0) {
-				throw new ErrorException("Parameter 'start' must be a positive integer");
+				throw new \ErrorException("Parameter 'start' must be a positive integer");
 			}
 		}
 		if (!is_null($end)) {
 			if (!is_int($end) || !is_string($end)) {
-				throw new ErrorException("Parameter 'end' must be an integer Unix timestamp or a string time in this format (YYYY-MM-DD HH:MM:SS)");
+				throw new \ErrorException("Parameter 'end' must be an integer Unix timestamp or a string time in this format (YYYY-MM-DD HH:MM:SS)");
 			}
 
 			if (is_string($end)) {
 				if (!CommonUtil::is_datetime($time)) {
-					throw new ErrorException("Parameter 'end' must be a string time in this format (YYYY-MM-DD HH:MM:SS)");
+					throw new \ErrorException("Parameter 'end' must be a string time in this format (YYYY-MM-DD HH:MM:SS)");
 				}
 			}
 
 			if (is_int($end) && $end < 0) {
-				throw new ErrorException("Parameter 'end' must be a positive integer");
+				throw new \ErrorException("Parameter 'end' must be a positive integer");
 			}
 		}
 		if (!is_null($index) && !is_int($index)) {
-			throw new ErrorException("Parameter 'index' must be an integer");
+			throw new \ErrorException("Parameter 'index' must be an integer");
 		}
 		if (!is_null($limit) && !is_int($limit)) {
-			throw new ErrorException("Parameter 'limit' must be an integer");
+			throw new \ErrorException("Parameter 'limit' must be an integer");
 		}
 		if (!is_null($pending) && (!CommonUtil::is_boolean($pending) || !is_bool($pending))) {
-			throw new ErrorException("Parameter 'pending' must be a boolean (1, 0, true, false)");
+			throw new \ErrorException("Parameter 'pending' must be a boolean (1, 0, true, false)");
 		}
 		if (!is_null($direction)) {
 			if (!is_string($direction)) {
-				throw new ErrorException("Parameter 'direction' must be string");
+				throw new \ErrorException("Parameter 'direction' must be string");
 			} elseif ($direction !== MessageDirection::IN || $direction !== MessageDirection::OUT) {
-				throw new ErrorException("Parameter 'direction' must be string. Possible values are in or out");
+				throw new \ErrorException("Parameter 'direction' must be string. Possible values are in or out");
 			}
 		}
 
@@ -1622,7 +1622,7 @@ class MessagingApi extends AbstractApi {
 				}
 
 			}
-		} catch (Exception $ex) {
+		} catch (\Exception $ex) {
 			echo $ex->getTraceAsString();
 		}
 		return null;

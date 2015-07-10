@@ -133,7 +133,7 @@ class ApiList {
 			}
 
 		} else {
-			throw new Exception('Bad ApiList parameter');
+			throw new \Exception('Bad ApiList parameter');
 		}
 	}
 

@@ -56,7 +56,7 @@ class TicketResponse {
 			$this->object->Content = $value;
 			return $this;
 		}
-		throwException(new Exception("Parameter value must be of type 'string'"));
+		throwException(new \Exception("Parameter value must be of type 'string'"));
 	}
 
 }

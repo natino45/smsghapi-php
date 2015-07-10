@@ -31,7 +31,7 @@ abstract class Enum {
 		if ($this->isValidEnumValue($value)) {
 			$this->value = $value;
 		} else {
-			throw new Exception("Invalid type specified!");
+			throw new \Exception("Invalid type specified!");
 		}
 
 	}

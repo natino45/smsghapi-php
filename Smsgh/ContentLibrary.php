@@ -48,7 +48,7 @@ class ContentLibrary {
 			$this->object->Name = $name;
 			return $this;
 		}
-		throw new Exception
+		throw new \Exception
 		("Parameter value must be of type 'string'");
 	}
 
@@ -57,7 +57,7 @@ class ContentLibrary {
 			$this->object->ShortName = $shortName;
 			return $this;
 		}
-		throw new Exception
+		throw new \Exception
 		("Parameter value must be of type 'string'");
 	}
 

@@ -116,7 +116,7 @@ class Campaign {
 			$this->object->Brief = $value;
 			return $this;
 		}
-		throw new Exception
+		throw new \Exception
 		("Parameter value must be of type 'string'");
 	}
 
@@ -128,7 +128,7 @@ class Campaign {
 			$this->object->DateCreated = $value;
 			return $this;
 		}
-		throw new Exception
+		throw new \Exception
 		("Parameter value must be of type 'string'");
 	}
 
@@ -140,7 +140,7 @@ class Campaign {
 			$this->object->DateEnded = $value;
 			return $this;
 		}
-		throw new Exception
+		throw new \Exception
 		("Parameter value must be of type 'string'");
 	}
 
@@ -152,7 +152,7 @@ class Campaign {
 			$this->object->Description = $value;
 			return $this;
 		}
-		throw new Exception
+		throw new \Exception
 		("Parameter value must be of type 'string'");
 	}
 
