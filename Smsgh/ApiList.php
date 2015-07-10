@@ -1,128 +1,161 @@
 <?php
+namespace Smsgh;
 
 class ApiList {
 
-    private $count;
-    private $totalPages;
-    private $items;
+	private $count;
+	private $totalPages;
+	private $items;
 
-    /**
-     * Primary constructor.
-     */
-    public function __construct($json) {
-        if ($json instanceof stdClass) {
-            $this->items = array();
+	/**
+	 * Primary constructor.
+	 */
+	public function __construct($json) {
+		if ($json instanceof \stdClass) {
+			$this->items = array();
 
-            foreach ($json as $name => $value)
-                switch (strtolower($name)) {
-                    case 'count':
-                        $this->count = $value;
-                        break;
+			foreach ($json as $name => $value) {
+				switch (strtolower($name)) {
+					case 'count':
+						$this->count = $value;
+						break;
 
-                    case 'totalpages':
-                        $this->totalPages = $value;
-                        break;
+					case 'totalpages':
+						$this->totalPages = $value;
+						break;
 
-                    case 'actionlist':
-                        foreach ($value as $o)
-                            $this->items[] = new Action($o);
-                        break;
+					case 'actionlist':
+						foreach ($value as $o) {
+							$this->items[] = new Action($o);
+						}
 
-                    case 'campaignlist':
-                        foreach ($value as $o)
-                            $this->items[] = new Campaign($o);
-                        break;
+						break;
 
-                    /* case 'childaccountlist':
-                      foreach ($value as $o)
-                      $this->items[] = new Smsgh_ApiChildAccount($o);
-                      break;
-                     */
-                    case 'contactlist':
-                        foreach ($value as $o)
-                            $this->items[] = new Contact($o);
-                        break;
+					case 'campaignlist':
+						foreach ($value as $o) {
+							$this->items[] = new Campaign($o);
+						}
 
-                    case 'grouplist':
-                        foreach ($value as $o)
-                            $this->items[] = new ContactGroup($o);
-                        break;
+						break;
 
-                    case 'invoicestatementlist':
-                        foreach ($value as $o)
-                            $this->items[] = new Invoice($o);
-                        break;
+					/* case 'childaccountlist':
+					foreach ($value as $o)
+					$this->items[] = new Smsgh_ApiChildAccount($o);
+					break;
+					 */
+					case 'contactlist':
+						foreach ($value as $o) {
+							$this->items[] = new Contact($o);
+						}
 
-                    case 'messages':
-                        foreach ($value as $o)
-                            $this->items[] = new Message($o);
-                        break;
+						break;
 
-                    case 'messagetemplatelist':
-                        foreach ($value as $o)
-                            $this->items[] = new MessageTemplate($o);
-                        break;
+					case 'grouplist':
+						foreach ($value as $o) {
+							$this->items[] = new ContactGroup($o);
+						}
 
-                    case 'mokeywordlist':
-                        foreach ($value as $o)
-                            $this->items[] = new MoKeyWord($o);
-                        break;
+						break;
 
-                    case 'numberplanlist':
-                        foreach ($value as $o)
-                            $this->items[] = new NumberPlan($o);
-                        break;
+					case 'invoicestatementlist':
+						foreach ($value as $o) {
+							$this->items[] = new Invoice($o);
+						}
 
-                    case 'senderaddresseslist':
-                        foreach ($value as $o)
-                            $this->items[] = new Sender($o);
-                        break;
+						break;
 
-                    case 'servicelist':
-                        foreach ($value as $o)
-                            $this->items[] = new Service($o);
-                        break;
-                    case 'ticketlist':
-                        foreach ($value as $o)
-                            $this->items[] = new Ticket($o);
-                        break;
-                    case "libraries":
-                        foreach ($value as $o)
-                            $this->items[] = new ContentLibrary($o);
-                        break;
-                    case "folders":
-                        foreach ($value as $o)
-                            $this->items[] = new ContentFolder($o);
-                        break;
-                    case "medias":
-                        foreach ($value as $o)
-                            $this->items[] = new ContentMedia($o);
-                        break;
-                }
-        } else {
-            throw new Exception('Bad ApiList parameter');
-        }
-    }
+					case 'messages':
+						foreach ($value as $o) {
+							$this->items[] = new Message($o);
+						}
 
-    /**
-     * Gets count.
-     */
-    public function getCount() {
-        return $this->count;
-    }
+						break;
 
-    /**
-     * Gets totalPages.
-     */
-    public function getTotalPages() {
-        return $this->totalPages;
-    }
+					case 'messagetemplatelist':
+						foreach ($value as $o) {
+							$this->items[] = new MessageTemplate($o);
+						}
 
-    /**
-     * Gets items.
-     */
-    public function getItems() {
-        return $this->items;
-    }
+						break;
+
+					case 'mokeywordlist':
+						foreach ($value as $o) {
+							$this->items[] = new MoKeyWord($o);
+						}
+
+						break;
+
+					case 'numberplanlist':
+						foreach ($value as $o) {
+							$this->items[] = new NumberPlan($o);
+						}
+
+						break;
+
+					case 'senderaddresseslist':
+						foreach ($value as $o) {
+							$this->items[] = new Sender($o);
+						}
+
+						break;
+
+					case 'servicelist':
+						foreach ($value as $o) {
+							$this->items[] = new Service($o);
+						}
+
+						break;
+					case 'ticketlist':
+						foreach ($value as $o) {
+							$this->items[] = new Ticket($o);
+						}
+
+						break;
+					case "libraries":
+						foreach ($value as $o) {
+							$this->items[] = new ContentLibrary($o);
+						}
+
+						break;
+					case "folders":
+						foreach ($value as $o) {
+							$this->items[] = new ContentFolder($o);
+						}
+
+						break;
+					case "medias":
+						foreach ($value as $o) {
+							$this->items[] = new ContentMedia($o);
+						}
+
+						break;
+				}
+			}
+
+		} else {
+			throw new Exception('Bad ApiList parameter');
+		}
+	}
+
+	/**
+	 * Gets count.
+	 */
+	public function getCount() {
+		return $this->count;
+	}
+
+	/**
+	 * Gets totalPages.
+	 */
+	public function getTotalPages() {
+		return $this->totalPages;
+	}
+
+	/**
+	 * Gets items.
+	 */
+	public function getItems() {
+		return $this->items;
+	}
 
 }

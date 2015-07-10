@@ -6,36 +6,37 @@
  * @author Arsene Tochemey GANDOTE
  *
  */
-class BasicAuth{
-    
-    private $userName;
-    private $password;
-    
-    /**
-     * Intialise the properties
-     */
-    public function __construct($userName, $password) {
-        $this->userName = $userName;
-        $this->password = $password;
-    }
-    
-    public function setUserName($userName) {
-        $this->userName = $userName;
-        return $this;
-    }
+namespace Smsgh;
 
-    public function setPassword($password) {
-        $this->password = $password;
-        return $this;
-    }
-    
-    public function getUserName() {
-        return $this->userName;
-    }
+class BasicAuth {
 
-    public function getPassword() {
-        return $this->password;
-    }
+	private $userName;
+	private $password;
 
+	/**
+	 * Intialise the properties
+	 */
+	public function __construct($userName, $password) {
+		$this->userName = $userName;
+		$this->password = $password;
+	}
+
+	public function setUserName($userName) {
+		$this->userName = $userName;
+		return $this;
+	}
+
+	public function setPassword($password) {
+		$this->password = $password;
+		return $this;
+	}
+
+	public function getUserName() {
+		return $this->userName;
+	}
+
+	public function getPassword() {
+		return $this->password;
+	}
 
 }

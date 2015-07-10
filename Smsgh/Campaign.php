@@ -1,151 +1,159 @@
 <?php
 
+namespace Smsgh;
+
 class Campaign {
 
-    private $object;
+	private $object;
 
-    /**
-     * Primary constructor.
-     */
-    public function __construct($json = null) {
-        $this->object = is_object($json) ? $json : new stdClass;
+	/**
+	 * Primary constructor.
+	 */
+	public function __construct($json = null) {
+		$this->object = is_object($json) ? $json : new \stdClass;
 
-        $arr = array();
-        if (isset($this->object->Actions))
-            foreach ($this->object->Actions as $o)
-                $arr[] = new Action($o);
-        $this->object->Actions = $arr;
+		$arr = array();
+		if (isset($this->object->Actions)) {
+			foreach ($this->object->Actions as $o) {
+				$arr[] = new Action($o);
+			}
+		}
 
-        $arr = array();
-        if (isset($this->object->MoKeyWords))
-            foreach ($this->object->MoKeyWords as $o)
-                $arr[] = new MoKeyWord($o);
-        $this->object->MoKeyWords = $arr;
-    }
+		$this->object->Actions = $arr;
 
-    /**
-     * Gets accountId.
-     */
-    public function getAccountId() {
-        return @$this->object->AccountId;
-    }
+		$arr = array();
+		if (isset($this->object->MoKeyWords)) {
+			foreach ($this->object->MoKeyWords as $o) {
+				$arr[] = new MoKeyWord($o);
+			}
+		}
 
-    /**
-     * Gets actions.
-     */
-    public function getActions() {
-        return @$this->object->Actions;
-    }
+		$this->object->MoKeyWords = $arr;
+	}
 
-    /**
-     * Gets brief.
-     */
-    public function getBrief() {
-        return @$this->object->Brief;
-    }
+	/**
+	 * Gets accountId.
+	 */
+	public function getAccountId() {
+		return @$this->object->AccountId;
+	}
 
-    /**
-     * Gets campaignId.
-     */
-    public function getCampaignId() {
-        return @$this->object->CampaignId;
-    }
+	/**
+	 * Gets actions.
+	 */
+	public function getActions() {
+		return @$this->object->Actions;
+	}
 
-    /**
-     * Gets dateCreated.
-     */
-    public function getDateCreated() {
-        return @$this->object->DateCreated;
-    }
+	/**
+	 * Gets brief.
+	 */
+	public function getBrief() {
+		return @$this->object->Brief;
+	}
 
-    /**
-     * Gets dateEnded.
-     */
-    public function getDateEnded() {
-        return @$this->object->DateEnded;
-    }
+	/**
+	 * Gets campaignId.
+	 */
+	public function getCampaignId() {
+		return @$this->object->CampaignId;
+	}
 
-    /**
-     * Gets description.
-     */
-    public function getDescription() {
-        return @$this->object->Description;
-    }
+	/**
+	 * Gets dateCreated.
+	 */
+	public function getDateCreated() {
+		return @$this->object->DateCreated;
+	}
 
-    /**
-     * Gets enabled.
-     */
-    public function isEnabled() {
-        return @$this->object->Enabled;
-    }
+	/**
+	 * Gets dateEnded.
+	 */
+	public function getDateEnded() {
+		return @$this->object->DateEnded;
+	}
 
-    /**
-     * Gets isDefault.
-     */
-    public function isDefault() {
-        return @$this->object->IsDefault;
-    }
+	/**
+	 * Gets description.
+	 */
+	public function getDescription() {
+		return @$this->object->Description;
+	}
 
-    /**
-     * Gets moKeyWords.
-     */
-    public function getMoKeyWords() {
-        return @$this->object->MoKeyWords;
-    }
+	/**
+	 * Gets enabled.
+	 */
+	public function isEnabled() {
+		return @$this->object->Enabled;
+	}
 
-    /**
-     * Gets pendingApproval.
-     */
-    public function isPendingApproval() {
-        return @$this->object->PendingApproval;
-    }
+	/**
+	 * Gets isDefault.
+	 */
+	public function isDefault() {
+		return @$this->object->IsDefault;
+	}
 
-    /**
-     * Sets brief.
-     */
-    public function setBrief($value) {
-        if ($value === null || is_string($value)) {
-            $this->object->Brief = $value;
-            return $this;
-        }
-        throw new Exception
-        ("Parameter value must be of type 'string'");
-    }
+	/**
+	 * Gets moKeyWords.
+	 */
+	public function getMoKeyWords() {
+		return @$this->object->MoKeyWords;
+	}
 
-    /**
-     * Sets dateCreated.
-     */
-    public function setDateCreated($value) {
-        if ($value === null || is_string($value)) {
-            $this->object->DateCreated = $value;
-            return $this;
-        }
-        throw new Exception
-        ("Parameter value must be of type 'string'");
-    }
+	/**
+	 * Gets pendingApproval.
+	 */
+	public function isPendingApproval() {
+		return @$this->object->PendingApproval;
+	}
 
-    /**
-     * Sets dateEnded.
-     */
-    public function setDateEnded($value) {
-        if ($value === null || is_string($value)) {
-            $this->object->DateEnded = $value;
-            return $this;
-        }
-        throw new Exception
-        ("Parameter value must be of type 'string'");
-    }
+	/**
+	 * Sets brief.
+	 */
+	public function setBrief($value) {
+		if ($value === null || is_string($value)) {
+			$this->object->Brief = $value;
+			return $this;
+		}
+		throw new Exception
+		("Parameter value must be of type 'string'");
+	}
 
-    /**
-     * Sets description.
-     */
-    public function setDescription($value) {
-        if ($value === null || is_string($value)) {
-            $this->object->Description = $value;
-            return $this;
-        }
-        throw new Exception
-        ("Parameter value must be of type 'string'");
-    }
+	/**
+	 * Sets dateCreated.
+	 */
+	public function setDateCreated($value) {
+		if ($value === null || is_string($value)) {
+			$this->object->DateCreated = $value;
+			return $this;
+		}
+		throw new Exception
+		("Parameter value must be of type 'string'");
+	}
+
+	/**
+	 * Sets dateEnded.
+	 */
+	public function setDateEnded($value) {
+		if ($value === null || is_string($value)) {
+			$this->object->DateEnded = $value;
+			return $this;
+		}
+		throw new Exception
+		("Parameter value must be of type 'string'");
+	}
+
+	/**
+	 * Sets description.
+	 */
+	public function setDescription($value) {
+		if ($value === null || is_string($value)) {
+			$this->object->Description = $value;
+			return $this;
+		}
+		throw new Exception
+		("Parameter value must be of type 'string'");
+	}
 
 }

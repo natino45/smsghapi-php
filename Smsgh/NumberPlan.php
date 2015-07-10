@@ -1,146 +1,158 @@
 <?php
 
+namespace Smsgh;
+
 class NumberPlan {
 
-    private $object;
+	private $object;
 
-    /**
-     * Primary constructor.
-     */
-    public function __construct($json) {
-        if ($json === null)
-            $this->object = new stdClass;
-        else if (is_object($json)) {
-            $this->object = $json;
+	/**
+	 * Primary constructor.
+	 */
+	public function __construct($json) {
+		if ($json === null) {
+			$this->object = new stdClass;
+		} else if (is_object($json)) {
+			$this->object = $json;
 
-            $arr = array();
-            if (isset($json->MoKeyWords))
-                foreach ($json->MoKeyWords as $o)
-                    $arr[] = new MoKeyWord($o);
-            $this->object->MoKeyWords = $arr;
+			$arr = array();
+			if (isset($json->MoKeyWords)) {
+				foreach ($json->MoKeyWords as $o) {
+					$arr[] = new MoKeyWord($o);
+				}
+			}
 
-            $arr = array();
-            if (isset($json->NumberPlanItems))
-                foreach ($json->NumberPlanItems as $o)
-                    $arr[] = new NumberPlanItem($o);
-            $this->object->NumberPlanItems = $arr;
+			$this->object->MoKeyWords = $arr;
 
-            if (isset($json->ServiceType))
-                $this->object->ServiceType = new ServiceType($json->ServiceType);
-        } else
-            throw new Exception('Bad parameter');
-    }
+			$arr = array();
+			if (isset($json->NumberPlanItems)) {
+				foreach ($json->NumberPlanItems as $o) {
+					$arr[] = new NumberPlanItem($o);
+				}
+			}
 
-    /**
-     * Gets accountId.
-     */
-    public function getAccountId() {
-        return @$this->object->AccountId;
-    }
+			$this->object->NumberPlanItems = $arr;
 
-    /**
-     * Gets dateActivated.
-     */
-    public function getDateActivated() {
-        return @$this->object->DateActivated;
-    }
+			if (isset($json->ServiceType)) {
+				$this->object->ServiceType = new ServiceType($json->ServiceType);
+			}
 
-    /**
-     * Gets dateCreated.
-     */
-    public function getDateCreated() {
-        return @$this->object->DateCreated;
-    }
+		} else {
+			throw new Exception('Bad parameter');
+		}
 
-    /**
-     * Gets dateDeactivated.
-     */
-    public function getDateDeactivated() {
-        return @$this->object->DateDeactivated;
-    }
+	}
 
-    /**
-     * Gets dateExpiring.
-     */
-    public function getDateExpiring() {
-        return @$this->object->DateExpiring;
-    }
+	/**
+	 * Gets accountId.
+	 */
+	public function getAccountId() {
+		return @$this->object->AccountId;
+	}
 
-    /**
-     * Gets description.
-     */
-    public function getDescription() {
-        return @$this->object->Description;
-    }
+	/**
+	 * Gets dateActivated.
+	 */
+	public function getDateActivated() {
+		return @$this->object->DateActivated;
+	}
 
-    /**
-     * Gets id.
-     */
-    public function getId() {
-        return @$this->object->Id;
-    }
+	/**
+	 * Gets dateCreated.
+	 */
+	public function getDateCreated() {
+		return @$this->object->DateCreated;
+	}
 
-    /**
-     * Gets initialCost.
-     */
-    public function getInitialCost() {
-        return @$this->object->InitialCost;
-    }
+	/**
+	 * Gets dateDeactivated.
+	 */
+	public function getDateDeactivated() {
+		return @$this->object->DateDeactivated;
+	}
 
-    /**
-     * Gets isActive.
-     */
-    public function isActive() {
-        return @$this->object->IsActive;
-    }
+	/**
+	 * Gets dateExpiring.
+	 */
+	public function getDateExpiring() {
+		return @$this->object->DateExpiring;
+	}
 
-    /**
-     * Gets isPremium.
-     */
-    public function isPremium() {
-        return @$this->object->IsPremium;
-    }
+	/**
+	 * Gets description.
+	 */
+	public function getDescription() {
+		return @$this->object->Description;
+	}
 
-    /**
-     * Gets maxAllowedKeywords.
-     */
-    public function getMaxAllowedKeywords() {
-        return @$this->object->MaxAllowedKeywords;
-    }
+	/**
+	 * Gets id.
+	 */
+	public function getId() {
+		return @$this->object->Id;
+	}
 
-    /**
-     * Gets moKeyWords.
-     */
-    public function getMoKeyWords() {
-        return @$this->object->MoKeyWords;
-    }
+	/**
+	 * Gets initialCost.
+	 */
+	public function getInitialCost() {
+		return @$this->object->InitialCost;
+	}
 
-    /**
-     * Gets notes.
-     */
-    public function getNotes() {
-        return @$this->object->Notes;
-    }
+	/**
+	 * Gets isActive.
+	 */
+	public function isActive() {
+		return @$this->object->IsActive;
+	}
 
-    /**
-     * Gets numberPlanItems.
-     */
-    public function getNumberPlanItems() {
-        return @$this->object->NumberPlanItems;
-    }
+	/**
+	 * Gets isPremium.
+	 */
+	public function isPremium() {
+		return @$this->object->IsPremium;
+	}
 
-    /**
-     * Gets periodicCostBasis.
-     */
-    public function getPeriodicCostBasis() {
-        return @$this->object->PeriodicCostBasis;
-    }
+	/**
+	 * Gets maxAllowedKeywords.
+	 */
+	public function getMaxAllowedKeywords() {
+		return @$this->object->MaxAllowedKeywords;
+	}
 
-    /**
-     * Gets serviceType.
-     */
-    public function getServiceType() {
-        return @$this->object->ServiceType;
-    }
+	/**
+	 * Gets moKeyWords.
+	 */
+	public function getMoKeyWords() {
+		return @$this->object->MoKeyWords;
+	}
+
+	/**
+	 * Gets notes.
+	 */
+	public function getNotes() {
+		return @$this->object->Notes;
+	}
+
+	/**
+	 * Gets numberPlanItems.
+	 */
+	public function getNumberPlanItems() {
+		return @$this->object->NumberPlanItems;
+	}
+
+	/**
+	 * Gets periodicCostBasis.
+	 */
+	public function getPeriodicCostBasis() {
+		return @$this->object->PeriodicCostBasis;
+	}
+
+	/**
+	 * Gets serviceType.
+	 */
+	public function getServiceType() {
+		return @$this->object->ServiceType;
+	}
 
 }

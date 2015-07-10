@@ -8,53 +8,55 @@
  * @copyright (c) 2013 SMSGH Limited
  * @category API
  */
+namespace Smsgh;
+
 class TicketResponse {
 
-    private $object;
+	private $object;
 
-    /**
-     *
-     * @param
-     *        	Json Object $json
-     */
-    public function __construct($json = null) {
-        $this->object = is_object($json) ? $json : new stdClass ();
-    }
+	/**
+	 *
+	 * @param
+	 *        	Json Object $json
+	 */
+	public function __construct($json = null) {
+		$this->object = is_object($json) ? $json : new \stdClass();
+	}
 
-    /**
-     * Get the Id of the ApiTicketResponse
-     */
-    public function getId() {
-        return $this->object->Id;
-    }
+	/**
+	 * Get the Id of the ApiTicketResponse
+	 */
+	public function getId() {
+		return $this->object->Id;
+	}
 
-    /**
-     * Get the Content
-     */
-    public function getContent() {
-        return $this->object->Content;
-    }
+	/**
+	 * Get the Content
+	 */
+	public function getContent() {
+		return $this->object->Content;
+	}
 
-    /**
-     * Get the attachment
-     */
-    public function getAttachment() {
-        return $this->object->Attachment;
-    }
+	/**
+	 * Get the attachment
+	 */
+	public function getAttachment() {
+		return $this->object->Attachment;
+	}
 
-    /**
-     * Get the time
-     */
-    public function getTime() {
-        return $this->object->Time;
-    }
+	/**
+	 * Get the time
+	 */
+	public function getTime() {
+		return $this->object->Time;
+	}
 
-    public function setContent($value) {
-        if ($value === null || is_string($value)) {
-            $this->object->Content = $value;
-            return $this;
-        }
-        throwException(new Exception("Parameter value must be of type 'string'"));
-    }
+	public function setContent($value) {
+		if ($value === null || is_string($value)) {
+			$this->object->Content = $value;
+			return $this;
+		}
+		throwException(new Exception("Parameter value must be of type 'string'"));
+	}
 
 }

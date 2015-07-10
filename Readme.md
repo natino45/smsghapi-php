@@ -20,6 +20,8 @@ To use the SDK all you have to do is to download the **Smsgh** folder from the r
 You may then <code>include</code> the Smsgh/Api.php file by referring to the
 appropriate path like such: <pre><code>include '/path/to/location/Smsgh/Api.php';</code></pre>
 
+<code>Use Smsgh;</code> to include namespace
+
 
 ## **Usage**
 
@@ -45,25 +47,27 @@ To send a message just copy this code snippet and do the necessary modifications
     require './Smsgh/Api.php';
 
     // Here we assume the user is using the combination of his clientId and clientSecret as credentials
-    $auth = new BasicAuth("user233", "password23");
+    $auth = new Smsgh\BasicAuth("user233", "password23");
 
     // instance of ApiHost
-    $apiHost = new ApiHost($auth);
+    $apiHost = new Smsgh\ApiHost($auth);
     $enableConsoleLog = TRUE;
-    $messagingApi = new MessagingApi($apiHost, $enableConsoleLog);
+    $messagingApi = new Smsgh\MessagingApi($apiHost, $enableConsoleLog);
     try {
         // Quick Send approach options. Choose the one that meets your requirement
-       option 1.)  $messageResponse = $messagingApi->sendQuickMessage("+233245657867", "+233245098456", "<message>");
-       option 2.)  $messageResponse = $messagingApi->sendQuickMessage("+233245657867", "+233245098456", "<message>", true, <billing_info>);
+       //option 1.)  
+       $messageResponse = $messagingApi->sendQuickMessage("+233245657867", "+233245098456", "<message>");
+       //option 2.)  
+       $messageResponse = $messagingApi->sendQuickMessage("+233245657867", "+233245098456", "<message>", true, <billing_info>);
 
-        if ($messageResponse instanceof MessageResponse) {
+        if ($messageResponse instanceof Smsgh\MessageResponse) {
             echo $messageResponse->getStatus();
-        } elseif ($messageResponse instanceof HttpResponse) {
+        } elseif ($messageResponse instanceof Smsgh\HttpResponse) {
             echo "\nServer Response Status : " . $messageResponse->getStatus();
         }
 
         // Default Approach
-        $mesg = new Message();
+        $mesg = new Smsgh\Message();
         $mesg->setContent("I will see you soon...");
         $mesg->setTo("+233245098456");
         $mesg->setFrom("+233245657867");
@@ -71,9 +75,9 @@ To send a message just copy this code snippet and do the necessary modifications
     
         $messageResponse = $messagingApi->sendMessage($mesg);
     
-        if ($messageResponse instanceof MessageResponse) {
+        if ($messageResponse instanceof Smsgh\MessageResponse) {
             echo $messageResponse->getStatus();
-        } elseif ($messageResponse instanceof HttpResponse) {
+        } elseif ($messageResponse instanceof Smsgh\HttpResponse) {
             echo "\nServer Response Status : " . $messageResponse->getStatus();
         }
     } catch (Exception $ex) {
@@ -93,7 +97,7 @@ However please do refer to PHP datetime functions to know how to set the message
     // instance of ApiHost
     $apiHost = new ApiHost($auth);
     $enableConsoleLog = TRUE;
-    $messagingApi = new MessagingApi($apiHost, $enableConsoleLog);
+    $messagingApi = new Smsgh\MessagingApi($apiHost, $enableConsoleLog);
     try {
         // Default Approach
         $mesg = new Message();
@@ -104,9 +108,9 @@ However please do refer to PHP datetime functions to know how to set the message
         $mesg->setTime(date('Y-m-d H:i:s', strtotime('+1 week'))); // Here we are scheduling the message to be sent next week
         $messageResponse = $messagingApi->sendMessage($mesg);
     
-        if ($messageResponse instanceof MessageResponse) {
+        if ($messageResponse instanceof Smsgh\MessageResponse) {
             echo $messageResponse->getStatus();
-        } elseif ($messageResponse instanceof HttpResponse) {
+        } elseif ($messageResponse instanceof Smsgh\HttpResponse) {
             echo "\nServer Response Status : " . $messageResponse->getStatus();
         }
     } catch (Exception $ex) {
@@ -125,16 +129,16 @@ To send a message just copy this code snippet and do the necessary modifications
     $auth = new BasicAuth("user233", "password23");
 
     // instance of ApiHost
-    $apiHost = new ApiHost($auth);
+    $apiHost = new Smsgh\ApiHost($auth);
     // instance of AccountApi
     $enableConsoleLog = TRUE;
     $accountApi = new AccountApi($apiHost, $enableConsoleLog);
     try {
         // Get the Account Profile
         $profile = $accountApi->getProfile();
-        if ($profile instanceof AccountProfile) {
+        if ($profile instanceof Smsgh\AccountProfile) {
             echo "\n\n" . $profile->getAccountId();
-        } else if($profile instanceof HttpResponse){
+        } else if($profile instanceof Smsgh\HttpResponse){
             echo "\n\n".$profile->getStatus();
         }
     } catch (Exception $ex) {

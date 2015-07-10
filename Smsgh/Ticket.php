@@ -8,143 +8,150 @@
  * @copyright (c) 2013 SMSGH Limited
  * @category API
  */
+namespace Smsgh;
+
 class Ticket {
 
-    private $object;
+	private $object;
 
-    public function __construct($json = null) {
-        if ($json === null)
-            $this->object = new stdClass ();
-        else if (is_object($json)) {
-            $this->object = $json;
+	public function __construct($json = null) {
+		if ($json === null) {
+			$this->object = new \stdClass();
+		} else if (is_object($json)) {
+			$this->object = $json;
 
-            $arr = array();
-            if (isset($json->Responses))
-                foreach ($json->Responses as $o)
-                    $arr [] = new TicketResponse($o);
-            $this->object->Responses = $arr;
-        } else
-            throw new Exception('Bad parameter');
-    }
+			$arr = array();
+			if (isset($json->Responses)) {
+				foreach ($json->Responses as $o) {
+					$arr[] = new TicketResponse($o);
+				}
+			}
 
-    public function getAccountId() {
-        return $this->object->AccountId;
-    }
+			$this->object->Responses = $arr;
+		} else {
+			throw new Exception('Bad parameter');
+		}
 
-    public function getAttachment() {
-        return $this->object->Attachment;
-    }
+	}
 
-    public function getId() {
-        return $this->object->Id;
-    }
+	public function getAccountId() {
+		return $this->object->AccountId;
+	}
 
-    public function getLastUpdated() {
-        return $this->object->LastUpdated;
-    }
+	public function getAttachment() {
+		return $this->object->Attachment;
+	}
 
-    public function getRating() {
-        return $this->object->Rating;
-    }
+	public function getId() {
+		return $this->object->Id;
+	}
 
-    public function getContent() {
-        return $this->object->Content;
-    }
+	public function getLastUpdated() {
+		return $this->object->LastUpdated;
+	}
 
-    public function getRecipients() {
-        return $this->object->Recipients;
-    }
+	public function getRating() {
+		return $this->object->Rating;
+	}
 
-    public function getTimeAdded() {
-        return $this->object->TimeAdded;
-    }
+	public function getContent() {
+		return $this->object->Content;
+	}
 
-    public function getTimeAssigned() {
-        return $this->object->TimeAssigned;
-    }
+	public function getRecipients() {
+		return $this->object->Recipients;
+	}
 
-    public function getTimeClosed() {
-        return $this->object->TimeClosed;
-    }
+	public function getTimeAdded() {
+		return $this->object->TimeAdded;
+	}
 
-    public function getAssignedTo() {
-        return $this->object->AssignedTo;
-    }
+	public function getTimeAssigned() {
+		return $this->object->TimeAssigned;
+	}
 
-    public function getSupportDepartmentId() {
-        return $this->object->SupportDepartmentId;
-    }
+	public function getTimeClosed() {
+		return $this->object->TimeClosed;
+	}
 
-    public function getSupportCategoryId() {
-        return $this->object->SupportCategoryId;
-    }
+	public function getAssignedTo() {
+		return $this->object->AssignedTo;
+	}
 
-    public function getSupportStatusId() {
-        return $this->object->SupportStatusId;
-    }
+	public function getSupportDepartmentId() {
+		return $this->object->SupportDepartmentId;
+	}
 
-    public function getPriority() {
-        return $this->object->Priority;
-    }
+	public function getSupportCategoryId() {
+		return $this->object->SupportCategoryId;
+	}
 
-    public function getSource() {
-        return $this->object->Source;
-    }
+	public function getSupportStatusId() {
+		return $this->object->SupportStatusId;
+	}
 
-    public function getSubject() {
-        return $this->object->Subject;
-    }
+	public function getPriority() {
+		return $this->object->Priority;
+	}
 
-    public function getResponses() {
-        return $this->object->Responses;
-    }
+	public function getSource() {
+		return $this->object->Source;
+	}
 
-    public function setSupportDepartmentId($value) {
-        if (is_numeric($value)) {
-            $this->object->SupportDepartmentId = $value + 0;
-            return $this;
-        }
-        throwException(new Exception("Parameter value must be of type 'numeric'"));
-    }
+	public function getSubject() {
+		return $this->object->Subject;
+	}
 
-    public function setSupportCategoryId($value) {
-        if (is_numeric($value)) {
-            $this->object->SupportCategoryId = $value + 0;
-            return $this;
-        }
-        throwException(new Exception("Parameter value must be of type 'numeric'"));
-    }
+	public function getResponses() {
+		return $this->object->Responses;
+	}
 
-    public function setPriority($value) {
-        if (is_numeric($value)) {
-            $this->object->Priority = $value + 0;
-            return $this;
-        }
-        throwException(new Exception("Parameter value must be of type 'numeric'"));
-    }
+	public function setSupportDepartmentId($value) {
+		if (is_numeric($value)) {
+			$this->object->SupportDepartmentId = $value + 0;
+			return $this;
+		}
+		throwException(new Exception("Parameter value must be of type 'numeric'"));
+	}
 
-    public function setSource($value) {
-        if ($value === null || is_string($value)) {
-            $this->object->Source = $value;
-            return $this;
-        }
-        throwException(new Exception("Parameter value must be of type 'string'"));
-    }
+	public function setSupportCategoryId($value) {
+		if (is_numeric($value)) {
+			$this->object->SupportCategoryId = $value + 0;
+			return $this;
+		}
+		throwException(new Exception("Parameter value must be of type 'numeric'"));
+	}
 
-    public function setSubject($value) {
-        if ($value === null || is_string($value)) {
-            $this->object->Subject = $value;
-            return $this;
-        }
-        throwException(new Exception("Parameter value must be of type 'string'"));
-    }
+	public function setPriority($value) {
+		if (is_numeric($value)) {
+			$this->object->Priority = $value + 0;
+			return $this;
+		}
+		throwException(new Exception("Parameter value must be of type 'numeric'"));
+	}
 
-    public function setContent($value) {
-        if ($value === null || is_string($value)) {
-            $this->object->Content = $value;
-            return $this;
-        }
-        throwException(new Exception("Parameter value must be of type 'string'"));
-    }
+	public function setSource($value) {
+		if ($value === null || is_string($value)) {
+			$this->object->Source = $value;
+			return $this;
+		}
+		throwException(new Exception("Parameter value must be of type 'string'"));
+	}
+
+	public function setSubject($value) {
+		if ($value === null || is_string($value)) {
+			$this->object->Subject = $value;
+			return $this;
+		}
+		throwException(new Exception("Parameter value must be of type 'string'"));
+	}
+
+	public function setContent($value) {
+		if ($value === null || is_string($value)) {
+			$this->object->Content = $value;
+			return $this;
+		}
+		throwException(new Exception("Parameter value must be of type 'string'"));
+	}
 
 }

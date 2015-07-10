@@ -5,20 +5,22 @@
  *
  * @author Arsene Tochemey GANDOTE
  */
+namespace Smsgh;
+
 class Tag {
 
-    private $object;
+	private $object;
 
-    public function __construct($json = null) {
-        $this->object = is_object($json) ? $json : new stdClass;
-    }
+	public function __construct($json = null) {
+		$this->object = is_object($json) ? $json : new \stdClass;
+	}
 
-    public function getKey() {
-        return $this->object->Key;
-    }
+	public function getKey() {
+		return $this->object->Key;
+	}
 
-    public function getValue() {
-        return $this->object->Value;
-    }
+	public function getValue() {
+		return $this->object->Value;
+	}
 
 }

@@ -1,11 +1,12 @@
 <?php
 
-
 /**
  * CurlException
  *
  * @author Arsene Tochemey GANDOTE
  *
  */
-class CurlException extends Exception{
+namespace Smsgh;
+
+class CurlException extends Exception {
 }
